@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MySQL运算符对NULL值处理 | vanishke个人技术博客</title>
-  <meta name="keywords" content=" MySQL ">
-  <meta name="description" content="MySQL运算符对NULL值处理 | vanishke个人技术博客">
+  <title>nginx开机自启动 | vanishke个人技术博客</title>
+  <meta name="keywords" content=" nginx,linux ">
+  <meta name="description" content="nginx开机自启动 | vanishke个人技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="每一个不曾起舞的日子，都是对生命的辜负">
 <meta property="og:type" content="website">
@@ -422,9 +422,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-blogs/MySQL运算符对null值处理" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-blogs/nginx开机自启动" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MySQL运算符对NULL值处理</h1>
+        <h1 class="article-title">nginx开机自启动</h1>
     
     <div class="article-meta">
         
@@ -434,7 +434,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="MySQL">MySQL</a>
+            <a  data-rel="nginx">nginx</a>
             
         </span>
         
@@ -442,19 +442,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">MySQL</a>
+            <a class="color2">nginx,linux</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-17 17:57:56'>2020-11-17 10:10</time>
+            发布时间 : <time class="date" title='最后更新: 2020-12-26 09:42:49'>2020-12-24 10:11</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:102</span>
+        <span>字数:267</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -484,7 +484,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-text">添加nginx自启动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-text">添加文件可执行权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-text">设置开启自启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9F"><span class="toc-text">验证服务是否添加成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8"><span class="toc-text">查询nginx是否启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">重新加载nginx配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1"><span class="toc-text">停止nginx服务</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -500,21 +500,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>A,B,C作为列名时</p>
-<p>​    任意一项为null 则A+B+C为null;</p>
-</li>
-<li><p>count对于null值处理;</p>
-<p>​    count(*)包含null项；count(具体列名)忽略null项;count(null)为0</p>
-</li>
-<li><p>avg,max,min,sum对于null值处理</p>
-<p>​    计算时全部忽略null项;对于avg(null),max(null),min(null),sum(null)为null</p>
-</li>
-<li><p>group by对于null值处理</p>
-<p>​    将其单独作为一项置于首位</p>
-<p>​    distinct对于null值处理与group by类似</p>
-</li>
-</ol>
+        <h2 id="添加nginx自启动文件"><a href="#添加nginx自启动文件" class="headerlink" title="添加nginx自启动文件"></a>添加nginx自启动文件</h2><pre><code class="bash">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径
+[root@lwdCSCDN init.d]# vim /etc/init.d/nginx</code></pre>
+<h2 id="添加文件可执行权限"><a href="#添加文件可执行权限" class="headerlink" title="添加文件可执行权限"></a>添加文件可执行权限</h2><pre><code class="bash">[root@lwdCSCDN init.d]# chmod a+x /etc/init.d/nginx</code></pre>
+<h2 id="设置开启自启动"><a href="#设置开启自启动" class="headerlink" title="设置开启自启动"></a>设置开启自启动</h2><pre><code class="bash">[root@lwdCSCDN init.d]# chkconfig --add /etc/init.d/nginx
+[root@lwdCSCDN init.d]# chkconfig nginx on</code></pre>
+<h2 id="验证服务是否添加成功"><a href="#验证服务是否添加成功" class="headerlink" title="验证服务是否添加成功"></a>验证服务是否添加成功</h2><pre><code class="bash">[root@lwdCSCDN init.d]# service nginx start;
+正在启动 nginx：                                           [确定]</code></pre>
+<h2 id="查询nginx是否启动"><a href="#查询nginx是否启动" class="headerlink" title="查询nginx是否启动"></a>查询nginx是否启动</h2><pre><code class="bash">[root@lwdCSCDN init.d]# ps -ef | grep nginx
+root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          
+root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</code></pre>
+<h2 id="重新加载nginx配置文件"><a href="#重新加载nginx配置文件" class="headerlink" title="重新加载nginx配置文件"></a>重新加载nginx配置文件</h2><pre><code class="bash">[root@lwdCSCDN init.d]# service nginx reload
+nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
+nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
+重新载入 nginx：                                           [确定]
+You have new mail in /var/spool/mail/root</code></pre>
+<h2 id="停止nginx服务"><a href="#停止nginx服务" class="headerlink" title="停止nginx服务"></a>停止nginx服务</h2><pre><code class="bash">[root@lwdCSCDN init.d]# service nginx stop
+停止 nginx：                                               [确定]</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1206686311@qq.com </span>
