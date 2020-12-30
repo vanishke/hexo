@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Jetty 指定启动JDK版本 | vanishke个人技术博客</title>
-  <meta name="keywords" content=" Jetty ">
-  <meta name="description" content="Jetty 指定启动JDK版本 | vanishke个人技术博客">
+  <title>nginx常用启动命令 | vanishke个人技术博客</title>
+  <meta name="keywords" content=" nginx,linux ">
+  <meta name="description" content="nginx常用启动命令 | vanishke个人技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人介绍黄登科  技术博客https:&#x2F;&#x2F;hexo-sigma-eight.vercel.app&#x2F;  #联系方式&amp;#x31;&amp;#56;&amp;#54;&amp;#56;&amp;#x35;&amp;#x31;&amp;#x32;&amp;#57;&amp;#55;&amp;#50;&amp;#x36;&amp;#x40;&amp;#49;&amp;#x36;&amp;#51;&amp;#x2e;&amp;#99;&amp;#111;&amp;#x6d;">
 <meta property="og:type" content="website">
@@ -430,9 +430,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-blogs/jetty指定启动jdk版本" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-blogs/Windows创建FTP" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Jetty 指定启动JDK版本</h1>
+        <h1 class="article-title">nginx常用启动命令</h1>
     
     <div class="article-meta">
         
@@ -442,7 +442,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Jetty">Jetty</a>
+            <a  data-rel="nginx">nginx</a>
             
         </span>
         
@@ -450,19 +450,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">Jetty</a>
+            <a class="color2">nginx,linux</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-17 17:57:29'>2020-11-17 10:11</time>
+            发布时间 : <time class="date" title='最后更新: 2020-12-24 17:52:13'>2020-12-24 10:11</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:40</span>
+        <span>字数:57</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -492,7 +492,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E7%8E%AF%E5%A2%83"><span class="toc-text">linux环境</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -508,10 +508,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="linux环境"><a href="#linux环境" class="headerlink" title="linux环境"></a>linux环境</h2><pre><code class="bash">文件名称：setenv.sh 文件路径：/usr/local/
-文件头部添加以下内容：
-export JAVA_HOME=/usr/java/jdk1.6.0_21
-export JRE_HOME=/usr/java/jdk1.6.0_21/jre</code></pre>
+        <p>#启动</p>
+<pre><code class="bash">./nginx 
+./nginx -c dir(指定配置文件所在路径)</code></pre>
+<p>#停止</p>
+<pre><code class="bash">./nginx -s quit /nginx处理完任务后停止
+./nginx -s stop /强制停止nginx进程
+</code></pre>
+<p>#重新加载</p>
+<pre><code class="bash">./nginx -s reload /重新加载nginx.cnf配置文件</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1206686311@qq.com </span>
