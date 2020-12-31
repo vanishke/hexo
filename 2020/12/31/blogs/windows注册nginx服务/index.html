@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Oracle导入导出 | vanishke个人技术博客</title>
-  <meta name="keywords" content=" Oracle ">
-  <meta name="description" content="Oracle导入导出 | vanishke个人技术博客">
+  <title>windows注册nginx服务 | vanishke个人技术博客</title>
+  <meta name="keywords" content=" nginx,windows ">
+  <meta name="description" content="windows注册nginx服务 | vanishke个人技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="每一个不曾起舞的日子，都是对生命的辜负">
 <meta property="og:type" content="website">
@@ -454,9 +454,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-blogs/Oracle导入导出" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-blogs/windows注册nginx服务" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Oracle导入导出</h1>
+        <h1 class="article-title">windows注册nginx服务</h1>
     
     <div class="article-meta">
         
@@ -466,7 +466,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Oracle">Oracle</a>
+            <a  data-rel="nginx">nginx</a>
             
         </span>
         
@@ -474,19 +474,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">Oracle</a>
+            <a class="color4">nginx,windows</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-12-31 09:48:07'>2020-11-17 09:10</time>
+            发布时间 : <time class="date" title='最后更新: 2020-12-31 17:32:44'>2020-12-31 17:32</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:366</span>
+        <span>字数:427</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -516,7 +516,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-text">导入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-text">查看所有用户表空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%92%8C%E7%B4%A2%E5%BC%95%E5%AD%98%E5%82%A8%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-text">创建数据和索引存储文件目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E5%BA%94%E7%94%A8%E6%88%B7%E5%B9%B6%E8%B5%8B%E4%BA%88%E6%9D%83%E9%99%90"><span class="toc-text">创建对应用户并赋予权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%91%BD%E4%BB%A4"><span class="toc-text">导入命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA"><span class="toc-text">导出</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-text">创建导出数据文件目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%AF%BC%E5%87%BA%E5%91%BD%E4%BB%A4"><span class="toc-text">执行导出命令</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E4%B8%8B%E8%BD%BD"><span class="toc-text">nginx下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E5%B7%A5%E5%85%B7"><span class="toc-text">注册工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E6%B3%A8%E5%86%8C"><span class="toc-text">nginx注册</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%B0%83%E8%AF%95"><span class="toc-text">环境调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">nginx服务自启动设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81"><span class="toc-text">nginx服务验证</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -532,36 +532,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-text">导入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-text">查看所有用户表空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%92%8C%E7%B4%A2%E5%BC%95%E5%AD%98%E5%82%A8%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-text">创建数据和索引存储文件目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E5%BA%94%E7%94%A8%E6%88%B7%E5%B9%B6%E8%B5%8B%E4%BA%88%E6%9D%83%E9%99%90"><span class="toc-text">创建对应用户并赋予权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%91%BD%E4%BB%A4"><span class="toc-text">导入命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%BC%E5%87%BA"><span class="toc-text">导出</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-text">创建导出数据文件目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%AF%BC%E5%87%BA%E5%91%BD%E4%BB%A4"><span class="toc-text">执行导出命令</span></a></li></ol></li></ol></div></p>
-<h1 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h1><h2 id="查看所有用户表空间"><a href="#查看所有用户表空间" class="headerlink" title="查看所有用户表空间"></a>查看所有用户表空间</h2><pre><code class="sql">SELECT * FROM DBA_USERS  /*查看用户及其表空间信息 */
-
-drop user SDP_CMS_HRB cascade; /* 级联删除用户信息*/
-
-DROP TABLESPACE SDP_CMS_HRB_DATA including contents and datafiles cascade constraint; /* 删除用户所在的表空间*/</code></pre>
-<p>​    </p>
-<h2 id="创建数据和索引存储文件目录"><a href="#创建数据和索引存储文件目录" class="headerlink" title="创建数据和索引存储文件目录"></a>创建数据和索引存储文件目录</h2><pre><code class="SQL">create tablespace SDP_CMS_HRB_DATA datafile &#39;$ORACLE_BASE/oradata/SDP_CMS_HRB_DATA.dbf&#39; size 500M autoextend on next 12M maxsize unlimited;
-create tablespace SDP_CMS_HRB_IDX datafile &#39;$ORACLE_BASE/oradata/SDP_CMS_HRB_IDX.dbf&#39; size 500M autoextend on next 12M maxsize unlimited;</code></pre>
-<h2 id="创建对应用户并赋予权限"><a href="#创建对应用户并赋予权限" class="headerlink" title="创建对应用户并赋予权限"></a>创建对应用户并赋予权限</h2><pre><code class="SQL">create user SDP_CMS_HRB identified by SDP_CMS_HRB default tablespace SDP_CMS_HRB_DATA temporary tablespace TEMP profile DEFAULT;
-
-grant connect,resource to SDP_CMS_HRB; 
-grant create any sequence to SDP_CMS_HRB; 
-grant create any table to SDP_CMS_HRB; 
-grant delete any table to SDP_CMS_HRB; 
-grant insert any table to SDP_CMS_HRB; 
-grant select any table to SDP_CMS_HRB; 
-grant unlimited tablespace to SDP_CMS_HRB; 
-grant execute any procedure to SDP_CMS_HRB; 
-grant update any table to SDP_CMS_HRB; 
-grant create any view to SDP_CMS_HRB; 
-grant dba to SDP_CMS_HRB;</code></pre>
-<h2 id="导入命令"><a href="#导入命令" class="headerlink" title="导入命令"></a>导入命令</h2><pre><code class="SQL">impdp  SDP_CMS_HRB/SDP_CMS_HRB  DIRECTORY=IMPDIR  DUMPFILE=SDP_CMS _2020081010.dmp remap_schema=SDP_CMS:SDP_CMS_HRB remap_tablespace=SDP_CMS_DATA:SDP_CMS_HRB_DATA,SDP_CMS_DATA:SDP_CMS_HRB_IDX</code></pre>
-<p>​    remap_schema:利用remap_schema可以把源数据库下SDP_CMS用户的数据迁移到目标数据库的SDP_CMS_HRB用户下。</p>
-<p>​    remap_tablespace:将导出SDP_CMS _2020081010.dmp 文件中的SDP_CMS_DATA表空间 导入到目标库的 SDP_CMS_HRB_DATA中指定表空间(包含数据文件和索引文件)，导入命令执行之前必须确保引用脚本存在。</p>
-<p>查看Oracle 用户对应目录命令</p>
-<pre><code class="SQL">SELECT * FROM DBA_Directories /* 查看用户相关的目录信息 */</code></pre>
-<p><img src="/img/oracle/oracle_20201118.png" alt="oracle数据库目录信息"></p>
-<h1 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h1><h2 id="创建导出数据文件目录"><a href="#创建导出数据文件目录" class="headerlink" title="创建导出数据文件目录"></a>创建导出数据文件目录</h2><pre><code class="SQL">create directory DATA_EXPDP_DIR as &#39;/tmp&#39;; </code></pre>
-<h2 id="执行导出命令"><a href="#执行导出命令" class="headerlink" title="执行导出命令"></a>执行导出命令</h2><pre><code class="SQL">expdp \&#39;/ as sysdba\&#39; schemas=SDP_CMS_HRB DIRECTORY=DATA_EXPDP_DIR DUMPFILE=SDP_CMS_HRBBAK_20200607.DMP LOGFILE=SDP_CMS_HRBBAK_20200607.LOG</code></pre>
+        <p><div class='inner-toc'><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E4%B8%8B%E8%BD%BD"><span class="toc-text">nginx下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E5%B7%A5%E5%85%B7"><span class="toc-text">注册工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E6%B3%A8%E5%86%8C"><span class="toc-text">nginx注册</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%B0%83%E8%AF%95"><span class="toc-text">环境调试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">nginx服务自启动设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nginx%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81"><span class="toc-text">nginx服务验证</span></a></li></ol></div></p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>windows 7<br>nginx-1.16.1<br>winsw-2.0.2-bin.exe</p>
+<h1 id="nginx下载"><a href="#nginx下载" class="headerlink" title="nginx下载"></a>nginx下载</h1><pre><code class="bash">![官方下载地址](http://nginx.org/en/download.html)</code></pre>
+<h1 id="注册工具"><a href="#注册工具" class="headerlink" title="注册工具"></a>注册工具</h1><pre><code class="bash">官方下载地址：http://repo.jenkins-ci.org/releases/com/sun/winsw/winsw/
+笔者使用的2.0.2版本</code></pre>
+<h1 id="nginx注册"><a href="#nginx注册" class="headerlink" title="nginx注册"></a>nginx注册</h1><p>1.将nginx解压至指定安装位置,D:\nginx-1.16.1\nginx-1.16.1<br><img src="/img/nginx/nginx_20201231_01.png" alt="nginx安装目录"></p>
+<p>2.将winsw-2.0.2-bin.exe复制到nginx目录：D:\nginx-1.16.1\nginx-1.16.1,并将其改成nginx-service.exe </p>
+<p>3.新建一个xml文件nginx-service.xml,内容如下,注意里面目录对应关系</p>
+<pre><code class="xml">&lt;service&gt;
+  &lt;id&gt;nginx&lt;/id&gt;
+  &lt;name&gt;Nginx Service&lt;/name&gt;
+  &lt;description&gt;High Performance Nginx Service&lt;/description&gt;
+  &lt;logpath&gt;D:\nginx-1.16.1\nginx-1.16.1\logs&lt;/logpath&gt;
+  &lt;log mode=&quot;roll-by-size&quot;&gt;
+    &lt;sizeThreshold&gt;10240&lt;/sizeThreshold&gt;
+    &lt;keepFiles&gt;8&lt;/keepFiles&gt;
+  &lt;/log&gt;
+  &lt;executable&gt;D:\nginx-1.16.1\nginx-1.16.1\nginx.exe&lt;/executable&gt;
+  &lt;startarguments&gt;-p D:\nginx-1.16.1\nginx-1.16.1\Nginx&lt;/startarguments&gt;
+  &lt;stopexecutable&gt;D:\nginx-1.16.1\nginx-1.16.1\nginx.exe&lt;/stopexecutable&gt;
+  &lt;stoparguments&gt;-p D:\nginx-1.16.1\nginx-1.16.1\Nginx -s stop&lt;/stoparguments&gt;
+&lt;/service&gt;</code></pre>
+<p>4.运行windows cmd命令，进入nginx安装目录，执行nginx注册服务命令nginx-service.exe install，如果注册没有成功需要执行nginx卸载命令：nginx-service.exe uninstall</p>
+<h1 id="环境调试"><a href="#环境调试" class="headerlink" title="环境调试"></a>环境调试</h1><p>1.如果nginx启动没有成功，需要根据nginx启动日志定位错误信息，日志文件所在位置D:\nginx-1.16.1\nginx-1.16.1\logs,大部分情况下是端口和配置文件目录设置问题。</p>
+<h1 id="nginx服务自启动设置"><a href="#nginx服务自启动设置" class="headerlink" title="nginx服务自启动设置"></a>nginx服务自启动设置</h1><p>运行windows cmd命令，找到nginx服务，右键属性可配置nginx启动方式。<br><img src="/img/nginx/nginx_20201231_02.png" alt="nginx服务验证"><br><img src="/img/nginx/nginx_20201231_03.png" alt="nginx服务验证"></p>
+<h1 id="nginx服务验证"><a href="#nginx服务验证" class="headerlink" title="nginx服务验证"></a>nginx服务验证</h1><p><img src="/img/nginx/nginx_20201231_04.png" alt="nginx服务验证"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1206686311@qq.com </span>
