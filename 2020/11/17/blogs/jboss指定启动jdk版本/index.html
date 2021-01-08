@@ -810,7 +810,6 @@ JAVA_HOME=&quot;/usr/java/jdk1.6.0&quot;</code></pre>
     <link rel="stylesheet" href="/lib/gitalk/gitalk.css">
 
     <script src="/lib/gitalk/gitalk.min.js"></script>
-    <script src="/lib/gitalk/md5.js"></script>
     <script type="text/javascript">
         const gitalk = new Gitalk({
           clientID: '95db1f51f05191be80c5',
@@ -818,7 +817,7 @@ JAVA_HOME=&quot;/usr/java/jdk1.6.0&quot;</code></pre>
           repo: 'https://vanishke.github.io/hexo',
           owner: 'vanishke',
           admin: ['vanishke'],
-          id: md5(window.location.pathname),
+          id: window.location.pathname,
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')

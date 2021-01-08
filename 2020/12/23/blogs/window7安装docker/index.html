@@ -468,8 +468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/12/24/blogs/nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="prev" title="nginx开机自启动">
-                nginx开机自启动 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/12/24/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="nginx常用启动命令">
+                nginx常用启动命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -783,7 +783,6 @@
     <link rel="stylesheet" href="/lib/gitalk/gitalk.css">
 
     <script src="/lib/gitalk/gitalk.min.js"></script>
-    <script src="/lib/gitalk/md5.js"></script>
     <script type="text/javascript">
         const gitalk = new Gitalk({
           clientID: '95db1f51f05191be80c5',
@@ -791,7 +790,7 @@
           repo: 'https://vanishke.github.io/hexo',
           owner: 'vanishke',
           admin: ['vanishke'],
-          id: md5(window.location.pathname),
+          id: window.location.pathname,
           distractionFreeMode: 'true'
         })
         gitalk.render('gitalk-container')
