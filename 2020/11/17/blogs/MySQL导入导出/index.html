@@ -837,7 +837,7 @@ mysql&gt;source report_hrb121_FP.sql;</code></pre>
           repo: 'blog-comments',
           owner: 'vanishke',
           admin: ['vanishke'],
-          id: location.pathname,
+          id: decodeURI(location.pathname),
           labels: ['Gitalk'],
           perPage: 15,
           pagerDirection: 'last',

@@ -434,6 +434,33 @@ export JRE_HOME=/usr/java/jdk1.6.0_21/jre</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Tomcat 启动配置优化</title>
+    <url>/2020/11/17/blogs/tomcat%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2><span id="内存优化">内存优化</span></h2><pre><code class="txt">文件名称：catalina.sh 
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin
+JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</code></pre>
+<h2><span id="连接数优化">连接数优化</span></h2><pre><code class="txt">文件名称：server.xml  
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
+&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;
+
+</code></pre>
+<h2><span id="启动参数优化">启动参数优化</span></h2><pre><code class="txt">文件名称：catalina.properties 
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
+
+1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
+2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可
+3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
+4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置
+</code></pre>
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx开机自启动</title>
     <url>/2020/12/24/blogs/nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
     <content><![CDATA[<!-- toc -->
@@ -473,33 +500,6 @@ You have new mail in /var/spool/mail/root</code></pre>
       </categories>
       <tags>
         <tag>nginx,linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 启动配置优化</title>
-    <url>/2020/11/17/blogs/tomcat%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2><span id="内存优化">内存优化</span></h2><pre><code class="txt">文件名称：catalina.sh 
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin
-JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</code></pre>
-<h2><span id="连接数优化">连接数优化</span></h2><pre><code class="txt">文件名称：server.xml  
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
-&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;
-
-</code></pre>
-<h2><span id="启动参数优化">启动参数优化</span></h2><pre><code class="txt">文件名称：catalina.properties 
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
-
-1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
-2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可
-3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
-4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置
-</code></pre>
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>

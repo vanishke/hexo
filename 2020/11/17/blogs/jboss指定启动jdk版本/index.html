@@ -816,7 +816,7 @@ JAVA_HOME=&quot;/usr/java/jdk1.6.0&quot;</code></pre>
           repo: 'blog-comments',
           owner: 'vanishke',
           admin: ['vanishke'],
-          id: location.pathname,
+          id: decodeURI(location.pathname),
           labels: ['Gitalk'],
           perPage: 15,
           pagerDirection: 'last',
