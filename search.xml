@@ -374,11 +374,6 @@ alter system kill session sid,serial&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>前言</title>
-    <url>/2020/11/16/blogs/indexs/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Jboss 指定启动JDK版本</title>
     <url>/2020/11/17/blogs/jboss%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">文件名称：run.conf  文件路径：/usr/local/jboss-5.1.0.GA/bin
@@ -391,6 +386,11 @@ JAVA_HOME=&quot;/usr/java/jdk1.6.0&quot;</code></pre>
       <tags>
         <tag>Jboss</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>前言</title>
+    <url>/2020/11/16/blogs/indexs/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Jetty 指定启动JDK版本</title>
@@ -476,14 +476,24 @@ You have new mail in /var/spool/mail/root</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Tomcat 指定启动JDK版本</title>
-    <url>/2020/11/17/blogs/tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
-    <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">假设jdk版本7，目录为/home/user1/jdk
-进入到tomcat的bin目录下，修改setclasspath.sh文件，在文件首部添加两行代码
+    <title>Tomcat 启动配置优化</title>
+    <url>/2020/11/17/blogs/tomcat%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2><span id="内存优化">内存优化</span></h2><pre><code class="txt">文件名称：catalina.sh 
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin
+JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</code></pre>
+<h2><span id="连接数优化">连接数优化</span></h2><pre><code class="txt">文件名称：server.xml  
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
+&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;
 
-export JAVA_HOME=/home/user/jdk
-export JRE_HOME=/home/user/jdk/jre</code></pre>
-<h2><span id="windows">windows</span></h2><p>修改bin目录下的setclasspath.bat文件，注意linux的是sh，Windows的是bat。将上述两行代码的export换成set填入该文件首部保存（注意实际路径的替换）</p>
+</code></pre>
+<h2><span id="启动参数优化">启动参数优化</span></h2><pre><code class="txt">文件名称：catalina.properties 
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
+
+1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
+2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可
+3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
+4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置
+</code></pre>
 ]]></content>
       <categories>
         <category>Tomcat</category>
@@ -502,6 +512,23 @@ export JRE_HOME=/home/user/jdk/jre</code></pre>
       </categories>
       <tags>
         <tag>docker,indows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat 指定启动JDK版本</title>
+    <url>/2020/11/17/blogs/tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">假设jdk版本7，目录为/home/user1/jdk
+进入到tomcat的bin目录下，修改setclasspath.sh文件，在文件首部添加两行代码
+
+export JAVA_HOME=/home/user/jdk
+export JRE_HOME=/home/user/jdk/jre</code></pre>
+<h2><span id="windows">windows</span></h2><p>修改bin目录下的setclasspath.bat文件，注意linux的是sh，Windows的是bat。将上述两行代码的export换成set填入该文件首部保存（注意实际路径的替换）</p>
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -543,35 +570,6 @@ server &#123;
       </categories>
       <tags>
         <tag>nginx,windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows注册Elasticsearch服务</title>
-    <url>/2020/12/31/blogs/windows%E6%B3%A8%E5%86%8CElasticsearch%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#%E7%8E%AF%E5%A2%83">环境</a></li>
-<li><a href="#elasticsearch%E4%B8%8B%E8%BD%BD">elasticsearch下载</a></li>
-<li><a href="#elasticsearch%E6%B3%A8%E5%86%8C">elasticsearch注册</a></li>
-<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE">elasticsearch服务自启动设置</a></li>
-<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81">elasticsearch服务验证</a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境">环境</span></h1><p>windows 7<br>elasticsearch-2.4.4</p>
-<h1><span id="elasticsearch下载">elasticsearch下载</span></h1><p><a href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-2-4-4">官方下载地址</a><br>笔者使用的elasticsearch-2.4.4版本</p>
-<h1><span id="elasticsearch注册">elasticsearch注册</span></h1><p>1.运行windows cmd命令，进入nginx安装目录D:\ElasticSearch.2.4.4\elasticsearch-2.4.4\elasticsearch-2.4.4\bin</p>
-<p>2.执行注册服务命令 elasticsearch.bat install</p>
-<p>3.如果需要卸载elasticsearch服务，执行elasticsearch.bat uninstall</p>
-<h1><span id="elasticsearch服务自启动设置">elasticsearch服务自启动设置</span></h1><p><img src="/images/elasticsearch/es_20201231_01.png" alt="elasticsearch服务设置"><br><img src="/images/elasticsearch/es_20201231_02.png" alt="elasticsearch服务设置"></p>
-<h1><span id="elasticsearch服务验证">elasticsearch服务验证</span></h1><p><img src="/images/elasticsearch/es_20201231_03.png" alt="elasticsearch服务验证"></p>
-]]></content>
-      <categories>
-        <category>ElasticSearch</category>
-      </categories>
-      <tags>
-        <tag>ElasticSearch,windows</tag>
       </tags>
   </entry>
   <entry>
@@ -624,6 +622,35 @@ server &#123;
       </tags>
   </entry>
   <entry>
+    <title>windows注册Elasticsearch服务</title>
+    <url>/2020/12/31/blogs/windows%E6%B3%A8%E5%86%8CElasticsearch%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#%E7%8E%AF%E5%A2%83">环境</a></li>
+<li><a href="#elasticsearch%E4%B8%8B%E8%BD%BD">elasticsearch下载</a></li>
+<li><a href="#elasticsearch%E6%B3%A8%E5%86%8C">elasticsearch注册</a></li>
+<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE">elasticsearch服务自启动设置</a></li>
+<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81">elasticsearch服务验证</a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境">环境</span></h1><p>windows 7<br>elasticsearch-2.4.4</p>
+<h1><span id="elasticsearch下载">elasticsearch下载</span></h1><p><a href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-2-4-4">官方下载地址</a><br>笔者使用的elasticsearch-2.4.4版本</p>
+<h1><span id="elasticsearch注册">elasticsearch注册</span></h1><p>1.运行windows cmd命令，进入nginx安装目录D:\ElasticSearch.2.4.4\elasticsearch-2.4.4\elasticsearch-2.4.4\bin</p>
+<p>2.执行注册服务命令 elasticsearch.bat install</p>
+<p>3.如果需要卸载elasticsearch服务，执行elasticsearch.bat uninstall</p>
+<h1><span id="elasticsearch服务自启动设置">elasticsearch服务自启动设置</span></h1><p><img src="/images/elasticsearch/es_20201231_01.png" alt="elasticsearch服务设置"><br><img src="/images/elasticsearch/es_20201231_02.png" alt="elasticsearch服务设置"></p>
+<h1><span id="elasticsearch服务验证">elasticsearch服务验证</span></h1><p><img src="/images/elasticsearch/es_20201231_03.png" alt="elasticsearch服务验证"></p>
+]]></content>
+      <categories>
+        <category>ElasticSearch</category>
+      </categories>
+      <tags>
+        <tag>ElasticSearch,windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows注册Redis服务</title>
     <url>/2020/12/31/blogs/windows%E6%B3%A8%E5%86%8Credis%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<!-- toc -->
@@ -650,33 +677,6 @@ server &#123;
       </categories>
       <tags>
         <tag>Redis,windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 启动配置优化</title>
-    <url>/2020/11/17/blogs/tomcat%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2><span id="内存优化">内存优化</span></h2><pre><code class="txt">文件名称：catalina.sh 
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin
-JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</code></pre>
-<h2><span id="连接数优化">连接数优化</span></h2><pre><code class="txt">文件名称：server.xml  
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
-&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;
-
-</code></pre>
-<h2><span id="启动参数优化">启动参数优化</span></h2><pre><code class="txt">文件名称：catalina.properties 
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
-
-1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
-2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可
-3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
-4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置
-</code></pre>
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
