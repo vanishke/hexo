@@ -374,6 +374,11 @@ alter system kill session sid,serial&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>前言</title>
+    <url>/2020/11/16/blogs/indexs/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Jboss 指定启动JDK版本</title>
     <url>/2020/11/17/blogs/jboss%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">文件名称：run.conf  文件路径：/usr/local/jboss-5.1.0.GA/bin
@@ -386,11 +391,6 @@ JAVA_HOME=&quot;/usr/java/jdk1.6.0&quot;</code></pre>
       <tags>
         <tag>Jboss</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>前言</title>
-    <url>/2020/11/16/blogs/indexs/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Jetty 指定启动JDK版本</title>
@@ -503,18 +503,6 @@ JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -
       </tags>
   </entry>
   <entry>
-    <title>docker阿里云镜像</title>
-    <url>/2020/12/23/blogs/window7%E5%AE%89%E8%A3%85docker/</url>
-    <content><![CDATA[<p><a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/?spm=5176.8351553.0.0.4bc61991tQpsnV">阿里云Docker镜像</a></p>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker,indows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tomcat 指定启动JDK版本</title>
     <url>/2020/11/17/blogs/tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">假设jdk版本7，目录为/home/user1/jdk
@@ -529,6 +517,18 @@ export JRE_HOME=/home/user/jdk/jre</code></pre>
       </categories>
       <tags>
         <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker阿里云镜像</title>
+    <url>/2020/12/23/blogs/window7%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<p><a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/?spm=5176.8351553.0.0.4bc61991tQpsnV">阿里云Docker镜像</a></p>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker,indows</tag>
       </tags>
   </entry>
   <entry>
@@ -570,6 +570,35 @@ server &#123;
       </categories>
       <tags>
         <tag>nginx,windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows注册Elasticsearch服务</title>
+    <url>/2020/12/31/blogs/windows%E6%B3%A8%E5%86%8CElasticsearch%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#%E7%8E%AF%E5%A2%83">环境</a></li>
+<li><a href="#elasticsearch%E4%B8%8B%E8%BD%BD">elasticsearch下载</a></li>
+<li><a href="#elasticsearch%E6%B3%A8%E5%86%8C">elasticsearch注册</a></li>
+<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE">elasticsearch服务自启动设置</a></li>
+<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81">elasticsearch服务验证</a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境">环境</span></h1><p>windows 7<br>elasticsearch-2.4.4</p>
+<h1><span id="elasticsearch下载">elasticsearch下载</span></h1><p><a href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-2-4-4">官方下载地址</a><br>笔者使用的elasticsearch-2.4.4版本</p>
+<h1><span id="elasticsearch注册">elasticsearch注册</span></h1><p>1.运行windows cmd命令，进入nginx安装目录D:\ElasticSearch.2.4.4\elasticsearch-2.4.4\elasticsearch-2.4.4\bin</p>
+<p>2.执行注册服务命令 elasticsearch.bat install</p>
+<p>3.如果需要卸载elasticsearch服务，执行elasticsearch.bat uninstall</p>
+<h1><span id="elasticsearch服务自启动设置">elasticsearch服务自启动设置</span></h1><p><img src="/images/elasticsearch/es_20201231_01.png" alt="elasticsearch服务设置"><br><img src="/images/elasticsearch/es_20201231_02.png" alt="elasticsearch服务设置"></p>
+<h1><span id="elasticsearch服务验证">elasticsearch服务验证</span></h1><p><img src="/images/elasticsearch/es_20201231_03.png" alt="elasticsearch服务验证"></p>
+]]></content>
+      <categories>
+        <category>ElasticSearch</category>
+      </categories>
+      <tags>
+        <tag>ElasticSearch,windows</tag>
       </tags>
   </entry>
   <entry>
@@ -619,35 +648,6 @@ server &#123;
       </categories>
       <tags>
         <tag>nginx,windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows注册Elasticsearch服务</title>
-    <url>/2020/12/31/blogs/windows%E6%B3%A8%E5%86%8CElasticsearch%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#%E7%8E%AF%E5%A2%83">环境</a></li>
-<li><a href="#elasticsearch%E4%B8%8B%E8%BD%BD">elasticsearch下载</a></li>
-<li><a href="#elasticsearch%E6%B3%A8%E5%86%8C">elasticsearch注册</a></li>
-<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE">elasticsearch服务自启动设置</a></li>
-<li><a href="#elasticsearch%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81">elasticsearch服务验证</a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境">环境</span></h1><p>windows 7<br>elasticsearch-2.4.4</p>
-<h1><span id="elasticsearch下载">elasticsearch下载</span></h1><p><a href="https://www.elastic.co/cn/downloads/past-releases/elasticsearch-2-4-4">官方下载地址</a><br>笔者使用的elasticsearch-2.4.4版本</p>
-<h1><span id="elasticsearch注册">elasticsearch注册</span></h1><p>1.运行windows cmd命令，进入nginx安装目录D:\ElasticSearch.2.4.4\elasticsearch-2.4.4\elasticsearch-2.4.4\bin</p>
-<p>2.执行注册服务命令 elasticsearch.bat install</p>
-<p>3.如果需要卸载elasticsearch服务，执行elasticsearch.bat uninstall</p>
-<h1><span id="elasticsearch服务自启动设置">elasticsearch服务自启动设置</span></h1><p><img src="/images/elasticsearch/es_20201231_01.png" alt="elasticsearch服务设置"><br><img src="/images/elasticsearch/es_20201231_02.png" alt="elasticsearch服务设置"></p>
-<h1><span id="elasticsearch服务验证">elasticsearch服务验证</span></h1><p><img src="/images/elasticsearch/es_20201231_03.png" alt="elasticsearch服务验证"></p>
-]]></content>
-      <categories>
-        <category>ElasticSearch</category>
-      </categories>
-      <tags>
-        <tag>ElasticSearch,windows</tag>
       </tags>
   </entry>
   <entry>
