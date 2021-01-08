@@ -153,6 +153,31 @@ grant dba to SDP_CMS_HRB;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Oracle查看表空间使用情况</title>
+    <url>/2020/11/17/blogs/Oracle%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/</url>
+    <content><![CDATA[<h2><span id="1-统计">1. 统计</span></h2><pre><code class="sql">SELECT a.tablespace_name &quot;表空间名&quot;,
+a.bytes / 1024 / 1024 &quot;表空间大小(M)&quot;,
+(a.bytes - b.bytes) / 1024 / 1024 &quot;已使用空间(M)&quot;,
+b.bytes / 1024 / 1024 &quot;空闲空间(M)&quot;,
+round(((a.bytes - b.bytes) / a.bytes) * 100, 2) &quot;使用比&quot;
+FROM (SELECT tablespace_name, sum(bytes) bytes
+FROM dba_data_files
+GROUP BY tablespace_name) a,
+(SELECT tablespace_name, sum(bytes) bytes, max(bytes) largest
+FROM dba_free_space
+GROUP BY tablespace_name) b
+WHERE a.tablespace_name = b.tablespace_name
+ORDER BY ((a.bytes - b.bytes) / a.bytes) DESC;</code></pre>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>Oracle</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle清理系统僵死SQl进程</title>
     <url>/2020/11/17/blogs/Oracle%E6%B8%85%E7%90%86%E7%B3%BB%E7%BB%9F%E5%83%B5%E6%AD%BBSQL%E8%BF%9B%E7%A8%8B/</url>
     <content><![CDATA[<h2><span id="1清理">1.清理</span></h2><pre><code class="sql">SELECT l.session_id sid,  
@@ -451,33 +476,6 @@ You have new mail in /var/spool/mail/root</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Tomcat 启动配置优化</title>
-    <url>/2020/11/17/blogs/tomcat%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2><span id="内存优化">内存优化</span></h2><pre><code class="txt">文件名称：catalina.sh 
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin
-JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</code></pre>
-<h2><span id="连接数优化">连接数优化</span></h2><pre><code class="txt">文件名称：server.xml  
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
-&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;
-
-</code></pre>
-<h2><span id="启动参数优化">启动参数优化</span></h2><pre><code class="txt">文件名称：catalina.properties 
-文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
-
-1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
-2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可
-3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
-4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置
-</code></pre>
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tomcat 指定启动JDK版本</title>
     <url>/2020/11/17/blogs/tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">假设jdk版本7，目录为/home/user1/jdk
@@ -652,6 +650,33 @@ server &#123;
       </categories>
       <tags>
         <tag>Redis,windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat 启动配置优化</title>
+    <url>/2020/11/17/blogs/tomcat%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2><span id="内存优化">内存优化</span></h2><pre><code class="txt">文件名称：catalina.sh 
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin
+JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</code></pre>
+<h2><span id="连接数优化">连接数优化</span></h2><pre><code class="txt">文件名称：server.xml  
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
+&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;
+
+</code></pre>
+<h2><span id="启动参数优化">启动参数优化</span></h2><pre><code class="txt">文件名称：catalina.properties 
+文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf
+
+1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\
+2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可
+3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar
+4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置
+</code></pre>
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -1531,31 +1556,6 @@ dbUserName=root</code></pre>
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Oracle查看表空间使用情况</title>
-    <url>/2020/11/17/blogs/Oracle%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/</url>
-    <content><![CDATA[<h2><span id="1-统计">1. 统计</span></h2><pre><code class="sql">SELECT a.tablespace_name &quot;表空间名&quot;,
-a.bytes / 1024 / 1024 &quot;表空间大小(M)&quot;,
-(a.bytes - b.bytes) / 1024 / 1024 &quot;已使用空间(M)&quot;,
-b.bytes / 1024 / 1024 &quot;空闲空间(M)&quot;,
-round(((a.bytes - b.bytes) / a.bytes) * 100, 2) &quot;使用比&quot;
-FROM (SELECT tablespace_name, sum(bytes) bytes
-FROM dba_data_files
-GROUP BY tablespace_name) a,
-(SELECT tablespace_name, sum(bytes) bytes, max(bytes) largest
-FROM dba_free_space
-GROUP BY tablespace_name) b
-WHERE a.tablespace_name = b.tablespace_name
-ORDER BY ((a.bytes - b.bytes) / a.bytes) DESC;</code></pre>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>Oracle</category>
-      </categories>
-      <tags>
-        <tag>Oracle</tag>
       </tags>
   </entry>
 </search>
