@@ -243,6 +243,142 @@ alter system kill session sid,serial&#39;;</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>ElasticSearch基本操作</title>
+    <url>/2020/11/17/blogs/elasticsearch%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%B4%A2%E5%BC%95%E4%BF%A1%E6%81%AF">查看所有索引信息</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95">创建索引</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95">删除索引</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95mapping">创建索引mapping</a><ul>
+<li><a href="#24%E7%89%88%E6%9C%AC">2.4版本</a></li>
+<li><a href="#50-%E7%89%88%E6%9C%AC">5.0 版本</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%A8%A1%E6%9D%BF">创建模板</a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="查看所有索引信息">查看所有索引信息</span></h1><p><a href="http://10.9.217.3:9200/_cat/indices">http://10.9.217.3:9200/_cat/indices</a></p>
+<h1><span id="创建索引">创建索引</span></h1><p>POST <a href="http://10.9.217.3:9200/coseelog">http://10.9.217.3:9200/coseelog</a></p>
+<h1><span id="删除索引">删除索引</span></h1><p>DELETE <a href="http://10.9.217.3:9200/coseelog">http://10.9.217.3:9200/coseelog</a></p>
+<h1><span id="创建索引mapping">创建索引mapping</span></h1><h2><span id="24版本">2.4版本</span></h2><pre><code class="json">POST http://10.9.217.3:9200/coseelog/doc/_mapping?pretty
+&#123;&quot;doc&quot;: &#123;
+    &quot;properties&quot;:  &#123;
+        &quot;logId&quot;: &#123;
+            &quot;type&quot;: &quot;string&quot;
+        &#125;,
+        &quot;logTime&quot;: &#123;
+            &quot;type&quot;: &quot;date&quot;,
+            &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss&quot;
+        &#125;,
+        &quot;ip&quot;: &#123;
+        &quot;type&quot;: &quot;string&quot;
+        &#125;,
+        &quot;userName&quot;: &#123;
+        &quot;type&quot;: &quot;string&quot;
+        &#125;,
+        &quot;moduleId&quot;: &#123;
+            &quot;type&quot;: &quot;long&quot;
+            &#125;,
+        &quot;actionId&quot;: &#123;
+            &quot;type&quot;: &quot;long&quot;
+            &#125;,
+        &quot;content&quot;: &#123;
+            &quot;type&quot;: &quot;string&quot;
+            &#125;,
+        &quot;orgId&quot;: &#123;
+            &quot;type&quot;: &quot;long&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h2><span id="50-版本">5.0 版本</span></h2><pre><code class="json">mapping POST http://10.9.217.3:9200/coseelog/doc/_mapping?pretty
+&#123;&quot;doc&quot;: &#123;
+    &quot;properties&quot;:  &#123;
+        &quot;logId&quot;: &#123;
+            &quot;type&quot;: &quot;string&quot;
+        &#125;,
+        &quot;logTime&quot;: &#123;
+            &quot;type&quot;: &quot;date&quot;,
+            &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss&quot;
+        &#125;,
+        &quot;ip&quot;: &#123;
+        &quot;type&quot;: &quot;keyword&quot;
+        &#125;,
+        &quot;userName&quot;: &#123;
+        &quot;type&quot;: &quot;keyword&quot;
+        &#125;,
+        &quot;moduleId&quot;: &#123;
+            &quot;type&quot;: &quot;long&quot;
+            &#125;,
+        &quot;actionId&quot;: &#123;
+            &quot;type&quot;: &quot;long&quot;
+            &#125;,
+        &quot;content&quot;: &#123;
+            &quot;type&quot;: &quot;keyword&quot;
+            &#125;,
+        &quot;orgId&quot;: &#123;
+            &quot;type&quot;: &quot;long&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h1><span id="创建模板">创建模板</span></h1><pre><code class="json">POST http://120.77.8.170:9200/_template/vistors_flow_total/
+
+&#123;
+    &quot;template&quot; : &quot;vistors_flow_total_*&quot;,
+      &quot;settings&quot;: &#123;
+    &quot;index&quot;: &#123;
+      &quot;number_of_shards&quot; : &quot;3&quot;,
+      &quot;number_of_replicas&quot;: &quot;1&quot;,
+      &quot;translog.flush_threshold_size&quot; : &quot;1024mb&quot;
+    &#125;
+  &#125;,
+  &quot;mappings&quot;: &#123;
+            &quot;doc&quot;: &#123;
+                &quot;_all&quot;: &#123; &quot;enabled&quot;: false &#125;,
+                &quot;properties&quot;: &#123;
+                    &quot;deviceKey&quot;: &#123;
+                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
+                    &#125;,
+                    &quot;productKey&quot;: &#123;
+                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
+                    &#125;,
+                    &quot;deviceName&quot;: &#123;
+                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
+                    &#125;,
+                    &quot;type&quot;: &#123;
+                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
+                    &#125;,
+                    &quot;statisticNum&quot;: &#123;
+                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
+                    &#125;
+                    &quot;statisticTime&quot;: &#123;
+                        &quot;type&quot;: &quot;date&quot;,
+                        &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss&quot;
+                    &#125;
+
+                &#125;
+            &#125;
+        &#125;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>ElasticSearch</category>
+      </categories>
+      <tags>
+        <tag>ElasticSearch,NoSQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前言</title>
+    <url>/2020/11/16/blogs/indexs/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Jboss 指定启动JDK版本</title>
     <url>/2020/11/17/blogs/jboss%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境">linux环境</span></h2><pre><code class="bash">文件名称：run.conf  文件路径：/usr/local/jboss-5.1.0.GA/bin
@@ -269,6 +405,32 @@ export JRE_HOME=/usr/java/jdk1.6.0_21/jre</code></pre>
       </categories>
       <tags>
         <tag>Jetty</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx常用启动命令</title>
+    <url>/2020/12/24/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#%E5%90%AF%E5%8A%A8">启动</a></li>
+<li><a href="#%E5%81%9C%E6%AD%A2">停止</a></li>
+<li><a href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD">重新加载</a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="启动">启动</span></h1><pre><code class="bash">./nginx 
+./nginx -c dir(指定配置文件所在路径)</code></pre>
+<h1><span id="停止">停止</span></h1><pre><code class="bash">./nginx -s quit /nginx处理完任务后停止
+./nginx -s stop /强制停止nginx进程
+</code></pre>
+<h1><span id="重新加载">重新加载</span></h1><pre><code class="bash">./nginx -s reload /重新加载nginx.cnf配置文件</code></pre>
+]]></content>
+      <categories>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>nginx,linux</tag>
       </tags>
   </entry>
   <entry>
@@ -305,32 +467,6 @@ nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 You have new mail in /var/spool/mail/root</code></pre>
 <h2><span id="停止nginx服务">停止nginx服务</span></h2><pre><code class="bash">[root@lwdCSCDN init.d]# service nginx stop
 停止 nginx：                                               [确定]</code></pre>
-]]></content>
-      <categories>
-        <category>nginx</category>
-      </categories>
-      <tags>
-        <tag>nginx,linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx常用启动命令</title>
-    <url>/2020/12/24/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#%E5%90%AF%E5%8A%A8">启动</a></li>
-<li><a href="#%E5%81%9C%E6%AD%A2">停止</a></li>
-<li><a href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD">重新加载</a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="启动">启动</span></h1><pre><code class="bash">./nginx 
-./nginx -c dir(指定配置文件所在路径)</code></pre>
-<h1><span id="停止">停止</span></h1><pre><code class="bash">./nginx -s quit /nginx处理完任务后停止
-./nginx -s stop /强制停止nginx进程
-</code></pre>
-<h1><span id="重新加载">重新加载</span></h1><pre><code class="bash">./nginx -s reload /重新加载nginx.cnf配置文件</code></pre>
 ]]></content>
       <categories>
         <category>nginx</category>
@@ -542,142 +678,6 @@ server &#123;
       <tags>
         <tag>Redis,windows</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>ElasticSearch基本操作</title>
-    <url>/2020/11/17/blogs/elasticsearch%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%B4%A2%E5%BC%95%E4%BF%A1%E6%81%AF">查看所有索引信息</a></li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95">创建索引</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95">删除索引</a></li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95mapping">创建索引mapping</a><ul>
-<li><a href="#24%E7%89%88%E6%9C%AC">2.4版本</a></li>
-<li><a href="#50-%E7%89%88%E6%9C%AC">5.0 版本</a></li>
-</ul>
-</li>
-<li><a href="#%E5%88%9B%E5%BB%BA%E6%A8%A1%E6%9D%BF">创建模板</a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="查看所有索引信息">查看所有索引信息</span></h1><p><a href="http://10.9.217.3:9200/_cat/indices">http://10.9.217.3:9200/_cat/indices</a></p>
-<h1><span id="创建索引">创建索引</span></h1><p>POST <a href="http://10.9.217.3:9200/coseelog">http://10.9.217.3:9200/coseelog</a></p>
-<h1><span id="删除索引">删除索引</span></h1><p>DELETE <a href="http://10.9.217.3:9200/coseelog">http://10.9.217.3:9200/coseelog</a></p>
-<h1><span id="创建索引mapping">创建索引mapping</span></h1><h2><span id="24版本">2.4版本</span></h2><pre><code class="json">POST http://10.9.217.3:9200/coseelog/doc/_mapping?pretty
-&#123;&quot;doc&quot;: &#123;
-    &quot;properties&quot;:  &#123;
-        &quot;logId&quot;: &#123;
-            &quot;type&quot;: &quot;string&quot;
-        &#125;,
-        &quot;logTime&quot;: &#123;
-            &quot;type&quot;: &quot;date&quot;,
-            &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss&quot;
-        &#125;,
-        &quot;ip&quot;: &#123;
-        &quot;type&quot;: &quot;string&quot;
-        &#125;,
-        &quot;userName&quot;: &#123;
-        &quot;type&quot;: &quot;string&quot;
-        &#125;,
-        &quot;moduleId&quot;: &#123;
-            &quot;type&quot;: &quot;long&quot;
-            &#125;,
-        &quot;actionId&quot;: &#123;
-            &quot;type&quot;: &quot;long&quot;
-            &#125;,
-        &quot;content&quot;: &#123;
-            &quot;type&quot;: &quot;string&quot;
-            &#125;,
-        &quot;orgId&quot;: &#123;
-            &quot;type&quot;: &quot;long&quot;
-            &#125;
-        &#125;
-    &#125;
-&#125;</code></pre>
-<h2><span id="50-版本">5.0 版本</span></h2><pre><code class="json">mapping POST http://10.9.217.3:9200/coseelog/doc/_mapping?pretty
-&#123;&quot;doc&quot;: &#123;
-    &quot;properties&quot;:  &#123;
-        &quot;logId&quot;: &#123;
-            &quot;type&quot;: &quot;string&quot;
-        &#125;,
-        &quot;logTime&quot;: &#123;
-            &quot;type&quot;: &quot;date&quot;,
-            &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss&quot;
-        &#125;,
-        &quot;ip&quot;: &#123;
-        &quot;type&quot;: &quot;keyword&quot;
-        &#125;,
-        &quot;userName&quot;: &#123;
-        &quot;type&quot;: &quot;keyword&quot;
-        &#125;,
-        &quot;moduleId&quot;: &#123;
-            &quot;type&quot;: &quot;long&quot;
-            &#125;,
-        &quot;actionId&quot;: &#123;
-            &quot;type&quot;: &quot;long&quot;
-            &#125;,
-        &quot;content&quot;: &#123;
-            &quot;type&quot;: &quot;keyword&quot;
-            &#125;,
-        &quot;orgId&quot;: &#123;
-            &quot;type&quot;: &quot;long&quot;
-            &#125;
-        &#125;
-    &#125;
-&#125;</code></pre>
-<h1><span id="创建模板">创建模板</span></h1><pre><code class="json">POST http://120.77.8.170:9200/_template/vistors_flow_total/
-
-&#123;
-    &quot;template&quot; : &quot;vistors_flow_total_*&quot;,
-      &quot;settings&quot;: &#123;
-    &quot;index&quot;: &#123;
-      &quot;number_of_shards&quot; : &quot;3&quot;,
-      &quot;number_of_replicas&quot;: &quot;1&quot;,
-      &quot;translog.flush_threshold_size&quot; : &quot;1024mb&quot;
-    &#125;
-  &#125;,
-  &quot;mappings&quot;: &#123;
-            &quot;doc&quot;: &#123;
-                &quot;_all&quot;: &#123; &quot;enabled&quot;: false &#125;,
-                &quot;properties&quot;: &#123;
-                    &quot;deviceKey&quot;: &#123;
-                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
-                    &#125;,
-                    &quot;productKey&quot;: &#123;
-                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
-                    &#125;,
-                    &quot;deviceName&quot;: &#123;
-                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
-                    &#125;,
-                    &quot;type&quot;: &#123;
-                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
-                    &#125;,
-                    &quot;statisticNum&quot;: &#123;
-                        &quot;type&quot;: &quot;string&quot;,&quot;index&quot;: &quot;not_analyzed&quot;
-                    &#125;
-                    &quot;statisticTime&quot;: &#123;
-                        &quot;type&quot;: &quot;date&quot;,
-                        &quot;format&quot;: &quot;yyyy-MM-dd HH:mm:ss&quot;
-                    &#125;
-
-                &#125;
-            &#125;
-        &#125;
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>ElasticSearch</category>
-      </categories>
-      <tags>
-        <tag>ElasticSearch,NoSQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前言</title>
-    <url>/2020/11/16/blogs/indexs/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>每天一个linux命令</title>

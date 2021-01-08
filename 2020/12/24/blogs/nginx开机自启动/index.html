@@ -488,8 +488,8 @@ You have new mail in /var/spool/mail/root</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/12/24/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="next" title="nginx常用启动命令">
-                <i class="fa fa-chevron-left"></i> nginx常用启动命令
+              <a href="/2020/12/23/blogs/window7%E5%AE%89%E8%A3%85docker/" rel="next" title="docker阿里云镜像">
+                <i class="fa fa-chevron-left"></i> docker阿里云镜像
               </a>
             
           </div>
@@ -498,8 +498,8 @@ You have new mail in /var/spool/mail/root</code></pre>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/12/24/blogs/Windows%E5%88%9B%E5%BB%BAFTP/" rel="prev" title="Windows创建FTP">
-                Windows创建FTP <i class="fa fa-chevron-right"></i>
+              <a href="/2020/12/24/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="nginx常用启动命令">
+                nginx常用启动命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -835,21 +835,25 @@ You have new mail in /var/spool/mail/root</code></pre>
 
 
 
-    <link rel="stylesheet" href="/lib/gitalk/gitalk.css">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-    <script src="/lib/gitalk/gitalk.min.js"></script>
-    <script type="text/javascript">
-        const gitalk = new Gitalk({
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
           clientID: '95db1f51f05191be80c5',
           clientSecret: 'eccc0bbe52b90a08e97140cece84ee32577172b2',
-          repo: 'https://vanishke.github.io/hexo',
+          repo: 'blog-comments',
           owner: 'vanishke',
           admin: ['vanishke'],
-          id: window.location.pathname,
-          distractionFreeMode: 'true'
+          id: location.pathname,
+          labels: ['Gitalk'],
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
         })
-        gitalk.render('gitalk-container')
-    </script>
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   
