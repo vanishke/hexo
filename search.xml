@@ -204,10 +204,26 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
+    <title>hexo设置图片懒加载</title>
+    <url>/hexo/blogs/hexo%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</url>
+    <content><![CDATA[<h2><span id="下载样式"><span id="inline-blue">下载样式</span></span></h2><p>在主题文件夹下的scripts文件夹里,新增一个js文件，名字可以任意。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">&#x27;cheerio&#x27;</span>); </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyloadImg</span>(<span class="params">source</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> LZ= cheerio.load(source, &#123;</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//遍历所有 img 标签，添加data-original属性</span></span><br><span class="line">    LZ(<span class="string">&#x27;img&#x27;</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index, element</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> oldsrc = LZ(element).attr(<span class="string">&#x27;src&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (oldsrc) &#123;</span><br><span class="line">            LZ(element).removeAttr(<span class="string">&#x27;src&#x27;</span>);</span><br><span class="line">            LZ(element).attr(&#123;</span><br><span class="line">                </span><br><span class="line">                 <span class="string">&#x27;data-original&#x27;</span>: oldsrc</span><br><span class="line">            &#125;);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> LZ.html();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在渲染之前，更改 img 标签</span></span><br><span class="line">hexo.extend.filter.register(<span class="string">&#x27;after_render:html&#x27;</span>, lazyloadImg);</span><br></pre></td></tr></table></figure>
+
+<p>打开themes/next/source/js/src/utils.js文件,找到lazyLoadPostsImages函数对应位置，将函数内容替换为以下内容。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">lazyLoadPostsImages: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="string">&#x27;img&#x27;</span>).lazyload(&#123;</span><br><span class="line">	   <span class="comment">//设置懒加载你默认占位图</span></span><br><span class="line">         placeholder: <span class="string">&#x27;../images/loading.gif&#x27;</span>,</span><br><span class="line">		 <span class="comment">// 加载效果</span></span><br><span class="line">        effect: <span class="string">&#x27;fadeIn&#x27;</span>,</span><br><span class="line">        threshold : <span class="number">100</span>, <span class="comment">//设置图片在距离屏幕200px时提前加载</span></span><br><span class="line">        failure_limit : <span class="number">20</span>,<span class="comment">//将 failurelimit 设为 20 ，当插件找到 20 //个不在可见区域的图片时停止搜索 </span></span><br><span class="line">        skip_invisible : <span class="literal">false</span> <span class="comment">// 加载隐藏图片</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vercel托管hexo博客</title>
     <url>/hexo/blogs/vercel%E6%89%98%E7%AE%A1hexo%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2><span id="背景"><span id="inline-blue">背景<span></span></span></span></h2><p>hexo发布的静态文件推送到了github pages，直接访问页面非常慢，借用vercel代理下github page，效果很明显。</p>
-<h2><span id="注册vercel"><span id="inline-blue">注册vercel<span></span></span></span></h2><p>登陆<br><a href="https://vercel.com/">vercel官网地址</a></p>
+    <content><![CDATA[<h2><span id="背景"><span id="inline-blue">背景<span></span></span></span></h2><p>hexo发布的静态文件推送到了github pages，直接访问页面非常慢，使用vercel代理github pages，访问页面加载速度有明显提升。</p>
+<h2><span id="注册vercel"><span id="inline-blue">注册vercel<span></span></span></span></h2><p><a href="https://vercel.com/">vercel官网地址</a></p>
 <p>绑定github账号：<br><img src="/images/hexo/vercel/hexo_vercel_20210115_001.png" alt="账号绑定"><br>注意github用户验证的邮箱账号，qq邮箱验证无法通过，网易邮箱亲测可行。</p>
 <h2><span id="导入仓库"><span id="inline-blue">导入仓库<span></span></span></span></h2><p><img src="/images/hexo/vercel/hexo_vercel_20210115_002.png" alt="导入仓库"><br>这里导入的是hexo通过hexo d 部署同步到github pages上的public文件夹下的静态文件。<br>找到github pages上hexo博客，切换到setting选项，找到github pages 选项。<br><img src="/images/hexo/vercel/hexo_vercel_20210115_003.png" alt="博客代理设置"><br><img src="/images/hexo/vercel/hexo_vercel_20210115_004.png" alt="博客代理设置"></p>
 <h2><span id="验证"><span id="inline-blue">验证<span></span></span></span></h2><p><img src="/images/hexo/vercel/hexo_vercel_20210115_005.png" alt="验证"><br><img src="/images/hexo/vercel/hexo_vercel_20210115_006.png" alt="验证"></p>
@@ -352,6 +368,19 @@
 
 
 ]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo添加hexo-neat插件</title>
+    <url>/hexo/blogs/hexo%E6%B7%BB%E5%8A%A0hexo-neat%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<h2><span id="安装插件"><span id="inline-blue">安装插件</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-neat --save</span><br></pre></td></tr></table></figure>
+<h2><span id="站点配置"><span id="inline-blue">站点配置</span></span></h2><p>hexo _config.yml文件添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> hexo-neat</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 博文压缩</span></span><br><span class="line">neat_enable: true</span><br><span class="line"><span class="meta">#</span><span class="bash"> 压缩html</span></span><br><span class="line">neat_html:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line"><span class="meta">#</span><span class="bash"> 压缩css  </span></span><br><span class="line">neat_css:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - &#x27;**/*.min.css&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 压缩js</span></span><br><span class="line">neat_js:</span><br><span class="line">  enable: true</span><br><span class="line">  mangle: true</span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - &#x27;**/*.min.js&#x27;</span><br><span class="line">	- &#x27;**/*.min.css&#x27;</span><br><span class="line">    - &#x27;**/jquery.fancybox.pack.js&#x27;</span><br><span class="line">    - &#x27;**/index.js&#x27;</span><br><span class="line">	- &#x27;**/comments.gitalk.js&#x27;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>hexo</category>
       </categories>
@@ -826,6 +855,35 @@
       </tags>
   </entry>
   <entry>
+    <title>windows注册Redis服务</title>
+    <url>/Redis/blogs/windows%E6%B3%A8%E5%86%8Credis%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis下载</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis注册</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis服务自启动设置</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis服务验证</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
+<h1><span id="redis下载"><span id="inline-blue">Redis下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的Redis-x64-3.2.100版本</p>
+<h1><span id="redis注册"><span id="inline-blue">Redis注册</span></span></h1><p>1.运行windows cmd命令，进入Redis安装目录D:\redis_3.2.100\Redis-x64-3.2.100</p>
+<p>2.执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
+<p>3.如果需要卸载Redis服务，执行redis-server –service-uninstall</p>
+<h1><span id="redis服务自启动设置"><span id="inline-blue">Redis服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
+<h1><span id="redis服务验证"><span id="inline-blue">Redis服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis,windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>windows注册nginx服务</title>
     <url>/nginx/blogs/windows%E6%B3%A8%E5%86%8Cnginx%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<!-- toc -->
@@ -858,35 +916,6 @@
       </categories>
       <tags>
         <tag>nginx,windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows注册Redis服务</title>
-    <url>/Redis/blogs/windows%E6%B3%A8%E5%86%8Credis%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis下载</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis注册</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis服务自启动设置</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis服务验证</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
-<h1><span id="redis下载"><span id="inline-blue">Redis下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的Redis-x64-3.2.100版本</p>
-<h1><span id="redis注册"><span id="inline-blue">Redis注册</span></span></h1><p>1.运行windows cmd命令，进入Redis安装目录D:\redis_3.2.100\Redis-x64-3.2.100</p>
-<p>2.执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
-<p>3.如果需要卸载Redis服务，执行redis-server –service-uninstall</p>
-<h1><span id="redis服务自启动设置"><span id="inline-blue">Redis服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
-<h1><span id="redis服务验证"><span id="inline-blue">Redis服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis,windows</tag>
       </tags>
   </entry>
   <entry>
