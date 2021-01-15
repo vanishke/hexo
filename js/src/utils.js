@@ -45,7 +45,7 @@ NexT.utils = NexT.$u = {
      // threshold : 0
     //});
 	  $('img').lazyload({
-         placeholder: '../images/loading.gif',
+         placeholder: '/images/loading.gif',
         effect: 'fadeIn',
         threshold : 100,
         failure_limit : 20,
