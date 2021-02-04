@@ -212,32 +212,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue安装</title>
-    <url>/vue/blogs/vue%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2><span id="实例"><span id="inline-blue">实例</span></span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a&#x3D;&#39;0&#39;,b&#x3D;&#39;&#39;;</span><br><span class="line">console.log(a,b.a&#x3D;&#x3D;b);</span><br><span class="line">var c&#x3D;0,d&#x3D;&#39;&#39;;</span><br><span class="line">console.log(c,d,c&#x3D;&#x3D;d);</span><br></pre></td></tr></table></figure>
-<p>输出结果<br><img src="/images/js/js_2021_02_01_001.png" alt="比较结果"></p>
-<h2><span id="问题分析"><span id="inline-blue">问题分析</span></span></h2><ul>
-<li>当a,b都是string类型时，比较a,b字符序列、长度是否一致，显然’0’ != ‘’</li>
-<li>当a,b有一个是number类型时，先将另外一个转换为number，空字符串转换为number = 0，故 0=0成立</li>
-</ul>
-<h2><span id="解决方案"><span id="inline-blue">解决方案</span></span></h2><p>采用隐式转换，将数字转换成字符再进行比较。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a&#x3D;&#39;0&#39;,b&#x3D;&#39;&#39;;</span><br><span class="line">console.log(a,b,&#39;&#39;+a&#x3D;&#x3D;b+&#39;&#39;);</span><br><span class="line">var c&#x3D;0,d&#x3D;&#39;&#39;;</span><br><span class="line">console.log(c,d,c+&#39;&#39;&#x3D;&#x3D;d+&#39;&#39;);</span><br></pre></td></tr></table></figure>
-<p>输出结果<br><img src="/images/js/js_2021_02_01_002.png" alt="比较结果"></p>
-<h2><span id="实践"><span id="inline-blue">实践</span></span></h2><p>下拉框状态回显</p>
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;select id=<span class="string">&quot;serverStatus&quot;</span> name=<span class="string">&quot;serverStatus&quot;</span> value=<span class="string">&quot;$&#123;serverStatus&#125;&quot;</span>  &gt;</span><br><span class="line">	&lt;option value=&quot;&quot; &gt;全部&lt;/option&gt;</span><br><span class="line">	&lt;option value=&quot;0&quot; &lt;s:if test=&quot;%&#123;serverStatus+&#x27; &#x27; == 0+&#x27; &#x27;&#125;&quot;&gt;selected&lt;/s:if&gt; &gt;不可服务&lt;/option&gt;</span><br><span class="line">	&lt;option value=&quot;1&quot; &lt;s:if test=&quot;%&#123;serverStatus == 1&#125;&quot;&gt;selected&lt;/s:if&gt;&gt;可服务&lt;/option&gt;   </span><br><span class="line">&lt;/select&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>空字符&#39;&#39;和0比较问题</title>
     <url>/js/blogs/%E7%A9%BA%E5%AD%97%E7%AC%A6&#39;&#39;%E4%B8%8E0%E7%9A%84%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2><span id="实例"><span id="inline-blue">实例</span></span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a&#x3D;&#39;0&#39;,b&#x3D;&#39;&#39;;</span><br><span class="line">console.log(a,b.a&#x3D;&#x3D;b);</span><br><span class="line">var c&#x3D;0,d&#x3D;&#39;&#39;;</span><br><span class="line">console.log(c,d,c&#x3D;&#x3D;d);</span><br></pre></td></tr></table></figure>
