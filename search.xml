@@ -1204,6 +1204,32 @@
       </tags>
   </entry>
   <entry>
+    <title>nginx常用启动命令</title>
+    <url>/windows/nginx/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c dir(指定配置文件所在路径)</span><br></pre></td></tr></table></figure>
+
+<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>windows</category>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx开机自启动</title>
     <url>/windows/nginx/blogs/nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
     <content><![CDATA[<!-- toc -->
@@ -1236,32 +1262,6 @@
 
 
 ]]></content>
-      <categories>
-        <category>windows</category>
-        <category>nginx</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx常用启动命令</title>
-    <url>/windows/nginx/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
-<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
-<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c dir(指定配置文件所在路径)</span><br></pre></td></tr></table></figure>
-
-<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>windows</category>
         <category>nginx</category>
