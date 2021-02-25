@@ -212,6 +212,83 @@
       </tags>
   </entry>
   <entry>
+    <title>chrome加载JSONView插件</title>
+    <url>/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDJSONView%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64</p>
+<h2><span id="下载插件"><span id="inline-blue">下载插件</span></span></h2><p><a href="https://pan.baidu.com/s/1S7LpYl2kWuermDK1aZ6_Ag">https://pan.baidu.com/s/1S7LpYl2kWuermDK1aZ6_Ag</a><br>提取码：4lt1</p>
+<h2><span id="加载插件"><span id="inline-blue">加载插件</span></span></h2><p>chrome地址栏访问chrome://extensions/,打开chrome扩展程序<br><img src="/images/chrome/chrome_2021_02_22_001.png" alt="扩展程序"></p>
+<p>解压下载的插件压缩包，开启开发者模式，加载JSONView插件文件夹WebContent<br>插件加载路径示例</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">D:\谷歌浏览器jsonView插件\JSONView-for-Chrome-master\WebContent</span><br></pre></td></tr></table></figure>
+
+<h2><span id="验证"><span id="inline-blue">验证</span></span></h2><p>插件加载成功，菜单栏显示如下：<br><img src="/images/chrome/chrome_jsonview_2021_02_22_001.png" alt="验证"><br>请求接口样例：<a href="https://jsonview.com/example.json">https://jsonview.com/example.json</a><br><img src="/images/chrome/chrome_jsonview_2021_02_22_002.png" alt="验证"></p>
+]]></content>
+      <categories>
+        <category>插件</category>
+      </categories>
+      <tags>
+        <tag>chrome</tag>
+        <tag>JSONView</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>chrome加载postman插件</title>
+    <url>/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDpostman%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64</p>
+<h2><span id="下载插件"><span id="inline-blue">下载插件</span></span></h2><p><a href="https://pan.baidu.com/s/1R_KgYR3-QK3e8tufvBlcNQ">https://pan.baidu.com/s/1R_KgYR3-QK3e8tufvBlcNQ</a><br>提取码：pvc4</p>
+<h2><span id="加载插件"><span id="inline-blue">加载插件</span></span></h2><p>chrome地址栏访问chrome://extensions/,打开chrome扩展程序<br><img src="/images/chrome/chrome_2021_02_22_001.png" alt="扩展程序"></p>
+<p>解压下载的插件压缩包，开启开发者模式，加载Postman_v4.1.3插件文件夹<br><img src="/images/chrome/chrome_2021_02_22_002.png" alt="扩展程序"></p>
+<p>加载之后，提示报错，报错信息如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">Ignored insecure CSP value &quot;https://ssl.google-analytics.com/ga.js&quot; in directive &#x27;script-src&#x27;.</span><br></pre></td></tr></table></figure>
+<p>找到插件解压后根目录下的manifest.json文件，打开找到sandbox节点<br>修改前：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;sandbox&quot;: &#123;</span><br><span class="line">      &quot;pages&quot;: [&quot;html/tester_sandbox.html&quot;, &quot;snippet_sandbox.html&quot;],</span><br><span class="line">      &quot;content_security_policy&quot;: &quot;sandbox allow-scripts allow-popups; script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; https://ssl.google-analytics.com/ga.js;&quot;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>修改后</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;sandbox&quot;: &#123;</span><br><span class="line">     &quot;pages&quot;: [&quot;html/tester_sandbox.html&quot;, &quot;snippet_sandbox.html&quot;],</span><br><span class="line">     &quot;content_security_policy&quot;: &quot;sandbox allow-scripts allow-popups; script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &quot;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>加载<a href="https://ssl.google-analytics.com/ga.js%E6%8A%A5%E9%94%99%EF%BC%8C%E5%8E%BB%E6%8E%89%E5%B0%B1%E5%8F%AF%E4%BB%A5">https://ssl.google-analytics.com/ga.js报错，去掉就可以</a></p>
+<h2><span id="验证"><span id="inline-blue">验证</span></span></h2><p>chrome左上角点击应用，找到postman插件点击运行，成功运行如下图<br><img src="/images/chrome/chrome_2021_02_22_003.png" alt="验证"><br><img src="/images/chrome/chrome_2021_02_22_004.png" alt="验证"></p>
+]]></content>
+      <categories>
+        <category>插件</category>
+      </categories>
+      <tags>
+        <tag>chrome</tag>
+        <tag>postman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mongoDB安装</title>
+    <url>/mongoDB/blogs/mongoDB%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64位<br>MongoDB 4.0.10</p>
+<h2><span id="安装包下载"><span id="inline-blue">安装包下载</span></span></h2><p>百度网盘地址：<a href="https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg">https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg</a><br>提取码：zs5e</p>
+<p>安装包说明：<br>mongodb-win32-x86_64-2008plus-ssl-4.0.10-signed.msi MongoDB安装包<br>mongodb-compass-1.19.12-win32-x64.msi MongoDB可视化工具</p>
+<h2><span id="路径配置"><span id="inline-blue">路径配置</span></span></h2><p>选择”custom”自定义模式下安装，指定安装路径<br><img src="/images/mongoDB/mongoDB_2021_02_20_001.png" alt="安装路径"></p>
+<p>取消可视化工具安装，后面单独安装<br><img src="/images/mongoDB/mongoDB_2021_02_20_002.png" alt="安装路径"></p>
+<h2><span id="安装mongodb可视化工具"><span id="inline-blue">安装mongoDB可视化工具</span></span></h2><p><img src="/images/mongoDB/mongoDB_2021_02_20_003.png" alt="可视化工具安装配置"><br>设置安装路径，安装完成。</p>
+<h2><span id="mongodb配置"><span id="inline-blue">mongoDB配置</span></span></h2><p>mongoDB安装路径下手动创建data、log目录<br><img src="/images/mongoDB/mongoDB_2021_02_20_004.png" alt="目录设置"><br>更改默认IP设置，解决远程连接问题<br>路径：D:\mongoDB\bin\mongod.cfg<br><img src="/images/mongoDB/mongoDB_2021_02_20_005.png" alt="安装路径"></p>
+<h2><span id="设置mongodb环境配置"><span id="inline-blue">设置mongoDB环境配置</span></span></h2><p>MONGODB_HOME：D:\mongoDB<br><img src="/images/mongoDB/mongoDB_2021_02_20_006.png" alt="环境变量MONGODB_HOME设置"></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Path: %JAVA_HOME%\bin;%JRE_HOME%\jre\bin;C:\Program Files (x86)\Common Files\NetSarang;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;E:\st-android\android-sdk\platform-tools;%ANT_HOME%\bin;%MAVEN_HOME%/bin;%MySQL_HOME%/bin;D:\sqlite-tools;D:\redis_3.2.100\Redis-x64-3.2.100;D:\ffmpeg\bin;D:\nodeJs\;H:\Git\bin;%MONGODB_HOME%\bin;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/mongoDB/mongoDB_2021_02_20_007.png" alt="环境变量PATH设置"></p>
+<h2><span id="注册mongodb服务"><span id="inline-blue">注册mongoDB服务</span></span></h2><p>安装过程中将mongoDB注册为windows服务失败，手动注册<br>修改mongoDB配置文件，将以下内容注释掉。<br><img src="/images/mongoDB/mongoDB_2021_02_20_008.png" alt="mongoDB服务注册"></p>
+<p>管理员模式下执行cmd命令模式，执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mongod --install -f &quot;D:\mongoDB\bin\mongod.cfg&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/mongoDB/mongoDB_2021_02_20_009.png" alt="mongoDB服务注册"><br>mongoDB 配置文件位置自行修改。</p>
+<h2><span id="连接异常处理"><span id="inline-blue">连接异常处理</span></span></h2><p>mongoDB服务确认启动的情况下，cmd命令下连接异常，提示以下信息<br><img src="/images/mongoDB/mongoDB_2021_02_20_010.png" alt="mongoDB连接异常"></p>
+<p>修改配置文件监听IP地址，本地环回地址127.0.0.1改为0.0.0.0(监听所有IP请求)<br>修改前：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># network interfaces</span><br><span class="line">net:</span><br><span class="line">  port: 27017 </span><br><span class="line">  bindIp: 127.0.0.1</span><br></pre></td></tr></table></figure>
+<p>修改后</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># network interfaces</span><br><span class="line">net:</span><br><span class="line">  port: 27017 </span><br><span class="line">  bindIp: 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<h2><span id="服务验证"><span id="inline-blue">服务验证</span></span></h2><p><img src="/images/mongoDB/mongoDB_2021_02_20_011.png" alt="mongoDB服务验证"></p>
+<h2><span id="mongodb-compass验证"><span id="inline-blue">mongoDB compass验证</span></span></h2><p>compass安装目录下，双击MongoDBCompass.exe运行<br>连接信息配置如下：<br><img src="/images/mongoDB/mongoDB_2021_02_20_012.png" alt="compass连接配置"></p>
+<p>连接成功：<br><img src="/images/mongoDB/mongoDB_2021_02_20_013.png" alt="compass测试"></p>
+]]></content>
+      <categories>
+        <category>mongoDB</category>
+      </categories>
+      <tags>
+        <tag>mongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IntelliJ项目文件同步</title>
     <url>/IntelliJ/blogs/intelliJ%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</url>
     <content><![CDATA[<h2><span id="文件同步"><span id="inline-blue">文件同步</span></span></h2><p>选中项目需要同步的文件，File工具栏选择synchronize同步操作<br><img src="/images/intelliJ/intelliJ_2021_02_18_001.png" alt="同步"></p>
@@ -1127,32 +1204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>nginx常用启动命令</title>
-    <url>/windows/nginx/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
-<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
-<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c dir(指定配置文件所在路径)</span><br></pre></td></tr></table></figure>
-
-<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>windows</category>
-        <category>nginx</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>nginx开机自启动</title>
     <url>/windows/nginx/blogs/nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
     <content><![CDATA[<!-- toc -->
@@ -1185,6 +1236,32 @@
 
 
 ]]></content>
+      <categories>
+        <category>windows</category>
+        <category>nginx</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nginx常用启动命令</title>
+    <url>/windows/nginx/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c dir(指定配置文件所在路径)</span><br></pre></td></tr></table></figure>
+
+<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>windows</category>
         <category>nginx</category>
