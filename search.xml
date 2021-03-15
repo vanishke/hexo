@@ -212,6 +212,70 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue项目实战</title>
+    <url>/vue/blogs/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<h1><span id="vue项目实战movieserver"><span id="inline-blue">Vue项目实战movieServer</span></span></h1><h2><span id="项目环境"><span id="inline-blue">项目环境</span></span></h2><p>vue 2.9.6<br>node 12.18.3<br>npm 6.14.6<br>MongoDB 4.0.10</p>
+<h2><span id></span></h2><h2><span id="说明"><span id="inline-blue">说明</span></span></h2><p>book_service 后台接口</p>
+<p>book_view 前端页面</p>
+<p>项目地址：<a href="https://github.com/vanishke/movieServer.git">https://github.com/vanishke/movieServer.git</a></p>
+<h2><span id="后端启动"><span id="inline-blue">后端启动</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd book_service </span><br><span class="line">set DEBUG=book_service &amp; npm start</span><br></pre></td></tr></table></figure>
+<h2><span id="mongodb安装包下载"><span id="inline-blue">mongoDB安装包下载</span></span></h2><p>下载地址：<a href="https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg">https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg</a><br>提取码：zs5e<br>安装包说明：<br>mongodb-win32-x86_64-2008plus-ssl-4.0.10-signed.msi MongoDB安装包<br>mongodb-compass-1.19.12-win32-x64.msi MongoDB可视化工具</p>
+<h2><span id="接口测试工具"><span id="inline-blue">接口测试工具</span></span></h2><p>下载地址：<a href="https://pan.baidu.com/s/1JmO94M6iCLpeNDIjtxxi-Q">https://pan.baidu.com/s/1JmO94M6iCLpeNDIjtxxi-Q</a> 提取码：zi8w<br>Insomnia.Core-2021.1.0.exe ：目前使用的最新版本<br>xdowns.com_Insomnia_Setup_4.2.5.exe： 历史版本<br>Insomnia_2021-03-11.json: 接口测试数据样例</p>
+<h3><span id="导入接口样例"><span id="inline-blue">导入接口样例</span></span></h3><p><img src="/images/vue/vue_20210311_001.gif" alt="导入"></p>
+<h2><span id="前端启动"><span id="inline-blue">前端启动</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd book_view</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<h2><span id="访问"><span id="inline-blue">访问</span></span></h2><p><a href="http://localhost:8000/#/">http://localhost:8000/#/</a><br><img src="/images/vue/vue_20210311_002.png" alt="首页"></p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git仓库初始化导入</title>
+    <url>/git/blogs/git%E4%BB%93%E5%BA%93%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%BC%E5%85%A5/</url>
+    <content><![CDATA[<h1><span id="创建本地仓库"><span id="inline-blue">创建本地仓库</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git init  //当前目录初始化版本库</span><br><span class="line"></span><br><span class="line">git add . //将当前路径下的所有文件添加到版本库</span><br><span class="line"></span><br><span class="line">git commit -m &quot;first commit&quot; //文件提交到版本库，并添加备注</span><br></pre></td></tr></table></figure>
+<h1><span id="远程仓库推送"><span id="inline-blue">远程仓库推送</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote add origin &quot;远程仓库地址&quot; //关联远程仓库</span><br><span class="line"></span><br><span class="line"> git add -u origin master //首次推送需要加-u参数，其他情况不需要</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1><span id="推送报错解决"><span id="inline-blue">推送报错解决</span></span></h1><p>推送报错信息如下：<br>git push error: failed to push some refs to</p>
+<p>问题原因： 远程仓库增加了README.md文件在本地仓库下不存在，需要先将远程仓库的内容更新下来，在执行推送</p>
+<p>解决方案：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure>
+<p>再次提交</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>elasticsearch导入导出</title>
+    <url>/elasticsearch/blogs/elasticsearch%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/</url>
+    <content><![CDATA[<h2><span id="环境"><span id="inline-blue">环境</span></span></h2><p>linux </p>
+<h2><span id="部署"><span id="inline-blue">部署</span></span></h2><p>下载工具压缩包<br>下载地址：<a href="https://pan.baidu.com/s/1V3If_94FJZRx-004ycLIaQ">https://pan.baidu.com/s/1V3If_94FJZRx-004ycLIaQ</a><br>提取码：qlpg</p>
+<p>EsToolNew.zip上传服务器,解压</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@demo_mdn EsToolNew]#unzip EsToolNew.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/elasticsearch/es_20210226_001.png" alt="部署目录"></p>
+<p>config:配置需要访问的elasticsearch实际地址<br>start.sh: 启动脚本<br>stop.sh: 停止脚本<br>json: 需要导入的数据脚本<br>默认访问端口：8056</p>
+<h3><span id="启动方式"><span id="inline-blue">启动方式</span></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@demo_mdn EsToolNew]# sh start.sh</span><br></pre></td></tr></table></figure>
+<h2><span id="访问"><span id="inline-blue">访问</span></span></h2><p><img src="/images/elasticsearch/es_20210226_002.png" alt="访问"></p>
+<h2><span id="导入"><span id="inline-blue">导入</span></span></h2><p><img src="/images/elasticsearch/es_20210226_003.png" alt="导入"></p>
+<h2><span id="导入"><span id="inline-blue">导入</span></span></h2><p><img src="/images/elasticsearch/es_20210226_004.png" alt="导出"></p>
+]]></content>
+      <categories>
+        <category>elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>-elasticsearch -EsTool</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>chrome加载JSONView插件</title>
     <url>/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDJSONView%E6%8F%92%E4%BB%B6/</url>
     <content><![CDATA[<h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64</p>
@@ -258,7 +322,7 @@
     <title>mongoDB安装</title>
     <url>/mongoDB/blogs/mongoDB%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64位<br>MongoDB 4.0.10</p>
-<h2><span id="安装包下载"><span id="inline-blue">安装包下载</span></span></h2><p>百度网盘地址：<a href="https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg">https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg</a><br>提取码：zs5e</p>
+<h2><span id="安装包下载"><span id="inline-blue">安装包下载</span></span></h2><p>下载地址：<a href="https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg">https://pan.baidu.com/s/1ivw4tmwJUPZLQtqzxCFlLg</a><br>提取码：zs5e</p>
 <p>安装包说明：<br>mongodb-win32-x86_64-2008plus-ssl-4.0.10-signed.msi MongoDB安装包<br>mongodb-compass-1.19.12-win32-x64.msi MongoDB可视化工具</p>
 <h2><span id="路径配置"><span id="inline-blue">路径配置</span></span></h2><p>选择”custom”自定义模式下安装，指定安装路径<br><img src="/images/mongoDB/mongoDB_2021_02_20_001.png" alt="安装路径"></p>
 <p>取消可视化工具安装，后面单独安装<br><img src="/images/mongoDB/mongoDB_2021_02_20_002.png" alt="安装路径"></p>
