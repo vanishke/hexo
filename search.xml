@@ -878,24 +878,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo修改主题文章底部标签</title>
-    <url>/hexo/Next/blogs/hexo%E4%B8%BB%E9%A2%98next%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<h2><span id="修改模板"><span id="inline-blue">修改模板</span></span></h2><p>/themes/next/layout/_macro/post.swig</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索 rel=“tag”&gt;#，将 # 换成&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure>
-
-<p>效果如图：</p>
-<p><img src="/images/hexo/next/hexo_next_2021_01_10_001.png" alt="hexo修改文章底部标签"></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-        <category>Next</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo主题next翻页不正常</title>
     <url>/hexo/Next/blogs/hexo%E4%B8%BB%E9%A2%98next%E7%BF%BB%E9%A1%B5%E4%B8%8D%E6%AD%A3%E5%B8%B8/</url>
     <content><![CDATA[<h2><span id="修改文件"><span id="inline-blue">修改文件</span></span></h2><p>themes\next\layout_partials\pagination.swig</p>
@@ -912,6 +894,24 @@
 
 
 
+]]></content>
+      <categories>
+        <category>hexo</category>
+        <category>Next</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo修改主题文章底部标签</title>
+    <url>/hexo/Next/blogs/hexo%E4%B8%BB%E9%A2%98next%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<h2><span id="修改模板"><span id="inline-blue">修改模板</span></span></h2><p>/themes/next/layout/_macro/post.swig</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索 rel=“tag”&gt;#，将 # 换成&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果如图：</p>
+<p><img src="/images/hexo/next/hexo_next_2021_01_10_001.png" alt="hexo修改文章底部标签"></p>
 ]]></content>
       <categories>
         <category>hexo</category>
