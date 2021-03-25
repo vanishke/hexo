@@ -212,6 +212,39 @@
       </tags>
   </entry>
   <entry>
+    <title>Intelij插件lombok离线安装</title>
+    <url>/Intelij/blogs/Intelij%E6%8F%92%E4%BB%B6lombok%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1><span id="官网下载地址"><span id="inline-blue">官网下载地址</span></span></h1><p><a href="http://plugins.jetbrains.com/plugin/6317-lombok-plugin">http://plugins.jetbrains.com/plugin/6317-lombok-plugin</a><br><img src="/images/intelij/intelij_2021_03_25_001.png" alt="下载地址"><br><img src="/images/intelij/intelij_2021_03_25_002.png" alt="版本选择"><br>自行根据Intelij版本下载对应的安装包，intelij版本和lombok保持一致即可。</p>
+<p>提供Intelij2018.2.1版本对应的离线安装包<br><a href="https://pan.baidu.com/s/1kBg_t-75859dIOnRLYe_jg">https://pan.baidu.com/s/1kBg_t-75859dIOnRLYe_jg</a> 提取码：0hn4</p>
+<h1><span id="离线安装"><span id="inline-blue">离线安装</span></span></h1><p><img src="/images/intelij/intelij_2021_03_25_003.png" alt="lombok离线安装"><br>选择下载对应版本的zip格式的安装包，重启intelij生效</p>
+]]></content>
+      <categories>
+        <category>Intelij</category>
+      </categories>
+      <tags>
+        <tag>Intelij</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信公众号爬虫工具</title>
+    <url>/%E5%B7%A5%E5%85%B7/blogs/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E7%88%AC%E8%99%AB%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<h1><span id="功能说明"><span id="inline-blue">功能说明</span></span></h1><p>批量下载微信公众号里面的历史文章</p>
+<h1><span id="下载地址"><span id="inline-blue">下载地址</span></span></h1><p><a href="https://pan.baidu.com/s/1AfG-ell55NVScfTJhUam3g">https://pan.baidu.com/s/1AfG-ell55NVScfTJhUam3g</a> 提取码：hq6v</p>
+<h1><span id="使用教程"><span id="inline-blue">使用教程</span></span></h1><ul>
+<li>解压工具压缩包，运行工具<br><img src="/images/tools/tools_2021_03_24_001.png" alt="工具目录"></li>
+<li>设置文件保存方式，可选下载文章的时间范围<br><img src="/images/tools/tools_2021_03_24_002.png" alt="下载设置"></li>
+<li>微信电脑端访问公众号，等待文章下载完成。<br><img src="/images/tools/tools_2021_03_24_003.png" alt="下载详情"></li>
+</ul>
+<p><img src="/images/tools/tools_2021_03_24_004.png" alt="文件下载预览"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue项目实战</title>
     <url>/vue/blogs/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</url>
     <content><![CDATA[<h1><span id="vue项目实战movieserver"><span id="inline-blue">Vue项目实战movieServer</span></span></h1><h2><span id="项目环境"><span id="inline-blue">项目环境</span></span></h2><p>vue 2.9.6<br>node 12.18.3<br>npm 6.14.6<br>MongoDB 4.0.10</p>
@@ -878,6 +911,24 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo修改主题文章底部标签</title>
+    <url>/hexo/Next/blogs/hexo%E4%B8%BB%E9%A2%98next%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<h2><span id="修改模板"><span id="inline-blue">修改模板</span></span></h2><p>/themes/next/layout/_macro/post.swig</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索 rel=“tag”&gt;#，将 # 换成&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果如图：</p>
+<p><img src="/images/hexo/next/hexo_next_2021_01_10_001.png" alt="hexo修改文章底部标签"></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+        <category>Next</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo主题next翻页不正常</title>
     <url>/hexo/Next/blogs/hexo%E4%B8%BB%E9%A2%98next%E7%BF%BB%E9%A1%B5%E4%B8%8D%E6%AD%A3%E5%B8%B8/</url>
     <content><![CDATA[<h2><span id="修改文件"><span id="inline-blue">修改文件</span></span></h2><p>themes\next\layout_partials\pagination.swig</p>
@@ -894,24 +945,6 @@
 
 
 
-]]></content>
-      <categories>
-        <category>hexo</category>
-        <category>Next</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo修改主题文章底部标签</title>
-    <url>/hexo/Next/blogs/hexo%E4%B8%BB%E9%A2%98next%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<h2><span id="修改模板"><span id="inline-blue">修改模板</span></span></h2><p>/themes/next/layout/_macro/post.swig</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">搜索 rel=“tag”&gt;#，将 # 换成&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure>
-
-<p>效果如图：</p>
-<p><img src="/images/hexo/next/hexo_next_2021_01_10_001.png" alt="hexo修改文章底部标签"></p>
 ]]></content>
       <categories>
         <category>hexo</category>
