@@ -1,0 +1,2992 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="每一个不曾起舞的日子，都是对生命的辜负">
+<meta property="og:type" content="website">
+<meta property="og:title" content="vanishke个人技术博客">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="vanishke个人技术博客">
+<meta property="og:description" content="每一个不曾起舞的日子，都是对生命的辜负">
+<meta property="og:locale">
+<meta property="article:author" content="vanishke">
+<meta property="article:tag" content="Java,Elasticsearch,MySQL,Linux">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/page/5/">
+
+
+
+
+
+  <title>vanishke个人技术博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">vanishke个人技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不积跬步，无以至千里；不积小流，无以成江海</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+	<div class="tag-cloud">
+		  <div class="tag-cloud-tags" id="tags">
+			<a href="/tags/ElasticSearch/" style="font-size: 16px; color: #fff">ElasticSearch</a> <a href="/tags/ElasticSearch-NoSQL/" style="font-size: 16px; color: #fff">ElasticSearch,NoSQL</a> <a href="/tags/ElasticSearch-windows/" style="font-size: 16px; color: #fff">ElasticSearch,windows</a> <a href="/tags/EsTool/" style="font-size: 16px; color: #fff">EsTool</a> <a href="/tags/FTP/" style="font-size: 16px; color: #fff">FTP</a> <a href="/tags/Git/" style="font-size: 16px; color: #fff">Git</a> <a href="/tags/IntelliJ/" style="font-size: 16px; color: #fff">IntelliJ</a> <a href="/tags/JSONView/" style="font-size: 16px; color: #fff">JSONView</a> <a href="/tags/Jboss/" style="font-size: 16px; color: #fff">Jboss</a> <a href="/tags/Jetty/" style="font-size: 16px; color: #fff">Jetty</a> <a href="/tags/Linux/" style="font-size: 16px; color: #fff">Linux</a> <a href="/tags/MySQL/" style="font-size: 16px; color: #fff">MySQL</a> <a href="/tags/Next/" style="font-size: 16px; color: #fff">Next</a> <a href="/tags/Oracle/" style="font-size: 16px; color: #fff">Oracle</a> <a href="/tags/Redis-windows/" style="font-size: 16px; color: #fff">Redis,windows</a> <a href="/tags/Tomcat/" style="font-size: 16px; color: #fff">Tomcat</a> <a href="/tags/Windows-FTP/" style="font-size: 16px; color: #fff">Windows,FTP</a> <a href="/tags/chrome/" style="font-size: 16px; color: #fff">chrome</a> <a href="/tags/docker/" style="font-size: 16px; color: #fff">docker</a> <a href="/tags/docker-indows/" style="font-size: 16px; color: #fff">docker,indows</a> <a href="/tags/easyui/" style="font-size: 16px; color: #fff">easyui</a> <a href="/tags/eclipse/" style="font-size: 16px; color: #fff">eclipse</a> <a href="/tags/git/" style="font-size: 16px; color: #fff">git</a> <a href="/tags/gitalk/" style="font-size: 16px; color: #fff">gitalk</a> <a href="/tags/hexo/" style="font-size: 16px; color: #fff">hexo</a> <a href="/tags/js/" style="font-size: 16px; color: #fff">js</a> <a href="/tags/kibana/" style="font-size: 16px; color: #fff">kibana</a> <a href="/tags/logstash/" style="font-size: 16px; color: #fff">logstash</a> <a href="/tags/markdown/" style="font-size: 16px; color: #fff">markdown</a> <a href="/tags/mongoDB/" style="font-size: 16px; color: #fff">mongoDB</a> <a href="/tags/nginx/" style="font-size: 16px; color: #fff">nginx</a> <a href="/tags/nginx-linux/" style="font-size: 16px; color: #fff">nginx,linux</a> <a href="/tags/nginx-windows/" style="font-size: 16px; color: #fff">nginx,windows</a> <a href="/tags/postman/" style="font-size: 16px; color: #fff">postman</a> <a href="/tags/vue/" style="font-size: 16px; color: #fff">vue</a> <a href="/tags/windows/" style="font-size: 16px; color: #fff">windows</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 16px; color: #fff">工具</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16px; color: #fff">数据库</a>
+		  </div>
+	</div>
+	<br>
+	<script type="text/javascript">
+     var alltags = document.getElementsByClassName('tag-cloud-tags');
+     var tags = alltags[0].getElementsByTagName('a');
+     for (var i = tags.length - 1; i >= 0; i--) {
+       var r=Math.floor(Math.random()*75+130);
+       var g=Math.floor(Math.random()*75+100);
+       var b=Math.floor(Math.random()*75+80);
+       tags[i].style.background = "rgb("+r+","+g+","+b+")";
+     }
+</script>
+
+<style>
+  .tag-cloud-tags{
+    /*font-family: Helvetica, Tahoma, Arial;*/
+    /*font-weight: 100;*/
+    text-align: center;
+    counter-reset: tags;
+  }
+  .tag-cloud-tags a{
+    border-radius: 6px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 8px 5px 0px 0px;
+  }
+  .tag-cloud-tags a:before{
+     content: " ";
+	 width: 0;
+	 height: 0;
+	 position: absolute;
+	 top: 0;
+	 left: -18px;
+	 border: 9px solid transparent;
+  }
+
+  .tag-cloud-tags a:hover{
+     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);
+     transform: scale(1.1);
+     /*box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);*/
+     transition-duration: 0.15s;
+  }
+</style>
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/eclipse/blogs/eclipse%E5%AE%89%E8%A3%85Jetty%E6%8F%92%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/eclipse/blogs/eclipse%E5%AE%89%E8%A3%85Jetty%E6%8F%92%E4%BB%B6/" itemprop="url">eclipse安装Jetty插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-18T09:07:52+08:00">
+                2022-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/eclipse/" itemprop="url" rel="index">
+                    <span itemprop="name">eclipse</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  225
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="插件下载地址连接失败解决办法"><span id="inline-blue">插件下载地址连接失败解决办法</span></span></h1><ol>
+<li><p>访问<a target="_blank" rel="noopener" href="https://github.com.ipaddress.com/">https://github.com.ipaddress.com/</a> 查找到github公网IP地址<br><img alt="查找结果" data-original="/images/intelliJ/intelliJ_2021_04_29_001.png"></p>
+</li>
+<li><p>将github网站IP地址映射添加到C:\Windows\System32\drivers\etc目录下的hosts文件中，文件末尾添加如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">140.82.114.4 github.com</span><br></pre></td></tr></table></figure></li>
+<li><p>刷新本地DNS缓存<br>cmd命令模式下执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1><span id="在线安装"><span id="inline-blue">在线安装</span></span></h1><p>eclipse菜单栏依次点击  Help&gt;eclipse Marketplace<br>安装版本选择第一项(可以切换不同的版本),安装之后重启eclispe,jetty插件才能生效<br><img alt="安装步骤1" data-original="/images/eclipse/eclipse_jetty_2021_08_31_001.png"><br>选中项目可直接右键jetty启动<br><img alt="安装步骤2" data-original="/images/eclipse/eclipse_jetty_2021_08_31_002.png"><br>配置jetty启动选项<br><img alt="安装步骤3" data-original="/images/eclipse/eclipse_jetty_2021_08_31_003.png"><br>设置项目启动端口、jetty版本、访问项目名称<br><img alt="安装步骤4" data-original="/images/eclipse/eclipse_jetty_2021_08_31_004.png"><br>配置jvm启动参数,项目对应启动配置文件所在位置、jrebel插件参数配置<br><img alt="安装步骤5" data-original="/images/eclipse/eclipse_jetty_2021_08_31_005.png"><br>配置项目部署class文件以及依赖jar包,主要解决子项目依赖导致jar包冲突<br><img alt="安装步骤6" data-original="/images/eclipse/eclipse_jetty_2021_08_31_006.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/easyui/blogs/easyui-tree%E4%B8%89%E7%BA%A7%E5%8C%BA%E5%9F%9F%E6%A0%91%E5%9B%9E%E6%98%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/easyui/blogs/easyui-tree%E4%B8%89%E7%BA%A7%E5%8C%BA%E5%9F%9F%E6%A0%91%E5%9B%9E%E6%98%BE/" itemprop="url">easyui-tree三级区域树回显</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-18T09:07:52+08:00">
+                2022-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/easyui/" itemprop="url" rel="index">
+                    <span itemprop="name">easyui</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="多层级区域树加载"><span id="inline-blue">多层级区域树加载</span></span></h2><h3><span id="树的数据格式tree-data-format">树的数据格式（Tree Data Format）</span></h3><p>每个节点可以包括下列属性：</p>
+<ul>
+<li>id：节点的 id，它对于加载远程数据很重要。</li>
+<li>text：要显示的节点文本。</li>
+<li>state：节点状态，’open’ 或 ‘closed’，默认是 ‘open’。当设置为 ‘closed’ 时，该节点有子节点，并且将从远程站点加载它们。</li>
+<li>checked：指示节点是否被选中。</li>
+<li>attributes：给一个节点添加的自定义属性。</li>
+<li>children：定义了一些子节点的节点数组。</li>
+</ul>
+<p>接口返回tree初始化数据json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">	<span class="attr">&quot;select&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="attr">&quot;children&quot;</span>: [&#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1175</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;区域测试(10110)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;open&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1172</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;区域测试2(11111)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;open&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1135</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;无锡市(0510)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1129</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;马鞍山市(0555)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1117</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;泰州市(0523)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1111</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;镇江市(0511)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1103</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;淮安市(0517)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1098</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;扬州市(0514)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1093</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;宿迁市(0527)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1085</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;默认布局(0000)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;open&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1080</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;常州市(0519)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1071</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;盐城市(0515)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1065</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;南通市(0513)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1059</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;连云港市(0518)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1057</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;徐州市(0516)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		<span class="attr">&quot;id&quot;</span>: <span class="number">1048</span>,</span><br><span class="line">		<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;南京市(025)&quot;</span>,</span><br><span class="line">		<span class="attr">&quot;state&quot;</span>: <span class="string">&quot;closed&quot;</span></span><br><span class="line">	&#125;],</span><br><span class="line">	<span class="attr">&quot;id&quot;</span>: <span class="string">&quot;-1&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;根区域(-1)&quot;</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>选择三层叶子结点，返回回显指定区域加载异常，提示错误信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jquery-1.8.3.min.js:2 Uncaught TypeError: Cannot read property &#39;target&#39; of null</span><br><span class="line">    at doSelectAppoint (listpage?areaId&#x3D;1147:2453)</span><br><span class="line">    at Object.success (listpage?areaId&#x3D;1147:2088)</span><br><span class="line">    at l (jquery-1.8.3.min.js:2)</span><br><span class="line">    at Object.fireWith [as resolveWith] (jquery-1.8.3.min.js:2)</span><br><span class="line">    at T (jquery-1.8.3.min.js:2)</span><br><span class="line">    at r (jquery-1.8.3.min.js:2)</span><br><span class="line">    at Object.send (jquery-1.8.3.min.js:2)</span><br><span class="line">    at Function.ajax (jquery-1.8.3.min.js:2)</span><br><span class="line">    at expandArea (listpage?areaId&#x3D;1147:2060)</span><br><span class="line">    at HTMLUListElement.onLoadSuccess (listpage?areaId&#x3D;1147:1922)</span><br></pre></td></tr></table></figure>
+
+<h4><span id="原因分析">原因分析</span></h4><p>初始化区域数据默认只给到二级节点，三级叶子节点未生成，导致调用异常，后面通过tree对应官方api文档里面append方法递归生成对应父节点集合的叶子结点，发现在叶子节点为多节点情况下递归调用发生死循环导致页面加载页面。</p>
+<h4><span id="解决方案">解决方案</span></h4><p>后台提供findById()方法，返回对应节点父节点集合，通过递归从二级节点开始加载对应的子节点集合，生成节点方法改为expandAll(),从二级节点一直加载到其对应的叶子节点，判断当前回显的叶子节点是否选中。</p>
+<p>findById方法返回数据如下显示</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;id&quot;</span>: <span class="number">1147</span>,</span><br><span class="line">	<span class="attr">&quot;createTime&quot;</span>: <span class="string">&quot;2020-11-25 14:36:24&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;lastUpdateTime&quot;</span>: <span class="string">&quot;2021-01-05 01:27:12&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;lastUpdateTimeStart&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;lastUpdateTimeEnd&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;createTimeStart&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;createTimeEnd&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;idList&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;queryGroupId&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;queryGroupIds&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;notCompareId&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;areaName&quot;</span>: <span class="string">&quot;江苏省公安厅视频会议&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;areaCode&quot;</span>: <span class="string">&quot;100000000296&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;remark&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;pubState&quot;</span>: <span class="string">&quot;online&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;relateState&quot;</span>: <span class="string">&quot;online&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;parentId&quot;</span>: <span class="number">1143</span>,</span><br><span class="line">	<span class="attr">&quot;codeList&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;locateNameList&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;isLeaf&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;江苏省公安厅视频会议(100000000296)&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;state&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;right&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;search&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">	<span class="attr">&quot;parentIds&quot;</span>: <span class="string">&quot;1147,1143,1048,-1&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>parentIds:返回当前选中节点的父节点集合（包括自身）。</p>
+<h4><span id="加载实现">加载实现</span></h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 区域树初始化加载</span></span><br><span class="line">onLoadSuccess:<span class="function"><span class="keyword">function</span>(<span class="params">node,data</span>) </span>&#123;</span><br><span class="line">			<span class="function"><span class="title">if</span>(<span class="params">areaId!=<span class="string">&quot;&quot;</span> &amp;&amp; areaId!=<span class="literal">null</span></span>)</span>&#123;</span><br><span class="line">				</span><br><span class="line">				expandArea(areaId);</span><br><span class="line">                <span class="comment">//doSelectAppoint(areaId);</span></span><br><span class="line">                <span class="comment">//setTimeout(doSelectAppoint(areaId),2000);</span></span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">var</span> nodeThis=$(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;find&#x27;</span>,cId);</span><br><span class="line">				<span class="function"><span class="title">if</span>(<span class="params">nodeThis==<span class="string">&quot;&quot;</span>||nodeThis==<span class="literal">undefined</span></span>)</span>&#123;<span class="comment">//节点找不到的情况下默认根节点</span></span><br><span class="line">					cId=-<span class="number">1</span>;</span><br><span class="line">					nodeThis=$(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;find&#x27;</span>,-<span class="number">1</span>)</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="function"><span class="title">if</span>(<span class="params">nodeThis == <span class="literal">null</span></span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">var</span> first = $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;getChildren&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line">                    $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;select&#x27;</span>,first.target);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;select&#x27;</span>,nodeThis.target);</span><br><span class="line">                &#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//setTimeout(function()&#123;doRight(node,data);&#125;, 500);</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//节点递归加载实现</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * easyui-tree 区域树回显实现</span></span><br><span class="line"><span class="comment"> * 默认异常情况下显示根节点</span></span><br><span class="line"><span class="comment"> * 借助parentIds父节点记录集合，currentNode、parentNode实现自动扩展加载三层叶子结点</span></span><br><span class="line"><span class="comment"> * expandAll 扩展当前节点下的所有叶子节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">expandArea</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = globalWebAppURL+<span class="string">&quot;/manager/area/findById?id=&quot;</span>+areaId;</span><br><span class="line">    <span class="keyword">var</span> parentNode = <span class="literal">null</span>;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">        url: url,</span><br><span class="line">        <span class="keyword">async</span>: <span class="literal">false</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> fatherId = data.parentId;</span><br><span class="line">            <span class="keyword">if</span>(fatherId)</span><br><span class="line">            &#123;</span><br><span class="line">            	<span class="keyword">var</span> parentIds =<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">    			<span class="function"><span class="title">if</span>(<span class="params">data.parentIds != <span class="string">&quot;&quot;</span></span>)</span>&#123;</span><br><span class="line">    				parentIds = data.parentIds.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">    			&#125;</span><br><span class="line">    			<span class="comment">//父节点记录集合升序排序，目的是初始化区域树按照原有顺序加载</span></span><br><span class="line">				parentIds.sort(compare);</span><br><span class="line">				<span class="keyword">var</span> len=parentIds.length;</span><br><span class="line">                <span class="comment">//从二层节点开始</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> index = <span class="number">1</span>;index&lt;len; index++) </span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">var</span> currentNode = $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;find&#x27;</span>,parentIds[index]);</span><br><span class="line">                      <span class="comment">//父节点为空</span></span><br><span class="line">					<span class="keyword">if</span> (currentNode == <span class="literal">null</span>)</span><br><span class="line">					&#123;</span><br><span class="line">						 currentNode = parentNode;</span><br><span class="line">                        	<span class="comment">//父节点找不到的情况下默认初始化根节点</span></span><br><span class="line">						 <span class="keyword">if</span>(currentNode == <span class="literal">null</span>)</span><br><span class="line">							 &#123;</span><br><span class="line">								 areaId = <span class="literal">null</span>;</span><br><span class="line">				                 doSelectAppoint(-<span class="number">1</span>);</span><br><span class="line">				                 <span class="keyword">break</span>;</span><br><span class="line">							 &#125;</span><br><span class="line">						 <span class="keyword">else</span></span><br><span class="line">							 &#123;</span><br><span class="line">                                 <span class="comment">//如果当前节点为空说明，说明当前节点未加载，需要借助父节点expandAll()方法加载对应的子节点集合</span></span><br><span class="line">				                $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;expandAll&#x27;</span>,currentNode.target);</span><br><span class="line">							 &#125;</span><br><span class="line">		                 </span><br><span class="line">					&#125;</span><br><span class="line">                     <span class="comment">//父节点存在，进行下一层遍历</span></span><br><span class="line">					<span class="keyword">else</span></span><br><span class="line">					&#123;</span><br><span class="line">						 parentNode = currentNode;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;expand&#x27;</span>,parentNode.target);</span><br><span class="line">    <span class="keyword">var</span> selectNode =  $(<span class="string">&quot;#areaTree&quot;</span>).tree(<span class="string">&#x27;getSelected&#x27;</span>);</span><br><span class="line">    <span class="comment">//父节点展开导致当前节点选中效果失效，没有选中的节点的情况下，回显历史记录节点</span></span><br><span class="line">    <span class="keyword">if</span>(selectNode== <span class="literal">null</span>)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;doSelectAppoint(id);&#125;, <span class="number">2000</span>);</span><br><span class="line">    	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDpostman%E6%8F%92%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDpostman%E6%8F%92%E4%BB%B6/" itemprop="url">chrome加载postman插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-18T09:07:52+08:00">
+                2022-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8F%92%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">插件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  257
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64</p>
+<h2><span id="下载插件"><span id="inline-blue">下载插件</span></span></h2><p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1R_KgYR3-QK3e8tufvBlcNQ">https://pan.baidu.com/s/1R_KgYR3-QK3e8tufvBlcNQ</a><br>提取码：pvc4</p>
+<h2><span id="加载插件"><span id="inline-blue">加载插件</span></span></h2><p>chrome地址栏访问chrome://extensions/,打开chrome扩展程序<br><img alt="扩展程序" data-original="/images/chrome/chrome_2021_02_22_001.png"></p>
+<p>解压下载的插件压缩包，开启开发者模式，加载Postman_v4.1.3插件文件夹<br><img alt="扩展程序" data-original="/images/chrome/chrome_2021_02_22_002.png"></p>
+<p>加载之后，提示报错，报错信息如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">Ignored insecure CSP value &quot;https://ssl.google-analytics.com/ga.js&quot; in directive &#x27;script-src&#x27;.</span><br></pre></td></tr></table></figure>
+<p>找到插件解压后根目录下的manifest.json文件，打开找到sandbox节点<br>修改前：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;sandbox&quot;: &#123;</span><br><span class="line">      &quot;pages&quot;: [&quot;html/tester_sandbox.html&quot;, &quot;snippet_sandbox.html&quot;],</span><br><span class="line">      &quot;content_security_policy&quot;: &quot;sandbox allow-scripts allow-popups; script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; https://ssl.google-analytics.com/ga.js;&quot;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>修改后</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;sandbox&quot;: &#123;</span><br><span class="line">     &quot;pages&quot;: [&quot;html/tester_sandbox.html&quot;, &quot;snippet_sandbox.html&quot;],</span><br><span class="line">     &quot;content_security_policy&quot;: &quot;sandbox allow-scripts allow-popups; script-src &#x27;self&#x27; &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &quot;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>加载<a target="_blank" rel="noopener" href="https://ssl.google-analytics.com/ga.js%E6%8A%A5%E9%94%99%EF%BC%8C%E5%8E%BB%E6%8E%89%E5%B0%B1%E5%8F%AF%E4%BB%A5">https://ssl.google-analytics.com/ga.js报错，去掉就可以</a></p>
+<h2><span id="验证"><span id="inline-blue">验证</span></span></h2><p>chrome左上角点击应用，找到postman插件点击运行，成功运行如下图<br><img alt="验证" data-original="/images/chrome/chrome_2021_02_22_003.png"><br><img alt="验证" data-original="/images/chrome/chrome_2021_02_22_004.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDJSONView%E6%8F%92%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E6%8F%92%E4%BB%B6/blogs/chrome%E5%8A%A0%E8%BD%BDJSONView%E6%8F%92%E4%BB%B6/" itemprop="url">chrome加载JSONView插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-18T09:07:52+08:00">
+                2022-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8F%92%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">插件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  111
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="安装环境"><span id="inline-blue">安装环境</span></span></h2><p>windows7 64</p>
+<h2><span id="下载插件"><span id="inline-blue">下载插件</span></span></h2><p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1S7LpYl2kWuermDK1aZ6_Ag">https://pan.baidu.com/s/1S7LpYl2kWuermDK1aZ6_Ag</a><br>提取码：4lt1</p>
+<h2><span id="加载插件"><span id="inline-blue">加载插件</span></span></h2><p>chrome地址栏访问chrome://extensions/,打开chrome扩展程序<br><img alt="扩展程序" data-original="/images/chrome/chrome_2021_02_22_001.png"></p>
+<p>解压下载的插件压缩包，开启开发者模式，加载JSONView插件文件夹WebContent<br>插件加载路径示例</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">D:\谷歌浏览器jsonView插件\JSONView-for-Chrome-master\WebContent</span><br></pre></td></tr></table></figure>
+
+<h2><span id="验证"><span id="inline-blue">验证</span></span></h2><p>插件加载成功，菜单栏显示如下：<br><img alt="验证" data-original="/images/chrome/chrome_jsonview_2021_02_22_001.png"><br>请求接口样例：<a target="_blank" rel="noopener" href="https://jsonview.com/example.json">https://jsonview.com/example.json</a><br><img alt="验证" data-original="/images/chrome/chrome_jsonview_2021_02_22_002.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Linux/FTP/blogs/vsftpd%E5%90%8C%E6%97%B6%E7%9B%91%E5%90%ACipv4%E5%92%8Cipv6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Linux/FTP/blogs/vsftpd%E5%90%8C%E6%97%B6%E7%9B%91%E5%90%ACipv4%E5%92%8Cipv6/" itemprop="url">vsftpd同时监听ipv4和ipv6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-21T18:10:12+08:00">
+                2022-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/FTP/" itemprop="url" rel="index">
+                    <span itemprop="name">FTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  165
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="vsftpd配置文件说明"><span id="inline-blue">vsftpd配置文件说明</span></span></h2><p>文件名称：vsftpd.conf<br>文件路径：/etc/vsftpd/vsftpd.conf<br>配置说明：<br>不监听ipv6<br>listen_ipv6=NO<br>监听ipv4<br>listen_ipv4=YES<br>listen_ipv6和listen_ipv4配置项不能同时启用，需要配置两份配置文件vsftpd.conf和vsftpd_ipv6.conf(直接拷贝一份vsftpd.conf并改名,修改对应配置项放在同级目录即可)</p>
+<p>vsftpd.conf</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#不监听ipv6</span></span></span><br><span class="line">listen_ipv6=NO</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#监听ipv4</span></span></span><br><span class="line">listen_ipv4=YES</span><br></pre></td></tr></table></figure>
+<p>vsftpd_ipv6.conf</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#监听ipv6</span></span></span><br><span class="line">listen_ipv6=YES</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#不监听ipv4</span></span></span><br><span class="line">listen_ipv4=NO</span><br></pre></td></tr></table></figure>
+<h2><span id="重启vsftpd服务"><span id="inline-blue">重启vsftpd服务</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN vsftpd]# service vsftpd restart</span><br><span class="line">关闭 vsftpd：                                              [确定]</span><br><span class="line">为 vsftpd 启动 vsftpd：                                    [确定]</span><br><span class="line">为 vsftpd_ipv6 启动 vsftpd：                               [确定]</span><br></pre></td></tr></table></figure>
+<h2><span id="ipv4格式"><span id="inline-blue">ipv4格式</span></span></h2><p><a href="ftp://oracle:oracle@10.9.216.12/">ftp://oracle:oracle@10.9.216.12:21</a><br><img alt="ipv4格式访问" data-original="/images/linux/LF_20220422_001.png"></p>
+<h2><span id="ipv6格式"><span id="inline-blue">ipv6格式</span></span></h2><p>ipv6格式访问xftp需要xftp5版本支持<br><a href="ftp://oracle:oracle@[10:9:216::12]/">ftp://oracle:oracle@[10:9:216::12]:21</a><br><img alt="ipv6格式访问" data-original="/images/linux/LF_20220422_002.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/blogs/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/blogs/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" itemprop="url">MySQL存储过程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-12T10:10:12+08:00">
+                2022-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  388
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="存储过程"><span id="inline-blue">存储过程</span></span></h2><p>存储过程使用游标清理过期布局数据</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Navicat MySQL Data Transfer</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Source Server         : 10.9.216.12</span></span><br><span class="line"><span class="comment">Source Server Version : 50560</span></span><br><span class="line"><span class="comment">Source Host           : 10.9.216.12:3306</span></span><br><span class="line"><span class="comment">Source Database       : nanjing_iepg</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Target Server Type    : MYSQL</span></span><br><span class="line"><span class="comment">Target Server Version : 50599</span></span><br><span class="line"><span class="comment">File Encoding         : 65001</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Date: 2022-04-12 09:59:53</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> FOREIGN_KEY_CHECKS=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="comment">-- Procedure structure for `clearPubCell`</span></span><br><span class="line"><span class="comment">-- ----------------------------</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`clearPubCell`</span>;</span><br><span class="line">DELIMITER ;;</span><br><span class="line"><span class="keyword">CREATE</span> DEFINER=<span class="string">`root`</span>@<span class="string">`%`</span> <span class="keyword">PROCEDURE</span> <span class="string">`clearPubCell`</span>()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">		<span class="comment">/* 存储过程使用游标清理过期发布布局Plan</span></span><br><span class="line"><span class="comment">		*	pubareaversion表同一area和version条件下只保留两个最新发布布局</span></span><br><span class="line"><span class="comment">		*	借助临时表暂存需要清理的布局planId(解决由于select查询结果为空导致游标异常退出)</span></span><br><span class="line"><span class="comment">		*	通过查询出的planId清理pubareaversion、pubcell</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">/*  游标异常停止标识  */</span></span><br><span class="line">	  <span class="keyword">DECLARE</span> v_clear_stop_flag <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line">		<span class="comment">/* 区域码  */</span></span><br><span class="line">	  <span class="keyword">DECLARE</span> v_areaCode <span class="built_in">VARCHAR</span>(<span class="number">60</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>;</span><br><span class="line">		<span class="comment">/* 版本信息 */</span></span><br><span class="line">	  <span class="keyword">DECLARE</span> v_version <span class="built_in">VARCHAR</span>(<span class="number">60</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>;</span><br><span class="line">		<span class="comment">/* 任务完成标识 */</span></span><br><span class="line">		<span class="keyword">DECLARE</span> out_done <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="literal">FALSE</span> ; </span><br><span class="line">		<span class="comment">/*  定义游标 */</span></span><br><span class="line">		<span class="keyword">DECLARE</span> out_cursor <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> (<span class="keyword">SELECT</span> <span class="keyword">distinct</span> areaCode,<span class="keyword">version</span> <span class="keyword">FROM</span> pubareaversion);</span><br><span class="line">		<span class="comment">/* 循环结束标识 */</span></span><br><span class="line">		<span class="keyword">DECLARE</span> CONTINUE <span class="keyword">HANDLER</span> <span class="keyword">FOR</span> <span class="keyword">NOT</span> <span class="keyword">FOUND</span> <span class="keyword">SET</span> out_done = <span class="literal">TRUE</span> ; </span><br><span class="line">		<span class="comment">/* 创建临时表  记录需要清理的布局planId*/</span></span><br><span class="line">		<span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> temp_planId;</span><br><span class="line">		 <span class="keyword">CREATE</span> <span class="keyword">TEMPORARY</span> <span class="keyword">TABLE</span> temp_planId </span><br><span class="line">			(</span><br><span class="line">			 planId <span class="built_in">int</span> <span class="keyword">default</span> <span class="number">0</span></span><br><span class="line">			);</span><br><span class="line">		<span class="comment">/* 遍历游标 */</span></span><br><span class="line">		OPEN out_cursor ; </span><br><span class="line">		WHILE NOT out_done <span class="keyword">DO</span> </span><br><span class="line">				<span class="keyword">FETCH</span> out_cursor <span class="keyword">INTO</span> v_areaCode,v_version; </span><br><span class="line">				IF NOT out_done THEN 	</span><br><span class="line">						<span class="keyword">REPLACE</span> <span class="keyword">INTO</span> temp_planId</span><br><span class="line">						<span class="keyword">SELECT</span> planId</span><br><span class="line">						<span class="keyword">FROM</span> pubareaversion</span><br><span class="line">						<span class="keyword">WHERE</span> areaCode = v_areaCode</span><br><span class="line">						<span class="keyword">AND</span> <span class="keyword">version</span> = v_version </span><br><span class="line">						<span class="keyword">ORDER</span> <span class="keyword">BY</span> updateTime</span><br><span class="line">						<span class="keyword">DESC</span> </span><br><span class="line">						<span class="keyword">LIMIT</span> <span class="number">2</span>,<span class="number">2000</span>; <span class="comment">/* 查询从第二条记录开始的2000记录，发布布局超出2000的情况下需要做修改(limit 2,-1 这种语言高级版本MySQL已修复 ,-1表示无穷) */</span></span><br><span class="line">				<span class="keyword">END</span> <span class="keyword">IF</span>; </span><br><span class="line">		<span class="keyword">END</span> <span class="keyword">WHILE</span>; </span><br><span class="line">		CLOSE out_cursor ;</span><br><span class="line">		<span class="comment">/* 清理pubcell、pubareaversion对应记录 */</span></span><br><span class="line">		<span class="keyword">DELETE</span> <span class="keyword">FROM</span> pubcell <span class="keyword">where</span> pubcell.planId <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">distinct</span> planId <span class="keyword">from</span> temp_planId );</span><br><span class="line">		<span class="keyword">DELETE</span> <span class="keyword">FROM</span> pubareaversion <span class="keyword">where</span> pubareaversion.planId <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">distinct</span> planId <span class="keyword">from</span> temp_planId );</span><br><span class="line"></span><br><span class="line"><span class="keyword">END</span></span><br><span class="line">;;</span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a id="download" href="/images/mysql/test.sql"><i class="fa fa-download"></i><span>测试数据脚本</span> </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/windows/FTP/blogs/Windows%E7%8E%AF%E5%A2%83%E4%B8%8BFTP%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/windows/FTP/blogs/Windows%E7%8E%AF%E5%A2%83%E4%B8%8BFTP%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="url">Windows环境下FTP常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-15T17:11:20+08:00">
+                2022-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/FTP/" itemprop="url" rel="index">
+                    <span itemprop="name">FTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  389
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blueftp%E7%99%BB%E9%99%86span"><span id="inline-blue">FTP登陆</span></a></li>
+<li><a href="#span-idinline-blue%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6span"><span id="inline-blue">上传文件</span></a><ul>
+<li><a href="#span-idinline-blue%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0span"><span id="inline-blue">单个文件上传</span></a></li>
+<li><a href="#span-idinline-blue%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0span"><span id="inline-blue">批量文件上传</span></a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6span"><span id="inline-blue">下载文件</span></a><ul>
+<li><a href="#span-idinline-blue%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">单个文件下载</span></a></li>
+<li><a href="#span-idinline-blue%E6%89%B9%E9%87%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">批量文件下载</span></a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95span"><span id="inline-blue">切换目录</span></a></li>
+<li><a href="#span-idinline-blue%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E4%BF%A1%E6%81%AFspan"><span id="inline-blue">查看目录信息</span></a></li>
+<li><a href="#span-idinline-blue%E6%8C%87%E5%AE%9A%E6%9C%AC%E5%9C%B0%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95span"><span id="inline-blue">指定本地工作目录</span></a></li>
+<li><a href="#span-idinline-blue%E8%BF%9E%E6%8E%A5%E5%92%8C%E5%85%B3%E9%97%AD%E5%91%BD%E4%BB%A4span"><span id="inline-blue">连接和关闭命令</span></a></li>
+<li><a href="#span-idinline-blue%E9%80%80%E5%87%BAftp%E5%91%BD%E4%BB%A4span"><span id="inline-blue">退出FTP命令</span></a></li>
+<li><a href="#span-idinline-blueftp%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E4%BF%A1%E6%81%AFspan"><span id="inline-blue">FTP命令帮助信息</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="ftp登陆"><span id="inline-blue">FTP登陆</span></span></h2><p>FTP地址:10.9.212.55<br>FTP用户名:report_cd<br>FTP密码:report_cd</p>
+<p>用于上传和下载的本地工作目录:E:\program</p>
+<p>运行命令行工具cmd.exe(C:\Windows\System32\cmd.exe)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">切换目录为本地工作目录(先切盘符，再<span class="built_in">cd</span>到具体路径)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">e:</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"><span class="built_in">cd</span> program</span></span><br><span class="line"><span class="meta">#</span><span class="bash">FTP登陆 IP地址或域名</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">ftp 10.9.212.55</span></span><br></pre></td></tr></table></figure>
+<p><img alt="FTP登陆" data-original="/images/Windows/FTP/WF_20220315_001.png"></p>
+<h2><span id="上传文件"><span id="inline-blue">上传文件</span></span></h2><h3><span id="单个文件上传"><span id="inline-blue">单个文件上传</span></span></h3><p>put命令或send均可实现单个文件上传</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> put 11479.jpg</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> send 11481.jpg</span></span><br></pre></td></tr></table></figure>
+<p><img alt="FTP上传" data-original="/images/Windows/FTP/WF_20220315_002.png"><br><img alt="FTP上传" data-original="/images/Windows/FTP/WF_20220315_003.png"></p>
+<h3><span id="批量文件上传"><span id="inline-blue">批量文件上传</span></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">将批量上传用户提示关闭(prompt命令自动切换用户提示状态)</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> prompt</span></span><br><span class="line"><span class="meta">#</span><span class="bash">支持通配符格式</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash">mput *.jpg</span></span><br></pre></td></tr></table></figure>
+<p><img alt="FTP上传" data-original="/images/Windows/FTP/WF_20220315_004.png"></p>
+<h2><span id="下载文件"><span id="inline-blue">下载文件</span></span></h2><h3><span id="单个文件下载"><span id="inline-blue">单个文件下载</span></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> get 101614000t5m.jpg</span></span><br></pre></td></tr></table></figure>
+<p><img alt="FTP下载" data-original="/images/Windows/FTP/WF_20220315_005.png"></p>
+<h3><span id="批量文件下载"><span id="inline-blue">批量文件下载</span></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mget *.jpg</span></span><br></pre></td></tr></table></figure>
+<p><img alt="FTP下载" data-original="/images/Windows/FTP/WF_20220315_006.png"></p>
+<h2><span id="切换目录"><span id="inline-blue">切换目录</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">directory为对应的目录名称</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"><span class="built_in">cd</span> directory</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="查看目录信息"><span id="inline-blue">查看目录信息</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash">ls</span></span><br></pre></td></tr></table></figure>
+<h2><span id="指定本地工作目录"><span id="inline-blue">指定本地工作目录</span></span></h2><p>lcd命令可指定FTP用户的本地工作目录(上传和下载的文件均放置在这个目录)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">本地工作目录为绝对路径</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash">lcd E:\program</span></span><br></pre></td></tr></table></figure>
+<h2><span id="连接和关闭命令"><span id="inline-blue">连接和关闭命令</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">打开连接</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash">open 10.9.212.55</span></span><br><span class="line"><span class="meta">#</span><span class="bash">关闭连接</span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash">close 10.9.212.55</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="退出ftp命令"><span id="inline-blue">退出FTP命令</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"><span class="built_in">bye</span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash">quit</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="ftp命令帮助信息"><span id="inline-blue">FTP命令帮助信息</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"><span class="built_in">help</span></span></span><br></pre></td></tr></table></figure>
+<p><img alt="FTP命令帮助信息" data-original="/images/Windows/FTP/WF_20220315_007.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/ElasticSearch/blogs/ELK%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/ElasticSearch/blogs/ELK%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5/" itemprop="url">ELK环境搭建实践</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-09T11:11:20+08:00">
+                2021-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ElasticSearch/" itemprop="url" rel="index">
+                    <span itemprop="name">ElasticSearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  25
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="工具安装包下载"><span id="inline-blue">工具安装包下载</span></span></h2><p><a id="download" target="_blank" rel="noopener" href="https://www.elastic.co/cn/what-is/elk-stack"><i class="fa fa-download"></i><span>elasticsearch官方地址</span> </a><br><a id="download" target="_blank" rel="noopener" href="https://pan.baidu.com/s/1oaa1tRrbKokXyE1ZqEHpSg"><i class="fa fa-download"></i><span>百度云地址</span> </a>  提取码：op7h</p>
+<p>Elasticsearch、logstash、kibana 三者使用同一版本7.15.1</p>
+<h2><span id="elasticsearch"><span id="inline-blue">Elasticsearch</span></span></h2><pre><code>上传安装包到指定的目录 /usr/local/ELK/ </code></pre>
+<p><img alt="ELK安装目录" data-original="/images/elasticsearch/es_20211009_001.png">    </p>
+<p>解压elasticsearch安装包，cd命令进入解压目录/usr/local/ELK/elasticsearch-7.15.1</p>
+<p>ElasticSearch 配置文件实例</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ======================== Elasticsearch Configuration =========================</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> Elasticsearch comes with reasonable defaults for most settings.</span></span><br><span class="line"><span class="comment">#       Before you set out to tweak and tune the configuration, make sure you</span></span><br><span class="line"><span class="comment">#       understand what are you trying to accomplish and the consequences.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The primary way of configuring a node is via this file. This template lists</span></span><br><span class="line"><span class="comment"># the most important settings you may want to configure for a production cluster.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Please consult the documentation for further information on configuration options:</span></span><br><span class="line"><span class="comment"># https://www.elastic.co/guide/en/elasticsearch/reference/index.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ---------------------------------- Cluster -----------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use a descriptive name for your cluster:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">cluster.name:</span> <span class="string">my-application</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ------------------------------------ Node ------------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use a descriptive name for the node:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">node.name:</span> <span class="string">node-1</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Add custom attributes to the node:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#node.attr.rack: r1</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ----------------------------------- Paths ------------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Path to directory where to store the data (separate multiple locations by comma):</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">path.data:</span> <span class="string">/usr/local/ELK/elasticsearch-7.15.1/data/</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Path to log files:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">path.logs:</span> <span class="string">/usr/local/ELK/elasticsearch-7.15.1/logs</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ----------------------------------- Memory -----------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Lock the memory on startup:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#bootstrap.memory_lock: true</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Make sure that the heap size is set to about half the memory available</span></span><br><span class="line"><span class="comment"># on the system and that the owner of the process is allowed to use this</span></span><br><span class="line"><span class="comment"># limit.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Elasticsearch performs poorly when the system is swapping the memory.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ---------------------------------- Network -----------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># By default Elasticsearch is only accessible on localhost. Set a different</span></span><br><span class="line"><span class="comment"># address here to expose this node on the network:</span></span><br><span class="line"><span class="comment">#绑定访问IP地址  </span></span><br><span class="line"><span class="attr">network.host:</span> <span class="number">10.9</span><span class="number">.216</span><span class="number">.12</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># By default Elasticsearch listens for HTTP traffic on the first free port it</span></span><br><span class="line"><span class="comment"># finds starting at 9200. Set a specific HTTP port here:</span></span><br><span class="line"><span class="comment"># 访问端口</span></span><br><span class="line"><span class="attr">http.port:</span> <span class="number">9200</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more information, consult the network module documentation.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># --------------------------------- Discovery ----------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Pass an initial list of hosts to perform discovery when this node is started:</span></span><br><span class="line"><span class="comment"># The default list of hosts is [&quot;127.0.0.1&quot;, &quot;[::1]&quot;]</span></span><br><span class="line"><span class="comment"># 集群节点IP地址</span></span><br><span class="line"><span class="attr">discovery.seed_hosts:</span> [<span class="string">&quot;10.9.216.12&quot;</span>]</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Bootstrap the cluster using an initial set of master-eligible nodes:</span></span><br><span class="line"><span class="comment">#节点名称</span></span><br><span class="line"><span class="attr">cluster.initial_master_nodes:</span> [<span class="string">&quot;node-1&quot;</span>]</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For more information, consult the discovery and cluster formation module documentation.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># ---------------------------------- Various -----------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Require explicit names when deleting indices:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#action.destructive_requires_name: true</span></span><br><span class="line"><span class="comment"># 解决 system call filters failed to install; check the logs and fix your configuration or disable system call filters at your own risk</span></span><br><span class="line"><span class="attr">bootstrap.system_call_filter:</span> <span class="literal">false</span></span><br><span class="line"><span class="comment"># 是否支持跨域，默认为false</span></span><br><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span> </span><br><span class="line"><span class="comment"># 当设置允许跨域，默认为*,表示支持所有域名，如果我们只是允许某些网站能访问，那么可以使用正则表达式。比如只允许本地地址。 /https?:\/\/localhost(:[0-9]+)?/</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line"><span class="comment"># kibana页面警告 x设置为true则在节点上启用X-Pack安全特性，false表示禁用X-Pack安全特性。（PS：推荐明确设置这个值）</span></span><br><span class="line"><span class="attr">pack.security.enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2><span id="安装head插件"><span id="inline-blue">安装head插件</span></span></h2><p>head插件地址：git://github.com/mobz/elasticsearch-head.git<br>下载之后将插件上传到Elasticsearch目录，创建一个自定义目录（放在原有plugins目录启动会报错）<br>global_plugins为自行创建目录，plugins为原有目录<br><img alt="head插件目录" data-original="/images/elasticsearch/es_20211009_002.png"><br>head插件启动需要nodeJs环境，没有的情况下安装一下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN global_plugins]# node -v</span><br><span class="line">v10.15.3</span><br></pre></td></tr></table></figure>
+
+<p>ElasticSearch不能以Root用户启动，创建指定ElasticSearch用户</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加群组</span></span><br><span class="line">groupadd es</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加用户指定群组和密码</span></span><br><span class="line">useradd es -g es -p es</span><br><span class="line"><span class="meta">#</span><span class="bash"> 给对应目录赋予权限</span></span><br><span class="line">chown -R es:es /usr/local/ELK/elasticsearch-7.15.1/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到es用户</span></span><br><span class="line">su es</span><br></pre></td></tr></table></figure>
+
+<p>更改es用户默认文件数配置</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/security/limits.conf </span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加如下内容</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> max open files config <span class="keyword">for</span> elasticsearch</span></span><br><span class="line"></span><br><span class="line">es soft noproc 65536</span><br><span class="line">es hard noproc 131072</span><br><span class="line">es soft nofile 65536</span><br><span class="line">es hard nofile 65536</span><br><span class="line"></span><br><span class="line"> vim /etc/security/limits.d/90-nproc.conf</span><br><span class="line"> </span><br><span class="line">es soft noproc 65536</span><br><span class="line">es hard noproc 131072</span><br><span class="line">es soft nofile 65536</span><br><span class="line">es hard nofile 65536</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改完上述文件重启服务器才能生效，使用ulimit -a 命令查看对应用户的参数是否生效</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-bash-4.1$ ulimit -a</span><br><span class="line">core file size          (blocks, -c) 0</span><br><span class="line">data seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 255258</span><br><span class="line">max locked memory       (kbytes, -l) 64</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 65535</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) unlimited</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 10000</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
+
+<p>如果上述修改没有生效，可能/etc/profile 内部有做特殊指定,修改对应配置后执行source /etc/profile命令后生效(只能在当前窗口生效，之前打开的窗口没有作用)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/profile</span><br><span class="line">export REDIS_HOME=/usr/local/bin/redis</span><br><span class="line">export PATH=$PATH:$REDIS_HOME/bin</span><br><span class="line"></span><br><span class="line">ulimit -u 10000</span><br><span class="line">ulimit -n 65535</span><br><span class="line">ulimit -d unlimited</span><br><span class="line">ulimit -m unlimited</span><br><span class="line">ulimit -s unlimited</span><br><span class="line">ulimit -t unlimited</span><br><span class="line">ulimit -v unlimited </span><br></pre></td></tr></table></figure>
+<p>提供临时设置的命令(当前窗口生效)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ulimit -HSn 65535</span><br></pre></td></tr></table></figure>
+
+<p>修改ElasticSearch启动jdk配置，7.15.1版本默认自带jDK，修改启动脚本，指定JDK路径ES_JAVA_HOME(必须为ES_JAVA_HOME,JAVA_HOME Elasticsearch不识别)<br>cd /usr/local/ELK/elasticsearch-7.15.1/bin</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN bin]# vim elasticsearch</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CONTROLLING STARTUP:</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This script relies on a few environment variables to determine startup</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> behavior, those variables are:</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   ES_PATH_CONF -- Path to config directory</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   ES_JAVA_OPTS -- External Java Opts on top of the defaults <span class="built_in">set</span></span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Optionally, exact memory values can be <span class="built_in">set</span> using the `ES_JAVA_OPTS`. Example</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> values are <span class="string">&quot;512m&quot;</span>, and <span class="string">&quot;10g&quot;</span>.</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   ES_JAVA_OPTS=<span class="string">&quot;-Xms8g -Xmx8g&quot;</span> ./bin/elasticsearch</span></span><br><span class="line"></span><br><span class="line">export ES_JAVA_HOME=&quot;/usr/local/ELK/elasticsearch-7.15.1/jdk&quot;</span><br><span class="line">source &quot;`dirname &quot;$0&quot;`&quot;/elasticsearch-env</span><br></pre></td></tr></table></figure>
+
+<p>启动elsaticsearch</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-bash-4.1$ ./elasticsearch</span><br><span class="line">WARNING: A terminally deprecated method in java.lang.System has been called</span><br><span class="line">WARNING: System::setSecurityManager has been called by org.elasticsearch.bootstrap.Elasticsearch (file:/usr/local/ELK/elasticsearch-7.15.1/lib/elasticsearch-7.15.1.jar)</span><br><span class="line">WARNING: Please consider reporting this to the maintainers of org.elasticsearch.bootstrap.Elasticsearch</span><br><span class="line">WARNING: System::setSecurityManager will be removed in a future release</span><br><span class="line">/usr/local/ELK/elasticsearch-7.15.1/modules/x-pack-ml/platform/linux-x86_64/bin/controller: /lib64/libz.so.1: no version information available (required by /usr/local/ELK/elasticsearch-7.15.1/modules/x-pack-ml/platform/linux-x86_64/bin/../lib/libxml2.so.2)</span><br><span class="line">WARNING: A terminally deprecated method in java.lang.System has been called</span><br><span class="line">WARNING: System::setSecurityManager has been called by org.elasticsearch.bootstrap.Security (file:/usr/local/ELK/elasticsearch-7.15.1/lib/elasticsearch-7.15.1.jar)</span><br><span class="line">WARNING: Please consider reporting this to the maintainers of org.elasticsearch.bootstrap.Security</span><br><span class="line">WARNING: System::setSecurityManager will be removed in a future release</span><br><span class="line">[2021-11-09T11:04:38,343][INFO ][o.e.n.Node               ] [node-1] version[7.15.1], pid[24509], build[default/tar/83c34f456ae29d60e94d886e455e6a3409bba9ed/2021-10-07T21:56:19.031608185Z], OS[Linux/2.6.32-279.el6.x86_64/amd64], JVM[Eclipse Adoptium/OpenJDK 64-Bit Server VM/17/17+35]</span><br><span class="line">[2021-11-09T11:04:38,345][INFO ][o.e.n.Node               ] [node-1] JVM home [/usr/local/ELK/elasticsearch-7.15.1/jdk], using bundled JDK [true]</span><br><span class="line">[2021-11-09T11:04:38,345][INFO ][o.e.n.Node               ] [node-1] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -XX:+ShowCodeDetailsInExceptionMessages, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, --add-opens=java.base/java.io=ALL-UNNAMED, -XX:+UseG1GC, -Djava.io.tmpdir=/tmp/elasticsearch-11155009717091530414, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms15963m, -Xmx15963m, -XX:MaxDirectMemorySize=8371830784, -XX:InitiatingHeapOccupancyPercent=30, -XX:G1ReservePercent=25, -Des.path.home=/usr/local/ELK/elasticsearch-7.15.1, -Des.path.conf=/usr/local/ELK/elasticsearch-7.15.1/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]</span><br><span class="line">[2021-11-09T11:04:41,505][INFO ][o.e.p.PluginsService     ] [node-1] loaded module [aggs-matrix-stats]</span><br><span class="line">[2021-11-09T11:04:41,506][INFO ][o.e.p.PluginsService     ] [node-1] loaded module [analysis-common]</span><br></pre></td></tr></table></figure>
+
+<p>访问验证<br><img alt="ElasticSearch启动验证" data-original="/images/elasticsearch/es_20211009_003.png"></p>
+<p>Head插件配置，修改Elasticsearch地址<br>文件所在位置：/usr/local/ELK/elasticsearch-7.15.1/global_plugins/elasticsearch-head/_site/app.js<br>搜索localhost:9200，将其改为对应地址即可</p>
+<p>Head插件启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span>/usr/<span class="built_in">local</span>/ELK/elasticsearch-7.15.1/global_plugins/elasticsearch-head</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> npm install</span></span><br><span class="line">-bash-4.1$ npm run start</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> elasticsearch-head@0.0.0 start /usr/<span class="built_in">local</span>/ELK/elasticsearch-7.15.1/global_plugins/elasticsearch-head</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grunt server</span></span><br><span class="line"></span><br><span class="line">Running &quot;connect:server&quot; (connect) task</span><br><span class="line">Waiting forever...</span><br><span class="line">Started connect web server on http://localhost:9100</span><br></pre></td></tr></table></figure>
+
+<p><img alt="head插件访问" data-original="/images/elasticsearch/es_20211009_004.png"></p>
+<h2><span id="logstash安装"><span id="inline-blue">logstash安装</span></span></h2><p>解压安装包，进入对应的目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN ELK]# tar -zxvf logstash-7.15.1-linux-x86_64.tar.gz</span><br><span class="line">[root@lwdCSCDN ELK]# cd logstash-7.15.1</span><br><span class="line"><span class="meta">#</span><span class="bash">指定JDK地址</span></span><br><span class="line">[root@lwdCSCDN bin]# vim logstash</span><br><span class="line">[root@lwdCSCDN bin]# vim logstash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Run logstash</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Usage:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   bin/logstash &lt;<span class="built_in">command</span>&gt; [arguments]</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> See <span class="string">&#x27;bin/logstash --help&#x27;</span> <span class="keyword">for</span> a list of commands.</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Supported environment variables:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   LS_JAVA_OPTS=<span class="string">&quot;xxx&quot;</span> to append extra options to the JVM options provided by logstash</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Development environment variables:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   DEBUG=1 to output debugging information</span></span><br><span class="line">export JAVA_HOME=&quot;/usr/local/ELK/logstash-7.15.1/jdk&quot;</span><br></pre></td></tr></table></figure>
+<p>在/usr/local/ELK/logstash-7.15.1/config对应目录下，创建logstash.conf配置文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">input&#123;</span><br><span class="line">    file&#123;</span><br><span class="line">        path =&gt;&quot;/usr/local/ELK/logstash-7.15.1/logs/test.log&quot;</span><br><span class="line">        start_position=&gt;&quot;beginning&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter&#123;</span><br><span class="line">    grok&#123;</span><br><span class="line">        match=&gt;&#123;</span><br><span class="line">            &quot;message&quot;=&gt;&quot;%&#123;DATA:clientIp&#125; - - \[%&#123;HTTPDATE:accessTime&#125;\] \&quot;%&#123;DATA:method&#125; %&#123;DATA:requestPath&#125; %&#123;DATA:httpversion&#125;\&quot; %&#123;DATA:retcode&#125; %&#123;DATA:size&#125; \&quot;%&#123;DATA:fromHtml&#125;\&quot; \&quot;%&#123;DATA:useragent&#125;\&quot;&quot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        remove_field=&gt;&quot;message&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    date&#123;</span><br><span class="line">        match=&gt;[&quot;accessTime&quot;,&quot;dd/MMM/yyyy:HH:mm:ss Z&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output&#123;</span><br><span class="line">    stdout&#123;</span><br><span class="line">        codec=&gt;rubydebug</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">input &#123;</span><br><span class="line">    stdin&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">    elasticsearch &#123;</span><br><span class="line">                  hosts =&gt; [&quot;10.9.216.12:9200&quot;]</span><br><span class="line">                  index =&gt; &quot;test_index&quot;</span><br><span class="line">          &#125;</span><br><span class="line">          stdout &#123; codec =&gt; rubydebug&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建测试日志文件，与配置文件指定一致/usr/local/ELK/logstash-7.15.1/logs，日志内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ot@cdh4 test]# vim access_log.2018-04-10.log</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:22 +0800] &quot;GET /static/logshow/css/component.css HTTP/1.1&quot; 304 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:22 +0800] &quot;GET /static/logshow/js/EasePack.min.js HTTP/1.1&quot; 304 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:22 +0800] &quot;GET /static/logshow/js/TweenLite.min.js HTTP/1.1&quot; 304 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:22 +0800] &quot;GET /static/logshow/js/rAF.js HTTP/1.1&quot; 304 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:22 +0800] &quot;GET /static/logshow/js/demo-1.js HTTP/1.1&quot; 304 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:22 +0800] &quot;GET /static/logshow/img/demo-1-bg.jpg HTTP/1.1&quot; 304 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:30 +0800] &quot;GET / HTTP/1.1&quot; 302 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:30 +0800] &quot;GET /login HTTP/1.1&quot; 200 3271</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:36 +0800] &quot;POST /login HTTP/1.1&quot; 302 -</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:36 +0800] &quot;GET / HTTP/1.1&quot; 200 11776</span><br><span class="line">10.2.17.9 - - [10/Apr/2018:09:06:36 +0800] &quot;GET /static/css/font-awesome.min.css?v=4.4.0 HTTP/1.1&quot; 304 -</span><br></pre></td></tr></table></figure>
+
+<p>logstash启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN bin]# ./logstash -f ../config/logstash.conf</span><br><span class="line">Using JAVA_HOME defined java: /usr/local/ELK/logstash-7.15.1/jdk</span><br><span class="line">WARNING, using JAVA_HOME while Logstash distribution comes with a bundled JDK</span><br><span class="line">OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.</span><br><span class="line">Sending Logstash logs to /usr/local/ELK/logstash-7.15.1/logs which is now configured via log4j2.properties</span><br><span class="line">[2021-11-09T14:48:34,143][INFO ][logstash.runner          ] Log4j configuration path used is: /usr/local/ELK/logstash-7.15.1/config/log4j2.properties</span><br><span class="line">[2021-11-09T14:48:34,188][INFO ][logstash.runner          ] Starting Logstash &#123;&quot;logstash.version&quot;=&gt;&quot;7.15.1&quot;, &quot;jruby.version&quot;=&gt;&quot;jruby 9.2.19.0 (2.5.8) 2021-06-15 55810c552b OpenJDK 64-Bit Server VM 11.0.12+7 on 11.0.12+7 +indy +jit [linux-x86_64]&quot;&#125;</span><br><span class="line">[2021-11-09T14:48:34,571][WARN ][logstash.config.source.multilocal] Ignoring the &#x27;pipelines.yml&#x27; file because modules or command line options are specified</span><br><span class="line">[2021-11-09T14:48:36,409][INFO ][logstash.agent           ] Successfully started Logstash API endpoint &#123;:port=&gt;9600&#125;</span><br><span class="line">[2021-11-09T14:48:37,287][INFO ][org.reflections.Reflections] Reflections took 138 ms to scan 1 urls, producing 120 keys and 417 values </span><br><span class="line">[2021-11-09T14:48:39,422][INFO ][logstash.outputs.elasticsearch][main] New Elasticsearch output &#123;:class=&gt;&quot;LogStash::Outputs::ElasticSearch&quot;, :hosts=&gt;[&quot;//10.9.216.12:9200&quot;]&#125;</span><br><span class="line">[2021-11-09T14:48:39,926][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch pool URLs updated &#123;:changes=&gt;&#123;:removed=&gt;[], :added=&gt;[http://10.9.216.12:9200/]&#125;&#125;</span><br><span class="line">[2021-11-09T14:48:40,123][WARN ][logstash.outputs.elasticsearch][main] Restored connection to ES instance &#123;:url=&gt;&quot;http://10.9.216.12:9200/&quot;&#125;</span><br><span class="line">[2021-11-09T14:48:40,184][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch version determined (7.15.1) &#123;:es_version=&gt;7&#125;</span><br><span class="line">[2021-11-09T14:48:40,186][WARN ][logstash.outputs.elasticsearch][main] Detected a 6.x and above cluster: the `type` event field won&#x27;t be used to determine the document _type &#123;:es_version=&gt;7&#125;</span><br><span class="line">[2021-11-09T14:48:40,414][INFO ][logstash.outputs.elasticsearch][main] Using a default mapping template &#123;:es_version=&gt;7, :ecs_compatibility=&gt;:disabled&#125;</span><br><span class="line">[2021-11-09T14:48:40,616][INFO ][logstash.javapipeline    ][main] Starting pipeline &#123;:pipeline_id=&gt;&quot;main&quot;, &quot;pipeline.workers&quot;=&gt;8, &quot;pipeline.batch.size&quot;=&gt;125, &quot;pipeline.batch.delay&quot;=&gt;50, &quot;pipeline.max_inflight&quot;=&gt;1000, &quot;pipeline.sources&quot;=&gt;[&quot;/usr/local/ELK/logstash-7.15.1/config/logstash.conf&quot;], :thread=&gt;&quot;#&lt;Thread:0xc0227a3 run&gt;&quot;&#125;</span><br><span class="line">[2021-11-09T14:48:42,101][INFO ][logstash.javapipeline    ][main] Pipeline Java execution initialization time &#123;&quot;seconds&quot;=&gt;1.48&#125;</span><br><span class="line">[2021-11-09T14:48:42,199][INFO ][logstash.inputs.file     ][main] No sincedb_path set, generating one based on the &quot;path&quot; setting &#123;:sincedb_path=&gt;&quot;/usr/local/ELK/logstash-7.15.1/data/plugins/inputs/file/.sincedb_564ad11bfc2bcd7fe5ec10ca0ee07d07&quot;, :path=&gt;[&quot;/usr/local/ELK/logstash-7.15.1/logs/test.log&quot;]&#125;</span><br><span class="line">WARNING: An illegal reflective access operation has occurred</span><br><span class="line">WARNING: Illegal reflective access by com.jrubystdinchannel.StdinChannelLibrary$Reader (file:/usr/local/ELK/logstash-7.15.1/vendor/bundle/jruby/2.5.0/gems/jruby-stdin-channel-0.2.0-java/lib/jruby_stdin_channel/jruby_stdin_channel.jar) to field java.io.FilterInputStream.in</span><br><span class="line">WARNING: Please consider reporting this to the maintainers of com.jrubystdinchannel.StdinChannelLibrary$Reader</span><br><span class="line">WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations</span><br><span class="line">WARNING: All illegal access operations will be denied in a future release</span><br><span class="line">[2021-11-09T14:48:42,292][INFO ][logstash.javapipeline    ][main] Pipeline started &#123;&quot;pipeline.id&quot;=&gt;&quot;main&quot;&#125;</span><br><span class="line">The stdin plugin is now waiting for input:</span><br><span class="line">[2021-11-09T14:48:42,375][INFO ][logstash.agent           ] Pipelines running &#123;:count=&gt;1, :running_pipelines=&gt;[:main], :non_running_pipelines=&gt;[]&#125;</span><br><span class="line">[2021-11-09T14:48:42,381][INFO ][filewatch.observingtail  ][main][9a1656b2353e9b2608f8d58d6e356237ac498ca7b95fbed910c53ba565f0606a] START, creating Discoverer, Watch with file and sincedb collections</span><br></pre></td></tr></table></figure>
+<p>-f 参数指定启动配置文件<br>启动成功后，logstash监控控制台输出，在控制台随意输入一些信息，logstash会将信息存入Elasticsearch,可以通过Head插件查看</p>
+<h2><span id="kibana安装"><span id="inline-blue">kibana安装</span></span></h2><p>解压对应安装包，进入对应目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN ELK]# tar -zxvf kibana-7.15.1-linux-x86_64.tar.gz</span><br><span class="line">[root@lwdCSCDN ELK]# cd kibana-7.15.1-linux-x86_64</span><br><span class="line"><span class="meta">#</span><span class="bash">编辑配置文件，配置ElasticSearch地址、修改语言配置、启用默认端口</span></span><br><span class="line">[root@lwdCSCDN config]# vim /usr/local/ELK/kibana-7.15.1-linux-x86_64/config/kibana.yml</span><br><span class="line"><span class="meta">#</span><span class="bash"> Kibana is served by a back end server. This setting specifies the port to use.</span></span><br><span class="line">server.port: 5601</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Specifies the address to <span class="built_in">which</span> the Kibana server will <span class="built_in">bind</span>. IP addresses and host names are both valid values.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The default is <span class="string">&#x27;localhost&#x27;</span>, <span class="built_in">which</span> usually means remote machines will not be able to connect.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> To allow connections from remote users, <span class="built_in">set</span> this parameter to a non-loopback address.</span></span><br><span class="line">server.host: &quot;0.0.0.0&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enables you to specify a path to mount Kibana at <span class="keyword">if</span> you are running behind a proxy.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Use the `server.rewriteBasePath` setting to tell Kibana <span class="keyword">if</span> it should remove the basePath</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> from requests it receives, and to prevent a deprecation warning at startup.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This setting cannot end <span class="keyword">in</span> a slash.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">server.basePath: <span class="string">&quot;&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Specifies whether Kibana should rewrite requests that are prefixed with</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> `server.basePath` or require that they are rewritten by your reverse proxy.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This setting was effectively always `<span class="literal">false</span>` before Kibana 6.3 and will</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> default to `<span class="literal">true</span>` starting <span class="keyword">in</span> Kibana 7.0.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">server.rewriteBasePath: <span class="literal">false</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Specifies the public URL at <span class="built_in">which</span> Kibana is available <span class="keyword">for</span> end users. If</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> `server.basePath` is configured this URL should end with the same basePath.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">server.publicBaseUrl: <span class="string">&quot;&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> The maximum payload size <span class="keyword">in</span> bytes <span class="keyword">for</span> incoming server requests.</span></span><br><span class="line">server.maxPayload: 1048576</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> The Kibana server<span class="string">&#x27;s name.  This is used for display purposes.</span></span></span><br><span class="line">server.name: &quot;kibana&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> The URLs of the Elasticsearch instances to use <span class="keyword">for</span> all your queries.</span></span><br><span class="line">elasticsearch.hosts: [&quot;http://10.9.216.12:9200&quot;]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Kibana uses an index <span class="keyword">in</span> Elasticsearch to store saved searches, visualizations and</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> dashboards. Kibana creates a new index <span class="keyword">if</span> the index doesn<span class="string">&#x27;t already exist.</span></span></span><br><span class="line">kibana.index: &quot;.kibana&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> The default application to load.</span></span><br><span class="line">kibana.defaultAppId: &quot;home&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> If your Elasticsearch is protected with basic authentication, these settings provide</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> the username and password that the Kibana server uses to perform maintenance on the Kibana</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> index at startup. Your Kibana users still need to authenticate with Elasticsearch, <span class="built_in">which</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> is proxied through the Kibana server.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.username: <span class="string">&quot;kibana_system&quot;</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.password: <span class="string">&quot;pass&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Kibana can also authenticate to Elasticsearch via <span class="string">&quot;service account tokens&quot;</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> If may use this token instead of a username/password.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> elasticsearch.serviceAccountToken: <span class="string">&quot;my_token&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enables SSL and paths to the PEM-format SSL certificate and SSL key files, respectively.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> These settings <span class="built_in">enable</span> SSL <span class="keyword">for</span> outgoing requests from the Kibana server to the browser.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">server.ssl.enabled: <span class="literal">false</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">server.ssl.certificate: /path/to/your/server.crt</span></span><br><span class="line"><span class="meta">#</span><span class="bash">server.ssl.key: /path/to/your/server.key</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Optional settings that provide the paths to the PEM-format SSL certificate and key files.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> These files are used to verify the identity of Kibana to Elasticsearch and are required when</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> xpack.security.http.ssl.client_authentication <span class="keyword">in</span> Elasticsearch is <span class="built_in">set</span> to required.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.ssl.certificate: /path/to/your/client.crt</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.ssl.key: /path/to/your/client.key</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Optional setting that enables you to specify a path to the PEM file <span class="keyword">for</span> the certificate</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> authority <span class="keyword">for</span> your Elasticsearch instance.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.ssl.certificateAuthorities: [ <span class="string">&quot;/path/to/your/CA.pem&quot;</span> ]</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> To disregard the validity of SSL certificates, change this setting<span class="string">&#x27;s value to &#x27;</span>none<span class="string">&#x27;.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.ssl.verificationMode: full</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Time <span class="keyword">in</span> milliseconds to <span class="built_in">wait</span> <span class="keyword">for</span> Elasticsearch to respond to pings. Defaults to the value of</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> the elasticsearch.requestTimeout setting.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.pingTimeout: 1500</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Time <span class="keyword">in</span> milliseconds to <span class="built_in">wait</span> <span class="keyword">for</span> responses from the back end or Elasticsearch. This value</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> must be a positive <span class="built_in">integer</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.requestTimeout: 30000</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> List of Kibana client-side headers to send to Elasticsearch. To send *no* client-side</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> headers, <span class="built_in">set</span> this value to [] (an empty list).</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.requestHeadersWhitelist: [ authorization ]</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Header names and values that are sent to Elasticsearch. Any custom headers cannot be overwritten</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> by client-side headers, regardless of the elasticsearch.requestHeadersWhitelist configuration.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.customHeaders: &#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Time <span class="keyword">in</span> milliseconds <span class="keyword">for</span> Elasticsearch to <span class="built_in">wait</span> <span class="keyword">for</span> responses from shards. Set to 0 to <span class="built_in">disable</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.shardTimeout: 30000</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Logs queries sent to Elasticsearch. Requires logging.verbose <span class="built_in">set</span> to <span class="literal">true</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">elasticsearch.logQueries: <span class="literal">false</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Specifies the path <span class="built_in">where</span> Kibana creates the process ID file.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">pid.file: /run/kibana/kibana.pid</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enables you to specify a file <span class="built_in">where</span> Kibana stores <span class="built_in">log</span> output.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">logging.dest: stdout</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set the value of this setting to <span class="literal">true</span> to suppress all logging output.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">logging.silent: <span class="literal">false</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set the value of this setting to <span class="literal">true</span> to suppress all logging output other than error messages.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">logging.quiet: <span class="literal">false</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set the value of this setting to <span class="literal">true</span> to <span class="built_in">log</span> all events, including system usage information</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> and all requests.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">logging.verbose: <span class="literal">false</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Set the interval <span class="keyword">in</span> milliseconds to sample system and process performance</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> metrics. Minimum is 100ms. Defaults to 5000.</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ops.interval: 5000</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Specifies locale to be used <span class="keyword">for</span> all localizable strings, dates and number formats.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Supported languages are the following: English - en , by default , Chinese - zh-CN .</span></span><br><span class="line">i18n.locale: &quot;zh-CN&quot;</span><br></pre></td></tr></table></figure>
+<p>启动kibana </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN bin]# cd /usr/local/ELK/kibana-7.15.1-linux-x86_64/bin</span><br><span class="line">[root@lwdCSCDN bin]# ./kibana</span><br><span class="line">启动报错，提示缺失文件</span><br><span class="line">![kibana启动报错](/images/elasticsearch/es_20211009_005.png)</span><br><span class="line">glibc版本升级到glibc-2.17</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">cd</span>到该路径下</span></span><br><span class="line">cd /usr/local</span><br><span class="line"><span class="meta">#</span><span class="bash">下载</span></span><br><span class="line">wget https://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash">解压</span></span><br><span class="line">tar -zxvf glibc-2.17.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash">进入到解压文件中</span></span><br><span class="line"><span class="meta">#</span><span class="bash">创建路径</span></span><br><span class="line">mkdir build  </span><br><span class="line"><span class="meta">#</span><span class="bash">进入到build路径下</span></span><br><span class="line">../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin</span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>验证</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN lib64stdc]# strings /lib64/libc.so.6|grep GLIBC</span><br><span class="line">GLIBC_2.2.5</span><br><span class="line">GLIBC_2.2.6</span><br><span class="line">GLIBC_2.3</span><br><span class="line">GLIBC_2.3.2</span><br><span class="line">GLIBC_2.3.3</span><br><span class="line">GLIBC_2.3.4</span><br><span class="line">GLIBC_2.4</span><br><span class="line">GLIBC_2.5</span><br><span class="line">GLIBC_2.6</span><br><span class="line">GLIBC_2.7</span><br><span class="line">GLIBC_2.8</span><br><span class="line">GLIBC_2.9</span><br><span class="line">GLIBC_2.10</span><br><span class="line">GLIBC_2.11</span><br><span class="line">GLIBC_2.12</span><br><span class="line">GLIBC_2.13</span><br><span class="line">GLIBC_2.14</span><br><span class="line">GLIBC_2.15</span><br><span class="line">GLIBC_2.16</span><br><span class="line">GLIBC_2.17</span><br><span class="line">GLIBC_PRIVATE</span><br></pre></td></tr></table></figure>
+<p>lib64stdc++升级到gcc4.8<br><a id="download" target="_blank" rel="noopener" href="http://ftp.de.debian.org/debian/pool/main/g/gcc-4.8/"><i class="fa fa-download"></i><span>gcc4.8下载地址</span> </a><br>服务器创建临时目录lib64stdc，上传压缩包解压</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">[root@lwdCSCDN lib64stdc]# ar -x lib64stdc++6-4.8-dbg_4.8.4-1_i386.deb</span><br><span class="line">[root@lwdCSCDN lib64stdc]# tar xvf data.tar.xz </span><br><span class="line">[root@lwdCSCDN lib64stdc]# cd usr/lib64/debug/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 覆盖/usr/lib、/usr/lib64对应库文件</span></span><br><span class="line">[root@lwdCSCDN debug]# cp libstdc++.so /usr/lib</span><br><span class="line">[root@lwdCSCDN debug]# cp libstdc++.so /usr/lib64</span><br><span class="line">[root@lwdCSCDN debug]# cp libstdc++.so.6 /usr/lib</span><br><span class="line">[root@lwdCSCDN debug]# cp libstdc++.so.6 /usr/lib64</span><br><span class="line"><span class="meta">#</span><span class="bash"> 验证</span></span><br><span class="line">[root@lwdCSCDN debug]# strings /usr/lib/libstdc++.so.6 | grep GLIBCXX</span><br><span class="line">GLIBCXX_3.4</span><br><span class="line">GLIBCXX_3.4.1</span><br><span class="line">GLIBCXX_3.4.2</span><br><span class="line">GLIBCXX_3.4.3</span><br><span class="line">GLIBCXX_3.4.4</span><br><span class="line">GLIBCXX_3.4.5</span><br><span class="line">GLIBCXX_3.4.6</span><br><span class="line">GLIBCXX_3.4.7</span><br><span class="line">GLIBCXX_3.4.8</span><br><span class="line">GLIBCXX_3.4.9</span><br><span class="line">GLIBCXX_3.4.10</span><br><span class="line">GLIBCXX_3.4.11</span><br><span class="line">GLIBCXX_3.4.12</span><br><span class="line">GLIBCXX_3.4.13</span><br><span class="line">GLIBCXX_3.4.14</span><br><span class="line">GLIBCXX_3.4.15</span><br><span class="line">GLIBCXX_3.4.16</span><br><span class="line">GLIBCXX_3.4.17</span><br><span class="line">GLIBCXX_3.4.18</span><br><span class="line">GLIBCXX_3.4.19</span><br><span class="line">GLIBCXX_DEBUG_MESSAGE_LENGTH</span><br></pre></td></tr></table></figure>
+<p>重新启动成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN bin]# ./kibana --allow-root</span><br><span class="line">  log   [10:25:07.263] [info][plugins-service] Plugin &quot;metricsEntities&quot; is disabled.</span><br><span class="line">  log   [10:25:07.508] [info][server][Preboot][http] http server running at http://0.0.0.0:5601</span><br><span class="line">  log   [10:25:07.788] [warning][config][deprecation] plugins.scanDirs is deprecated and is no longer used</span><br><span class="line">  log   [10:25:07.789] [warning][config][deprecation] &quot;kibana.index&quot; is deprecated. Multitenancy by changing &quot;kibana.index&quot; will not be supported starting in 8.0. See https://ela.st/kbn-remove-legacy-multitenancy for more details</span><br><span class="line">  log   [10:25:07.789] [warning][config][deprecation] kibana.defaultAppId is deprecated and will be removed in 8.0. Please use the `defaultRoute` advanced setting instead</span><br><span class="line">  log   [10:25:07.790] [warning][config][deprecation] Config key [monitoring.cluster_alerts.email_notifications.email_address] will be required for email notifications to work in 8.0.&quot;</span><br><span class="line">  log   [10:25:07.790] [warning][config][deprecation] &quot;xpack.reporting.roles&quot; is deprecated. Granting reporting privilege through a &quot;reporting_user&quot; role will not be supported starting in 8.0. Please set &quot;xpack.reporting.roles.enabled&quot; to &quot;false&quot; and grant reporting privileges to users using Kibana application privileges **Management &gt; Security &gt; Roles**.</span><br><span class="line">  log   [10:25:07.790] [warning][config][deprecation] Session idle timeout (&quot;xpack.security.session.idleTimeout&quot;) will be set to 1 hour by default in the next major version (8.0).</span><br></pre></td></tr></table></figure>
+<p>访问kibana主页<br><a target="_blank" rel="noopener" href="http://10.9.216.12:5601/app/home#/">http://10.9.216.12:5601/app/home#/</a></p>
+<p><img alt="kibana启动报错" data-original="/images/elasticsearch/es_20211009_006.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Linux/WEB%E5%AE%B9%E5%99%A8/Jetty/blogs/jetty%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Linux/WEB%E5%AE%B9%E5%99%A8/Jetty/blogs/jetty%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3/" itemprop="url">Jetty修改端口号</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-10T14:40:12+08:00">
+                2021-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/WEB%E5%AE%B9%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">WEB容器</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/WEB%E5%AE%B9%E5%99%A8/Jetty/" itemprop="url" rel="index">
+                    <span itemprop="name">Jetty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  33
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><p>文件名称：start.ini<br>文件路径：jetty安装目录下（/usr/local/jetty_home）<br>#文件内搜索对应标识jetty.port</p>
+<p><img alt="jetty变更端口号" data-original="/images/jetty/jetty_2021_06_10_001.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/docker/blogs/window%E7%8E%AF%E5%A2%83Docker%E6%8B%89%E5%8F%96mysql%E9%95%9C%E5%83%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/docker/blogs/window%E7%8E%AF%E5%A2%83Docker%E6%8B%89%E5%8F%96mysql%E9%95%9C%E5%83%8F/" itemprop="url">windows环境Docker拉取mysql镜像</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-08T15:47:21+08:00">
+                2021-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  106
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1><span id="拉取镜像">拉取镜像</span></h1><p><img alt="docker拉取mysql镜像01" data-original="/images/docker/docker_2021_06_07_015.png"></p>
+<h1><span id="镜像参数设置">镜像参数设置</span></h1><h2><span id="密码参数">密码参数</span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">MYSQL_ROOT_PASSWORD=coship</span><br></pre></td></tr></table></figure>
+<p><img alt="docker拉取mysql镜像02" data-original="/images/docker/docker_2021_06_07_016.png"></p>
+<h1><span id="镜像运行">镜像运行</span></h1><p><img alt="docker拉取mysql镜像03" data-original="/images/docker/docker_2021_06_07_017.png"></p>
+<h2><span id="远程连接权限设置">远程连接权限设置</span></h2><p><img alt="docker拉取mysql镜像04" data-original="/images/docker/docker_2021_06_07_018.png"><br>镜像运行成功后生成MySQL端口和IP地址映射192.168.99.100:32772<br>点击EXEC按钮生成mysql命令行窗口,登陆mysql并赋予远程登陆权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">	mysql -uroot -pcoship;</span><br><span class="line">	GRANT ALL PRIVILEGES ON *.* TO &#x27;root&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;coship&#x27; WITH GRA</span><br><span class="line">NT OPTION;</span><br></pre></td></tr></table></figure>
+<h2><span id="navicate连接">navicate连接</span></h2><p>设置对应参数测试连接<br><img alt="docker拉取mysql镜像05" data-original="/images/docker/docker_2021_06_07_019.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" alt data-original="/images/avatar.png">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/vanishke" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:18685129726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+		  
+		  
+				<div class="links-of-blogroll motion-element links-of-blogroll-block">
+				  <div class="links-of-blogroll-title">
+					<!-- modify icon to fire by szw -->
+					<i class="fa fa-history fa-" aria-hidden="true"></i>
+					近期文章
+				  </div>
+				  <ul class="links-of-blogroll-list">
+					
+					
+					  <li>
+						<a href="/js/blogs/%E7%A9%BA%E5%AD%97%E7%AC%A6''%E4%B8%8E0%E7%9A%84%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/" title="空字符''和0比较问题" target="_blank">空字符''和0比较问题</a>
+					  </li>
+					
+					  <li>
+						<a href="/%E5%B7%A5%E5%85%B7/blogs/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E7%88%AC%E8%99%AB%E5%B7%A5%E5%85%B7/" title="微信公众号爬虫工具" target="_blank">微信公众号爬虫工具</a>
+					  </li>
+					
+					  <li>
+						<a href="/vue/blogs/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" title="Vue项目实战" target="_blank">Vue项目实战</a>
+					  </li>
+					
+					  <li>
+						<a href="/hexo/Next/blogs/vercel%E6%89%98%E7%AE%A1hexo%E5%8D%9A%E5%AE%A2/" title="vercel托管hexo博客" target="_blank">vercel托管hexo博客</a>
+					  </li>
+					
+					  <li>
+						<a href="/MySQL/blogs/MySQL%E5%AF%BC%E5%85%A5%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" title="MySQL导入报错解决" target="_blank">MySQL导入报错解决</a>
+					  </li>
+					
+				  </ul>
+				</div>
+			
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vanishke</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">27.8k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottom";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="每一个不曾起舞的日子，都是对生命的辜负">
+<meta property="og:type" content="website">
+<meta property="og:title" content="vanishke个人技术博客">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="vanishke个人技术博客">
+<meta property="og:description" content="每一个不曾起舞的日子，都是对生命的辜负">
+<meta property="og:locale">
+<meta property="article:author" content="vanishke">
+<meta property="article:tag" content="Java,Elasticsearch,MySQL,Linux">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/page/7/">
+
+
+
+
+
+  <title>vanishke个人技术博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">vanishke个人技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不积跬步，无以至千里；不积小流，无以成江海</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+	<div class="tag-cloud">
+		  <div class="tag-cloud-tags" id="tags">
+			<a href="/tags/ElasticSearch/" style="font-size: 16px; color: #fff">ElasticSearch</a> <a href="/tags/ElasticSearch-NoSQL/" style="font-size: 16px; color: #fff">ElasticSearch,NoSQL</a> <a href="/tags/ElasticSearch-windows/" style="font-size: 16px; color: #fff">ElasticSearch,windows</a> <a href="/tags/EsTool/" style="font-size: 16px; color: #fff">EsTool</a> <a href="/tags/FTP/" style="font-size: 16px; color: #fff">FTP</a> <a href="/tags/Git/" style="font-size: 16px; color: #fff">Git</a> <a href="/tags/IntelliJ/" style="font-size: 16px; color: #fff">IntelliJ</a> <a href="/tags/JSONView/" style="font-size: 16px; color: #fff">JSONView</a> <a href="/tags/Jboss/" style="font-size: 16px; color: #fff">Jboss</a> <a href="/tags/Jetty/" style="font-size: 16px; color: #fff">Jetty</a> <a href="/tags/Linux/" style="font-size: 16px; color: #fff">Linux</a> <a href="/tags/MySQL/" style="font-size: 16px; color: #fff">MySQL</a> <a href="/tags/Next/" style="font-size: 16px; color: #fff">Next</a> <a href="/tags/Oracle/" style="font-size: 16px; color: #fff">Oracle</a> <a href="/tags/Redis-windows/" style="font-size: 16px; color: #fff">Redis,windows</a> <a href="/tags/Tomcat/" style="font-size: 16px; color: #fff">Tomcat</a> <a href="/tags/Windows-FTP/" style="font-size: 16px; color: #fff">Windows,FTP</a> <a href="/tags/chrome/" style="font-size: 16px; color: #fff">chrome</a> <a href="/tags/docker/" style="font-size: 16px; color: #fff">docker</a> <a href="/tags/docker-indows/" style="font-size: 16px; color: #fff">docker,indows</a> <a href="/tags/easyui/" style="font-size: 16px; color: #fff">easyui</a> <a href="/tags/eclipse/" style="font-size: 16px; color: #fff">eclipse</a> <a href="/tags/git/" style="font-size: 16px; color: #fff">git</a> <a href="/tags/gitalk/" style="font-size: 16px; color: #fff">gitalk</a> <a href="/tags/hexo/" style="font-size: 16px; color: #fff">hexo</a> <a href="/tags/js/" style="font-size: 16px; color: #fff">js</a> <a href="/tags/kibana/" style="font-size: 16px; color: #fff">kibana</a> <a href="/tags/logstash/" style="font-size: 16px; color: #fff">logstash</a> <a href="/tags/markdown/" style="font-size: 16px; color: #fff">markdown</a> <a href="/tags/mongoDB/" style="font-size: 16px; color: #fff">mongoDB</a> <a href="/tags/nginx/" style="font-size: 16px; color: #fff">nginx</a> <a href="/tags/nginx-linux/" style="font-size: 16px; color: #fff">nginx,linux</a> <a href="/tags/nginx-windows/" style="font-size: 16px; color: #fff">nginx,windows</a> <a href="/tags/postman/" style="font-size: 16px; color: #fff">postman</a> <a href="/tags/vue/" style="font-size: 16px; color: #fff">vue</a> <a href="/tags/windows/" style="font-size: 16px; color: #fff">windows</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 16px; color: #fff">工具</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 16px; color: #fff">数据库</a>
+		  </div>
+	</div>
+	<br>
+	<script type="text/javascript">
+     var alltags = document.getElementsByClassName('tag-cloud-tags');
+     var tags = alltags[0].getElementsByTagName('a');
+     for (var i = tags.length - 1; i >= 0; i--) {
+       var r=Math.floor(Math.random()*75+130);
+       var g=Math.floor(Math.random()*75+100);
+       var b=Math.floor(Math.random()*75+80);
+       tags[i].style.background = "rgb("+r+","+g+","+b+")";
+     }
+</script>
+
+<style>
+  .tag-cloud-tags{
+    /*font-family: Helvetica, Tahoma, Arial;*/
+    /*font-weight: 100;*/
+    text-align: center;
+    counter-reset: tags;
+  }
+  .tag-cloud-tags a{
+    border-radius: 6px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 8px 5px 0px 0px;
+  }
+  .tag-cloud-tags a:before{
+     content: " ";
+	 width: 0;
+	 height: 0;
+	 position: absolute;
+	 top: 0;
+	 left: -18px;
+	 border: 9px solid transparent;
+  }
+
+  .tag-cloud-tags a:hover{
+     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);
+     transform: scale(1.1);
+     /*box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);*/
+     transition-duration: 0.15s;
+  }
+</style>
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/windows/nginx/blogs/nginx%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/windows/nginx/blogs/nginx%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" itemprop="url">nginx基本命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-24T10:11:20+08:00">
+                2020-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  318
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6span"><span id="inline-blue">添加nginx自启动文件</span></a></li>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90span"><span id="inline-blue">添加文件可执行权限</span></a></li>
+<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8span"><span id="inline-blue">设置开启自启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9Fspan"><span id="inline-blue">验证服务是否添加成功</span></a></li>
+<li><a href="#span-idinline-blue%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8span"><span id="inline-blue">查询nginx是否启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6span"><span id="inline-blue">重新加载nginx配置文件</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">停止nginx服务</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="添加nginx自启动文件"><span id="inline-blue">添加nginx自启动文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># vim /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="添加文件可执行权限"><span id="inline-blue">添加文件可执行权限</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chmod a+x /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="设置开启自启动"><span id="inline-blue">设置开启自启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig --add /etc/init.d/nginx</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig nginx on</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="验证服务是否添加成功"><span id="inline-blue">验证服务是否添加成功</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx start;</span></span><br><span class="line">正在启动 nginx：                                           [确定]</span><br></pre></td></tr></table></figure>
+
+<h2><span id="查询nginx是否启动"><span id="inline-blue">查询nginx是否启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># ps -ef | grep nginx</span></span><br><span class="line">root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx -c /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          </span><br><span class="line">root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</span><br></pre></td></tr></table></figure>
+
+
+<h2><span id="重新加载nginx配置文件"><span id="inline-blue">重新加载nginx配置文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx reload</span></span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line">重新载入 nginx：                                           [确定]</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></table></figure>
+
+<h2><span id="停止nginx服务"><span id="inline-blue">停止nginx服务</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx stop</span></span><br><span class="line">停止 nginx：                                               [确定]</span><br></pre></td></tr></table></figure>
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/nginx/blogs/nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/nginx/blogs/nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" itemprop="url">nginx开机自启动</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-24T10:11:20+08:00">
+                2020-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  318
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6span"><span id="inline-blue">添加nginx自启动文件</span></a></li>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90span"><span id="inline-blue">添加文件可执行权限</span></a></li>
+<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8span"><span id="inline-blue">设置开启自启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9Fspan"><span id="inline-blue">验证服务是否添加成功</span></a></li>
+<li><a href="#span-idinline-blue%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8span"><span id="inline-blue">查询nginx是否启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6span"><span id="inline-blue">重新加载nginx配置文件</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">停止nginx服务</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="添加nginx自启动文件"><span id="inline-blue">添加nginx自启动文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># vim /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="添加文件可执行权限"><span id="inline-blue">添加文件可执行权限</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chmod a+x /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="设置开启自启动"><span id="inline-blue">设置开启自启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig --add /etc/init.d/nginx</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig nginx on</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="验证服务是否添加成功"><span id="inline-blue">验证服务是否添加成功</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx start;</span></span><br><span class="line">正在启动 nginx：                                           [确定]</span><br></pre></td></tr></table></figure>
+
+<h2><span id="查询nginx是否启动"><span id="inline-blue">查询nginx是否启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># ps -ef | grep nginx</span></span><br><span class="line">root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx -c /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          </span><br><span class="line">root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</span><br></pre></td></tr></table></figure>
+
+
+<h2><span id="重新加载nginx配置文件"><span id="inline-blue">重新加载nginx配置文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx reload</span></span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line">重新载入 nginx：                                           [确定]</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></table></figure>
+
+<h2><span id="停止nginx服务"><span id="inline-blue">停止nginx服务</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx stop</span></span><br><span class="line">停止 nginx：                                               [确定]</span><br></pre></td></tr></table></figure>
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/nginx/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/nginx/blogs/nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="url">nginx常用启动命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-24T10:11:20+08:00">
+                2020-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  65
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c dir(指定配置文件所在路径)</span><br></pre></td></tr></table></figure>
+
+<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/docker/blogs/window7%E5%AE%89%E8%A3%85docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/docker/blogs/window7%E5%AE%89%E8%A3%85docker/" itemprop="url">docker阿里云镜像</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-23T10:11:20+08:00">
+                2020-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a id="download" target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/?spm=5176.8351553.0.0.4bc61991tQpsnV"><i class="fa fa-download"></i><span>阿里云Docker镜像</span> </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/MySQL/blogs/MySQL%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/MySQL/blogs/MySQL%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/" itemprop="url">MySQL 导入导出</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T12:23:20+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  194
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%A1%A8span"><span id="inline-blue">导出数据库中的表</span></a></li>
+<li><a href="#span-idinline-blue%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E4%BA%8B%E5%8A%A1span"><span id="inline-blue">导出数据库中的存储过程和事务</span></a></li>
+<li><a href="#span-idinline-blue%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%BB%93%E6%9E%84%E5%92%8C%E6%95%B0%E6%8D%AEspan"><span id="inline-blue">导入数据库表结构和数据</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="导出数据库中的表"><span id="inline-blue">导出数据库中的表</span></span></h1><figure class="highlight"><table><tr><td class="code"><pre><span class="line">mysqldump -u root -p report_hrb140 &gt; report_hrb140.sql;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1><span id="导出数据库中的存储过程和事务"><span id="inline-blue">导出数据库中的存储过程和事务</span></span></h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysqldump -uroot -pcoship -ntd -R report_hrb121&gt; report_hrb121_FP.sql;</span><br><span class="line"></span><br><span class="line">其中-ntd代表导入存储过程。-R代表导入功能函数。</span><br></pre></td></tr></table></figure>
+
+
+
+<h1><span id="导入数据库表结构和数据"><span id="inline-blue">导入数据库表结构和数据</span></span></h1><figure class="highlight"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">password:*******</span><br><span class="line">mysql&gt;use 数据库(数据库的名称)</span><br><span class="line">然后使用source命令,后面参数为脚本文件(report_hrb140.sql)</span><br><span class="line">mysql&gt;source report_hrb140.sql;</span><br><span class="line">导入存储过程及事务的SQL命令：</span><br><span class="line">mysql -u root -p</span><br><span class="line">password:*******</span><br><span class="line">mysql&gt;use 数据库(数据库的名称)</span><br><span class="line">然后使用source命令,后面参数为脚本文件(report_hrb121_FP.sql)</span><br><span class="line">mysql&gt;source report_hrb121_FP.sql;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Oracle/blogs/Oracle%E6%B8%85%E7%90%86%E7%B3%BB%E7%BB%9F%E5%83%B5%E6%AD%BBSQL%E8%BF%9B%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Oracle/blogs/Oracle%E6%B8%85%E7%90%86%E7%B3%BB%E7%BB%9F%E5%83%B5%E6%AD%BBSQL%E8%BF%9B%E7%A8%8B/" itemprop="url">Oracle清理系统僵死SQl进程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T11:23:20+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  94
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="清理"><span id="inline-blue">清理</span></span></h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> l.session_id <span class="keyword">sid</span>,  </span><br><span class="line">       s.serial<span class="comment">#,  </span></span><br><span class="line">       l.locked_mode 锁模式,  </span><br><span class="line">       l.oracle_username 登录用户,  </span><br><span class="line">       l.os_user_name 登录机器用户名,  </span><br><span class="line">       s.machine 机器名,  </span><br><span class="line">       s.terminal 终端用户名,  </span><br><span class="line">       o.object_name 被锁对象名,  </span><br><span class="line">       s.logon_time 登录数据库时间  </span><br><span class="line"><span class="keyword">FROM</span> v$locked_object l, all_objects o, v$<span class="keyword">session</span> s  </span><br><span class="line"><span class="keyword">WHERE</span> l.object_id = o.object_id  </span><br><span class="line">   <span class="keyword">AND</span> l.session_id = s.sid  </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">sid</span>, s.serial<span class="comment">#; </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">kill</span>掉当前的锁对象</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">kill</span> <span class="keyword">session</span> <span class="keyword">sid</span>,<span class="built_in">serial</span><span class="string">&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Oracle/blogs/Oracle%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Oracle/blogs/Oracle%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2/" itemprop="url">Oracle启动与停止</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T11:11:20+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  92
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="启动"><span id="inline-blue">启动</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su – oracle </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus /nolog </span></span><br><span class="line"><span class="meta">sql&gt;</span><span class="bash"> conn / as sysdba </span></span><br><span class="line"><span class="meta">sql&gt;</span><span class="bash"> startup (一般不需要加参数，只要设置好环境变量） </span></span><br><span class="line"><span class="meta">sql&gt;</span><span class="bash"> quit (退出sql模式) </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl start (启动监听器）关闭oracle </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl status</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> lsnrctl stop(关闭监听器，在这之前，应该先关闭应用程序） </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    </p>
+<h2><span id="停止"><span id="inline-blue">停止</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - oracle</span><br><span class="line"><span class="meta">$</span><span class="bash">lsnrctl stop;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sqlplus /nolog </span></span><br><span class="line"><span class="meta">sql&gt;</span><span class="bash"> conn / as sysdba </span></span><br><span class="line"><span class="meta">sql&gt;</span><span class="bash"> shutdown immediate</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Oracle/blogs/Oracle%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Oracle/blogs/Oracle%E6%9F%A5%E7%9C%8B%E8%A1%A8%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/" itemprop="url">Oracle查看表空间使用情况</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T11:10:12+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Oracle/" itemprop="url" rel="index">
+                    <span itemprop="name">Oracle</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  96
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="统计"><span id="inline-blue">统计</span></span></h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.tablespace_name <span class="string">&quot;表空间名&quot;</span>,</span><br><span class="line">a.bytes / <span class="number">1024</span> / <span class="number">1024</span> <span class="string">&quot;表空间大小(M)&quot;</span>,</span><br><span class="line">(a.bytes - b.bytes) / <span class="number">1024</span> / <span class="number">1024</span> <span class="string">&quot;已使用空间(M)&quot;</span>,</span><br><span class="line">b.bytes / <span class="number">1024</span> / <span class="number">1024</span> <span class="string">&quot;空闲空间(M)&quot;</span>,</span><br><span class="line"><span class="keyword">round</span>(((a.bytes - b.bytes) / a.bytes) * <span class="number">100</span>, <span class="number">2</span>) <span class="string">&quot;使用比&quot;</span></span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> tablespace_name, <span class="keyword">sum</span>(<span class="keyword">bytes</span>) <span class="keyword">bytes</span></span><br><span class="line"><span class="keyword">FROM</span> dba_data_files</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> tablespace_name) a,</span><br><span class="line">(<span class="keyword">SELECT</span> tablespace_name, <span class="keyword">sum</span>(<span class="keyword">bytes</span>) <span class="keyword">bytes</span>, <span class="keyword">max</span>(<span class="keyword">bytes</span>) largest</span><br><span class="line"><span class="keyword">FROM</span> dba_free_space</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> tablespace_name) b</span><br><span class="line"><span class="keyword">WHERE</span> a.tablespace_name = b.tablespace_name</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> ((a.bytes - b.bytes) / a.bytes) <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Tomcat/blogs/tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Tomcat/blogs/tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/" itemprop="url">Tomcat 指定启动JDK版本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T10:23:20+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  94
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">假设jdk版本7，目录为/home/user1/jdk</span><br><span class="line">进入到tomcat的bin目录下，修改setclasspath.sh文件，在文件首部添加两行代码</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/home/user/jdk</span><br><span class="line">export JRE_HOME=/home/user/jdk/jre</span><br></pre></td></tr></table></figure>
+
+
+
+<h2><span id="windows"><span id="inline-blue">windows</span></span></h2><p>修改bin目录下的setclasspath.bat文件，注意linux的是sh，Windows的是bat。将上述两行代码的export换成set填入该文件首部保存（注意实际路径的替换）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Jetty/blogs/jetty%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="vanishke个人技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jetty/blogs/jetty%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/" itemprop="url">Jetty 指定启动JDK版本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-17T10:11:12+08:00">
+                2020-11-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Jetty/" itemprop="url" rel="index">
+                    <span itemprop="name">Jetty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  39
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">文件名称：setenv.sh 文件路径：/usr/<span class="built_in">local</span>/</span><br><span class="line">文件头部添加以下内容：</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.6.0_21</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=/usr/java/jdk1.6.0_21/jre</span><br></pre></td></tr></table></figure>
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" alt data-original="/images/avatar.png">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/vanishke" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:18685129726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+		  
+		  
+				<div class="links-of-blogroll motion-element links-of-blogroll-block">
+				  <div class="links-of-blogroll-title">
+					<!-- modify icon to fire by szw -->
+					<i class="fa fa-history fa-" aria-hidden="true"></i>
+					近期文章
+				  </div>
+				  <ul class="links-of-blogroll-list">
+					
+					
+					  <li>
+						<a href="/js/blogs/%E7%A9%BA%E5%AD%97%E7%AC%A6''%E4%B8%8E0%E7%9A%84%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/" title="空字符''和0比较问题" target="_blank">空字符''和0比较问题</a>
+					  </li>
+					
+					  <li>
+						<a href="/%E5%B7%A5%E5%85%B7/blogs/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E7%88%AC%E8%99%AB%E5%B7%A5%E5%85%B7/" title="微信公众号爬虫工具" target="_blank">微信公众号爬虫工具</a>
+					  </li>
+					
+					  <li>
+						<a href="/vue/blogs/Vue%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" title="Vue项目实战" target="_blank">Vue项目实战</a>
+					  </li>
+					
+					  <li>
+						<a href="/hexo/Next/blogs/vercel%E6%89%98%E7%AE%A1hexo%E5%8D%9A%E5%AE%A2/" title="vercel托管hexo博客" target="_blank">vercel托管hexo博客</a>
+					  </li>
+					
+					  <li>
+						<a href="/MySQL/blogs/MySQL%E5%AF%BC%E5%85%A5%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" title="MySQL导入报错解决" target="_blank">MySQL导入报错解决</a>
+					  </li>
+					
+				  </ul>
+				</div>
+			
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vanishke</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">27.8k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottom";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
