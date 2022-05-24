@@ -612,14 +612,14 @@
   <entry>
     <title>hexo近期文章设置</title>
     <url>/hexo/blogs/hexo%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<h2><span id="近期文章设置"><span id="inline-blue">近期文章设置</span></span></h2><p>修改themes/next/layout/_macro/sidebar.swig 。找到theme.social板块代码，在该板块最后的endif后隔一行添加如下代码。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.post</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">25px</span>;</span><br><span class="line">  -webkit-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">202</span>, <span class="number">203</span>, <span class="number">203</span>, .<span class="number">5</span>);</span><br><span class="line">  -moz-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">202</span>, <span class="number">203</span>, <span class="number">204</span>, .<span class="number">5</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2><span id="近期文章设置"><span id="inline-blue">近期文章设置</span></span></h2><p>新建 source/_data/sidebar.njk 文件(如没有对应目录则自行创建)，内容如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&#123;# RecentPosts #&#125;</span><br><span class="line">&#123;%- if theme<span class="selector-class">.recent_posts</span> %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-recent-posts motion-element&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-recent-posts-title&quot;&gt;</span><br><span class="line">      &#123;%- if theme<span class="selector-class">.recent_posts</span><span class="selector-class">.icon</span> %&#125;</span><br><span class="line">      &lt;i class=&quot;&#123;&#123; theme.recent_posts.icon &#125;&#125; fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line">      &#123;&#123; theme<span class="selector-class">.recent_posts</span><span class="selector-class">.title</span> &#125;&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-recent-posts-list&quot;&gt;</span><br><span class="line">      &#123;%- set posts = site.posts.sort(&#x27;date&#x27;, &#x27;desc&#x27;).toArray() %&#125;</span><br><span class="line">      &#123;%- for post in posts.slice(&#x27;0&#x27;, theme.recent_posts.max_count) %&#125;</span><br><span class="line">        &lt;li class=&quot;links-of-recent-posts-item&quot;&gt;</span><br><span class="line">          &#123;&#123; next_url(post<span class="selector-class">.path</span>, post<span class="selector-class">.title</span>, &#123;title: post.path&#125;) &#125;&#125;</span><br><span class="line">        &lt;/<span class="selector-tag">li</span>&gt;</span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">ul</span>&gt;</span><br><span class="line">  &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>编辑themes/next/source/css/_common/components/sidebar/sidebar-blogroll.styl</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">li</span><span class="selector-class">.recent_posts_li</span> &#123;</span><br><span class="line">    <span class="attribute">text-align</span>: cengter;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">word-break</span>: keep-all;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改next主题下_config.yml配置文件,取消 custom_file_path 中的 sidebar 和 style 两个注释，并新增 recent_posts 内容。variable 应该是设置另外的功能时打开的，和此处无关。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="string">source/_data/sidebar.njk</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">  <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br><span class="line"></span><br><span class="line"><span class="attr">recent_posts:</span></span><br><span class="line"><span class="comment"># 块标题</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">最近文章</span></span><br><span class="line"><span class="comment"># 图标</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-history</span></span><br><span class="line"><span class="comment"># 最多多少文章链接</span></span><br><span class="line">  <span class="attr">max_count:</span> <span class="number">5</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>在 themes/next/_config.yml中添加下方代码</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"># 近期文章设置</span><br><span class="line">recent_posts_title: 近期文章</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure>
+<p>在 next主题目录下source/_data/styles.styl 文件中添加以下内容(文件不存在新建即可):</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 近期文章</span><br><span class="line"><span class="selector-class">.links-of-recent-posts</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.8125em</span></span><br><span class="line">  margin-top: <span class="number">10px</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-title</span><br><span class="line">  font-size: <span class="number">1.03em</span></span><br><span class="line">  font-weight: <span class="number">600</span></span><br><span class="line">  margin-top: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-list</span><br><span class="line">  list-style: none</span><br><span class="line">  margin: <span class="number">0</span></span><br><span class="line">  padding: <span class="number">0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -1354,8 +1354,8 @@
         <category>MySQL</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
         <tag>数据库</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1937,6 +1937,33 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL注册为Windows服务</title>
+    <url>/Windows/MySQL/blogs/MySQL%E6%B3%A8%E5%86%8C%E4%B8%BAwindows%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8Fspan"><span id="inline-blue">配置环境变量</span></a></li>
+<li><a href="#span-idinline-blue%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">注册服务</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="配置环境变量"><span id="inline-blue">配置环境变量</span></span></h1><p>新建系统变量名：MySQL_HOME:<br>路径：D:\MySQL5.6\mysql-5.6.41-winx64\mysql-5.6.41-winx64<br><img src="/images/Windows/MySQL/WM_20220523_001.png" alt="MySQL注册服务"></p>
+<h1><span id="注册服务"><span id="inline-blue">注册服务</span></span></h1><figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">#<span class="built_in">cd</span>命令进入MySQL bin目录，执行以下命令</span><br><span class="line">#MySQL为注册的服务名称</span><br><span class="line">#--defaults-file参数指定对应启动配置文件</span><br><span class="line">mysqld install MySQL --defaults-file=&quot;D:\MySQL5.<span class="number">6</span>\mysql-<span class="number">5</span>.<span class="number">6</span>.<span class="number">41</span>-winx64\mysql-<span class="number">5</span>.<span class="number">6</span>.<span class="number">41</span>-winx64\my-default.ini&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+]]></content>
+      <categories>
+        <category>Windows</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
