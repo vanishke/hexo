@@ -389,6 +389,184 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows nginx代理Hexo静态文件部署访问</title>
+    <url>/Hexo/blogs/Windows%20nginx%E4%BB%A3%E7%90%86Hexo%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E9%83%A8%E7%BD%B2%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%9E%E7%8E%B0span"><span id="inline-blue">实现</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>hexo打包启动之后本地访问特别慢，通过nginx代理静态文件优化访问速度</p>
+<h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>Hexo所在根目录执行Hexo deploy命令之后在public目录生成静态文件，将其拷贝至nginx主目录<br>Hexo静态文件生成目录图<br><img src="/images/hexo/hexo_nginx_20240709_001.png" alt="Hexo优化"></p>
+<p>静态文件所在nginx目录结构图<br><img src="/images/hexo/hexo_nginx_20240709_002.png" alt="Hexo优化"></p>
+<p>nginx新增配置如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       8888;</span><br><span class="line">        server_name  10.9.212.55;</span><br><span class="line"></span><br><span class="line">        charset utf-8;</span><br><span class="line"></span><br><span class="line">        access_log  logs/host.access.log ;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">			charset utf-8;</span><br><span class="line">			autoindex on;</span><br><span class="line">            alias  blog/;</span><br><span class="line"><span class="meta">			#</span><span class="bash">add_header Content-Type <span class="string">&#x27;text/html; charset=utf-8&#x27;</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Nginx</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hibernate xxx is not mapped 错误原因及解决方法</title>
+    <url>/Hibernate/blogs/Hibernate%20xxx%20is%20not%20mapped%20%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0span"><span id="inline-blue">问题原因</span></a></li>
+<li><a href="#span-idinline-blue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88span"><span id="inline-blue">解决方案</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>SpringMVC项目改造为maven项目之后打包部署启动一直报错Hibernate xxx is not mapped</p>
+<h1><span id="问题原因"><span id="inline-blue">问题原因</span></span></h1><p>错误提示信息应该是hql语句中查询语句使用的表名称和实体类不一致导致，检查之后发现不是这个原因，问题的原因是src/main/java目录中包含hibernate配置文件，打包的时候没有被包含进去。</p>
+<h1><span id="解决方案"><span id="inline-blue">解决方案</span></span></h1><p>pom.xml文件build节点中添加如下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.java<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hibernate</category>
+      </categories>
+      <tags>
+        <tag>Hibernate</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>应用程序兼容DM8数据库</title>
+    <url>/DM8/blogs/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%85%BC%E5%AE%B9DM8%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0dm8%E4%BE%9D%E8%B5%96span"><span id="inline-blue">添加DM8依赖</span></a></li>
+<li><a href="#span-idinline-blue%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E9%A9%B1%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">数据库连接驱动设置</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>ORACLE数据库迁移DM8，应用程序需要做出相应的兼容设置</p>
+<h1><span id="添加dm8依赖"><span id="inline-blue">添加DM8依赖</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.dameng&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;DmJdbcDriver18&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;8.1.3.140&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h1><span id="数据库连接驱动设置"><span id="inline-blue">数据库连接驱动设置</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;property name=&quot;driverClassName&quot; value=&quot;dm.jdbc.driver.DmDriver&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;url&quot; value=&quot;jdbc:dm://10.9.216.12:5236&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;username&quot; value=&quot;SDP_CMS_HRB&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;password&quot; value=&quot;SDP_CMS_HRB&quot;&gt;&lt;/property&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>DM8</category>
+      </categories>
+      <tags>
+        <tag>DM8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>达梦数据库命令行模式下创建用户和表空间</title>
+    <url>/DM8/blogs/%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%92%8C%E8%A1%A8%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E5%88%9B%E5%BB%BA%E8%A1%A8%E7%A9%BA%E9%97%B4span"><span id="inline-blue">创建表空间</span></a></li>
+<li><a href="#span-idinline-blue%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7span"><span id="inline-blue">创建数据库用户</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>ORACLE数据库迁移DM8，迁移之后发现不指定模式的情况下无法直接查询数据库对应的表</p>
+<h1><span id="创建表空间"><span id="inline-blue">创建表空间</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">切换到DM8数据库工具目录，调用命令行交互工具</span></span><br><span class="line">[dmdba@S21612 tool]$ cd /data/dm/dmdbms/tool</span><br><span class="line">[dmdba@S21612 tool]$ ./disql</span><br><span class="line">/**  创建表空间 */</span><br><span class="line"> create tablespace  SDP_CMS_HRB_DATA datafile &#x27;/data/dm/dmdbms/SDP_CMS_HRB/SDP_CMS_HRB01.DBF&#x27; size 500 autoextend on next 20 maxsize 10240 CACHE = NORMAL;</span><br><span class="line"></span><br><span class="line">/**  扩展指定的表空间 */</span><br><span class="line">alter tablespace  SDP_CMS_HRB_DATA add  datafile  &#x27;/data/dm/dmdbms/SDP_CMS_HRB/SDP_CMS_HRB02.DBF&#x27; size 1024 autoextend on ;</span><br></pre></td></tr></table></figure>
+<h1><span id="创建数据库用户"><span id="inline-blue">创建数据库用户</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/**   创建用户  */</span><br><span class="line"> create user SDP_CMS_HRB identified by &quot;SDP_CMS_HRB&quot; default tablespace SDP_CMS_HRB_DATA  default index tablespace SDP_CMS_HRB_DATA;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**  授权 */</span><br><span class="line">grant DBA  to SDP_CMS_HRB;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>DM8</category>
+      </categories>
+      <tags>
+        <tag>DM8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DM8安装部署记录</title>
+    <url>/DM8/blogs/DM8%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85span"><span id="inline-blue">安装</span></a><ul>
+<li><a href="#span-idinline-blue%E4%B8%8B%E8%BD%BD%E8%BE%BE%E6%A2%A68%E5%AE%89%E8%A3%85%E5%8C%85span"><span id="inline-blue">下载达梦8安装包</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85span-1"><span id="inline-blue">安装</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98span"><span id="inline-blue">安装过程中遇到的问题</span></a><ul>
+<li><a href="#span-idinline-bluedminstallbin%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5span"><span id="inline-blue">DMInstall.bin安装启动失败</span></a></li>
+<li><a href="#span-idinline-bluered-hat-79%E5%AE%89%E8%A3%85%E8%BE%BE%E6%A2%A6%E6%95%B0%E6%8D%AE%E5%BA%93dm8%E5%9B%BE%E5%BD%A2%E5%8C%96%E6%98%BE%E7%A4%BA%E8%8B%B1%E6%96%87%E5%92%8C%E4%B9%B1%E7%A0%81span"><span id="inline-blue">Red Hat 7.9安装达梦数据库DM8图形化显示英文和乱码</span></a></li>
+<li><a href="#span-idinline-blue-could-not-load-swt-library-reasonsspan"><span id="inline-blue"> Could not load SWT library. Reasons</span></a></li>
+<li><a href="#span-idinline-bluexhost-command-not-foundspan"><span id="inline-blue">xhost: command not found</span></a></li>
+<li>[<span id="inline-blue">No more handles <a href="#span-idinline-blueno-more-handles-gtk_init_check-failedspan">gtk_init_check() failed</a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>ORACLE数据库基于安全考虑迁移至达梦数据库，采用达梦8</p>
+<h1><span id="安装"><span id="inline-blue">安装</span></span></h1><h2><span id="下载达梦8安装包"><span id="inline-blue">下载达梦8安装包</span></span></h2><p>下载地址:<br><a href="https://download.dameng.com/eco/adapter/DM8/202405/dm8_20240408_x86_rh7_64_ent_8.1.3.140.zip">https://download.dameng.com/eco/adapter/DM8/202405/dm8_20240408_x86_rh7_64_ent_8.1.3.140.zip</a><br>下载之后本地解压dm8_20240408_x86_rh7_64_ent_8.1.3.140.zip文件得到文件内容如下：<br><img src="/images/DM8/DM8_20240708_001.png" alt="DM8"><br>dm8_20240408_x86_rh7_64.iso直接上传服务器挂载发现执行挂载命令报错<br><img src="/images/DM8/DM8_20240708_002.png" alt="DM8"><br>通过第三方工具DAEMON Tools Lite加载镜像iso文件，将镜像内部文件拷贝出来，再上传服务器。<br>DAEMON Tools Lite下载地址: <a href="https://www.xitongzhijia.net/soft/215783.html">https://www.xitongzhijia.net/soft/215783.html</a><br>下载完成后通过快速装载加载DM8镜像iso文件<br><img src="/images/DM8/DM8_20240708_003.png" alt="DM8"><br>镜像加载后在电脑本地文件出现如下标识，双击进去之后可以看到DMInstall.bin就是需要上传的安装文件<br><img src="/images/DM8/DM8_20240708_004.png" alt="DM8"><br><img src="/images/DM8/DM8_20240708_005.png" alt="DM8"></p>
+<h2><span id="安装"><span id="inline-blue">安装</span></span></h2><p>参考官方安装文档地址：<a href="https://eco.dameng.com/document/dm/zh-cn/start/install-dm-linux-prepare.html">https://eco.dameng.com/document/dm/zh-cn/start/install-dm-linux-prepare.html</a></p>
+<h2><span id="安装过程中遇到的问题"><span id="inline-blue">安装过程中遇到的问题</span></span></h2><h3><span id="dminstallbin安装启动失败"><span id="inline-blue">DMInstall.bin安装启动失败</span></span></h3><p>描述：DmServiceDMSERVER start命令之后后没有启动成功<br>原因：没有使用dmdba用户初始化实例<br>解决方案：重新使用dmdba用户初始化数据库实例</p>
+<h3><span id="red-hat-79安装达梦数据库dm8图形化显示英文和乱码"><span id="inline-blue">Red Hat 7.9安装达梦数据库DM8图形化显示英文和乱码</span></span></h3><p>描述：DM8图形化显示英文和乱码<br>原因：系统缺失相应的字体依赖<br>解决方案：安装字体库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@S21612 dm]#export LANG=zh_CN.UTF8</span><br><span class="line">[root@S21612 dm]#yum groupinstall Fonts</span><br></pre></td></tr></table></figure>
+
+
+<h3><span id="could-not-load-swt-library-reasons"><span id="inline-blue"> Could not load SWT library. Reasons</span></span></h3><p>描述：./DMInstall.bin -i 执行报错，java.lang.UnsatisfiedLinkError: Could not load SWT library. Reasons:     no swt-pi-gtk-3659<br>原因：缺失gtk依赖<br>解决方案：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@S21612 dm]# yum search gtk</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">======================================================================= N/S matched: gtk ========================================================================</span><br><span class="line">adwaita-gtk2-theme.x86_64 : Adwaita gtk2 theme</span><br><span class="line">avahi-ui-gtk3.x86_64 : Gtk user interface library for Avahi (Gtk+ 3 version)</span><br><span class="line">clutter-gtk.x86_64 : A basic GTK clutter widget</span><br><span class="line">colord-gtk.x86_64 : GTK support library for colord</span><br><span class="line">gstreamer1-plugins-bad-free-gtk.x86_64 : GStreamer &quot;bad&quot; plugins gtk plugin</span><br><span class="line">gtk-vnc2.x86_64 : A GTK3 widget for VNC clients</span><br><span class="line">gtk2.x86_64 : The GIMP ToolKit (GTK+), a library for creating GUIs for X</span><br><span class="line">gtk2-devel.x86_64 : Development files for GTK+</span><br><span class="line">gtk2-devel-docs.x86_64 : Developer documentation for GTK+</span><br><span class="line">gtk2-immodule-xim.x86_64 : XIM support for GTK+</span><br><span class="line">gtk3.x86_64 : GTK+ graphical user interface library</span><br><span class="line">gtk3-devel.x86_64 : Development files for GTK+</span><br><span class="line">gtk3-immodule-xim.x86_64 : XIM support for GTK+</span><br><span class="line">gtkhtml3.x86_64 : GtkHTML library</span><br><span class="line">gtkmm24.x86_64 : C++ interface for GTK2 (a GUI library for X)</span><br><span class="line">gtkmm30.x86_64 : C++ interface for the GTK+ library</span><br><span class="line">gtkspell.x86_64 : On-the-fly spell checking for GtkTextView widgets</span><br><span class="line">gtkspell3.x86_64 : On-the-fly spell checking for GtkTextView widgets</span><br><span class="line">ibus-gtk2.x86_64 : IBus IM module for GTK2</span><br><span class="line">ibus-gtk3.x86_64 : IBus IM module for GTK3</span><br><span class="line">kcm-gtk.x86_64 : Configure the appearance of GTK apps in KDE</span><br><span class="line">libcanberra-gtk2.x86_64 : Gtk+ 2.x Bindings for libcanberra</span><br><span class="line">libcanberra-gtk3.x86_64 : Gtk+ 3.x Bindings for libcanberra</span><br><span class="line">libchamplain-gtk.x86_64 : Gtk+ widget wrapper for libchamplain</span><br><span class="line">libpeas-gtk.x86_64 : GTK+ plug-ins support for libpeas</span><br><span class="line">libreoffice-gtk2.x86_64 : LibreOffice GTK+ 2 integration plug-in</span><br><span class="line">libreoffice-gtk3.x86_64 : LibreOffice GTK+ 3 integration plug-in</span><br><span class="line">libreport-gtk.x86_64 : GTK front-end for libreport</span><br><span class="line">oxygen-gtk.noarch : Oxygen GTK theme</span><br><span class="line">oxygen-gtk2.x86_64 : Oxygen GTK+2 theme</span><br><span class="line">pinentry-gtk.x86_64 : Passphrase/PIN entry dialog based on GTK+</span><br><span class="line">pygtk2.x86_64 : Python bindings for GTK+</span><br><span class="line">pygtk2-libglade.x86_64 : A wrapper for the libglade library for use with PyGTK</span><br><span class="line">spice-gtk3.x86_64 : A GTK3 widget for SPICE clients</span><br><span class="line">webkitgtk3.x86_64 : GTK+ Web content engine library</span><br><span class="line">webkitgtk4.x86_64 : GTK+ Web content engine library</span><br><span class="line">webkitgtk4-devel.x86_64 : Development files for webkitgtk4</span><br><span class="line">webkitgtk4-jsc.x86_64 : JavaScript engine from webkitgtk4</span><br><span class="line">webkitgtk4-jsc-devel.x86_64 : Development files for JavaScript engine from webkitgtk4</span><br><span class="line">webkitgtk4-plugin-process-gtk2.x86_64 : GTK+ 2 based NPAPI plugins support for webkitgtk4</span><br><span class="line">xdg-desktop-portal-gtk.x86_64 : Backend implementation for xdg-desktop-portal using GTK+</span><br><span class="line">PackageKit-gtk3-module.x86_64 : Install fonts automatically using PackageKit</span><br><span class="line">anaconda-widgets.x86_64 : A set of custom GTK+ widgets for use with anaconda</span><br><span class="line">at-spi2-atk.x86_64 : A GTK+ module that bridges ATK to D-Bus at-spi</span><br><span class="line">at-spi2-atk-devel.x86_64 : A GTK+ module that bridges ATK to D-Bus at-spi</span><br><span class="line">authconfig-gtk.x86_64 : Graphical tool for setting up authentication from network services</span><br><span class="line">gnome-bluetooth-libs.x86_64 : GTK+ Bluetooth device selection widgets</span><br><span class="line">gnome-settings-daemon.x86_64 : The daemon sharing settings from GNOME to GTK+/KDE applications</span><br><span class="line">gspell.x86_64 : Spell-checking library for GTK+</span><br><span class="line">gtk-update-icon-cache.x86_64 : Icon theme caching utility</span><br><span class="line">gtksourceview3.x86_64 : A library for viewing source files</span><br><span class="line">libnm-gtk.x86_64 : Private libraries for NetworkManager GUI support</span><br><span class="line">libsexy.x86_64 : Funky fresh graphical widgets for GTK+ 2</span><br><span class="line">libtimezonemap.x86_64 : Time zone map widget for Gtk+</span><br><span class="line">pidgin.x86_64 : A Gtk+ based multiprotocol instant messaging client</span><br><span class="line">usermode-gtk.x86_64 : Graphical tools for certain user account management tasks</span><br><span class="line">xdg-user-dirs-gtk.x86_64 : Gnome integration of special directories</span><br><span class="line"></span><br><span class="line">  Name and summary matches only, use &quot;search all&quot; for everything.</span><br><span class="line">[root@S21612 dm]# </span><br><span class="line"><span class="meta">#</span><span class="bash">安装gtk2.x86_64、gtk2.x86_64即可</span></span><br><span class="line">[root@S21612 dm]# yum install gtk2.x86_64</span><br><span class="line">[root@S21612 dm]# yum install gtk2.x86_64</span><br></pre></td></tr></table></figure>
+
+<h3><span id="xhost-command-not-found"><span id="inline-blue">xhost: command not found</span></span></h3><p>描述：-bash: xhost: command not found<br>原因：缺失xorg-x11-server-utils对应依赖<br>解决方案：yum安装xorg-x11-server-utils依赖</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查找对应的依赖所在包位置</span></span><br><span class="line">[root@S21612 bin]# yum whatprovides &quot;*/xhost&quot;</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">xorg-x11-server-utils-7.7-20.el7.x86_64 : X.Org X11 X server utilities</span><br><span class="line">Repo        : media</span><br><span class="line">Matched from:</span><br><span class="line">Filename    : /usr/bin/xhost</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">xorg-x11-server-utils-7.7-20.el7.x86_64 : X.Org X11 X server utilities</span><br><span class="line">Repo        : @media</span><br><span class="line">Matched from:</span><br><span class="line">Filename    : /usr/bin/xhost</span><br><span class="line"><span class="meta">#</span><span class="bash">安装</span></span><br><span class="line">[root@S21612 bin]#yum install -y xorg-x11-server-utils-7.7-20.el7.x86_64</span><br></pre></td></tr></table></figure>
+<h3><span id="no-more-handles-gtk_init_check-failed"><span id="inline-blue">No more handles [gtk_init_check() failed</span></span></h3><p>描述：No more handles [gtk_init_check()] failed<br>原因：当前操作系统的登录用户应该为非dmdba 用户，如果在当前会话中启用图形界面需<br>要将图形界面权限放开<br>解决方案：切换到root 用户后在命令行中输入xhost +，可以使得dmdba 可以调用图形界面进行安装。<br>需要在root用户权限下执行如下命令，然后切换到dmdba用户执行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@S21612 dm]export DISPLAY=10.9.212.55:0.0</span><br><span class="line">[root@S21612 dm]echo $DISPLAY</span><br><span class="line">[root@S21612 dm]xhost +</span><br></pre></td></tr></table></figure>
+<p>DISPLAY环境变量含义：该方法为本地调用图形化界面，如果希望通过其它机器调用该图形化界面需设置 export DISPLAY=调用图形化机器的IP:0.0，例如，数据库安装机器 IP 为 10.10.12.25，需要在 IP 为 192.132.32.12 的机器上调用图形化界面，需要设置 export DISPLAY=192.132.32.12:0.0<br>出现这个问题的场景大多都是在Linux安装DM8之后需要使用达梦数据库管理工具和迁移工具，xhost +命令执行的过程中xmanager-broadcast需要一直开启否则可视化界面没有办法在本地显示</p>
+<p>启动方式：<br><img src="/images/DM8/DM8_20240708_006.png" alt="DM8"></p>
+]]></content>
+      <categories>
+        <category>DM8</category>
+      </categories>
+      <tags>
+        <tag>DM8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apk签名证书和私钥生成方法</title>
+    <url>/keyTool/blogs/apk%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6%E5%92%8C%E7%A7%81%E9%92%A5%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95span"><span id="inline-blue">解决办法</span></a><ul>
+<li><a href="#span-idinline-blue%E7%94%9F%E6%88%90appkestore%E6%96%87%E4%BB%B6span"><span id="inline-blue">生成app.kestore文件</span></a></li>
+<li><a href="#span-idinline-blue%E8%BD%AC%E6%8D%A2key%E7%9A%84%E6%A0%BC%E5%BC%8F%E4%B8%BApkcs12span"><span id="inline-blue">转换key的格式为pkcs12</span></a></li>
+<li><a href="#span-idinline-blue%E5%B0%86pkcs12%E6%A0%BC%E5%BC%8F%E7%9A%84key-dump%E4%B8%BA%E5%8F%AF%E7%9B%B4%E6%8E%A5%E9%98%85%E8%AF%BB%E7%9A%84%E6%96%87%E6%9C%ACspan"><span id="inline-blue">将PKCS12格式的key dump为可直接阅读的文本</span></a></li>
+<li><a href="#span-idinline-blue%E6%8F%90%E5%8F%96%E5%85%AC%E9%92%A5span"><span id="inline-blue">提取公钥</span></a></li>
+<li><a href="#span-idinline-blue%E8%BD%AC%E6%8D%A2%E7%94%9F%E6%88%90pk8%E6%A0%BC%E5%BC%8F%E7%9A%84%E7%A7%81%E9%92%A5span"><span id="inline-blue">转换，生成pk8格式的私钥</span></a></li>
+<li><a href="#span-idinline-blue%E7%AD%BE%E5%90%8Dspan"><span id="inline-blue">签名</span></a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>apk应用上传缺失签名文件无法对apk进行签名导致应用上架不了</p>
+<h1><span id="解决办法"><span id="inline-blue">解决办法</span></span></h1><h2><span id="生成appkestore文件"><span id="inline-blue">生成app.kestore文件</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">keytool -genkey -v -keystore app.keystore -alias coship -keyalg RSA -validity 3650</span><br></pre></td></tr></table></figure>
+<p>执行上述命令之后在当前路径下生成文件app.kestore</p>
+<h2><span id="转换key的格式为pkcs12"><span id="inline-blue">转换key的格式为pkcs12</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">keytool -importkeystore -srckeystore app.keystore -destkeystore tmp.p12 -srcstoretype JKS -deststoretype PKCS12</span><br></pre></td></tr></table></figure>
+<p>控制台会提示输出tmp.p12的密码以及app.keystore的密码，输入正确之后将会生成tmp.p12文件</p>
+<h2><span id="将pkcs12格式的key-dump为可直接阅读的文本"><span id="inline-blue">将PKCS12格式的key dump为可直接阅读的文本</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">openssl pkcs12 -in tmp.p12 -nodes -out tmp.rsa.pem </span><br></pre></td></tr></table></figure>
+<p>dump过程中也会提示输入密码，正确输入之后可阅读的token会存储在tmp.rsa.pem中</p>
+<h2><span id="提取公钥"><span id="inline-blue">提取公钥</span></span></h2><p> 用文本编辑器打开tmp.rsa.pem，将从<br> —–BEGIN PRIVATE KEY—–<br> 到<br> —–END PRIVATE KEY—–<br> 这一段（包含这两个tag）的文本复制出来，新建为文件my_private.rsa.pem<br> 将从<br> —–BEGIN CERTIFICATE—–<br> 到<br> —–END CERTIFICATE—–<br> 这一段（包含这两个tag）的文本复制出来，certificate.pem （签名时用到的公钥）</p>
+<h2><span id="转换生成pk8格式的私钥"><span id="inline-blue">转换，生成pk8格式的私钥</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">openssl pkcs8 -topk8 -outform DER -in my_private.rsa.pem -inform PEM -out private.pk8 -nocrypt</span><br></pre></td></tr></table></figure>
+<h2><span id="签名"><span id="inline-blue">签名</span></span></h2> <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -jar signapk.jar certificate.pem private.pk8 my.apk my_signed.apk </span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>keyTool</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>keyTool</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决SpringCloud-Gateway请求favicon.ico出现404</title>
     <url>/SpringCloud/blogs/%E8%A7%A3%E5%86%B3SpringCloud-Gateway%E8%AF%B7%E6%B1%82favicon.ico%E5%87%BA%E7%8E%B0404/</url>
     <content><![CDATA[<!-- toc -->
@@ -1198,7 +1376,7 @@
 <h1><span id="目的"><span id="inline-blue">目的</span></span></h1><p>管理后台上传到FTP的图片目录，需要通过使用nginx代理给接口下载使用，但nginx如果采用回源方案的话导致在接口大量并发的情况下，nginx源服务器出现报错，代理下载nginx服务器缓存出现异常，不能正常提供下载服务。所以将nginx都修改为代理本地服务器的目录，通过rsync将上传文件的FTP目录同步到nginx服务器，减少回源的时间。</p>
 <h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>1、先查看linux的内核是否支持inotify，支持inotify的内核最小为2.6.13，输入命令：uname –a。如下图所示，内核为3.10.0，支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Linux S21614 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
-<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#x72;&#111;&#111;&#x74;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#49;&#48;&#48;&#46;&#49;&#48;&#x31;">&#x72;&#111;&#111;&#x74;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#49;&#48;&#48;&#46;&#49;&#48;&#x31;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
+<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#x2e;&#49;&#x30;&#x30;&#46;&#49;&#x30;&#49;">&#x72;&#x6f;&#x6f;&#116;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#x2e;&#49;&#x30;&#x30;&#46;&#49;&#x30;&#49;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_queued_events</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_instances</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_watches</span><br></pre></td></tr></table></figure>
 <p>5、取得软件包inotify-tools-3.13.tar.gz，放在/tmp下。<br>6、输入命令：tar zvxf inotify-tools-3.13.tar.gz，解压软件包。<br>7、输入命令：cd inotify-tools-3.13，进入解压后的目录。<br>8、输入命令：./configure<br>9、输入命令：make<br>10、输入命令：make install<br>11、在系统下执行命令：man inotify、 man inotifywait、 man inotifywatch即可得到相应的帮助信息，表示inotify安装成功。<br>12、输入命令：rsync，查看rsync是否安装。<br>rsync一般是系统默认安装，如果没有安装就取得软件包，安装方法同inotify。</p>
 <p>1、取得syncapps.sh、versService.dat脚本。<br>syncapps.sh脚本内容如下：</p>
@@ -2477,24 +2655,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux环境查看class文件编译版本信息</title>
-    <url>/Linux/blogs/Linux%E7%8E%AF%E5%A2%83%E6%9F%A5%E7%9C%8Bclass%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/</url>
-    <content><![CDATA[<h2><span id="查看class文件编译版本信息"><span id="inline-blue">查看class文件编译版本信息</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN common]# javap -v CommonContent.class </span><br><span class="line">Classfile /usr/local/moui_nanjing/V242/coship-oms/webapps/oms/WEB-INF/classes/com/coship/oms/common/CommonContent.class</span><br><span class="line">  Last modified 2021-11-16; size 474 bytes</span><br><span class="line">  MD5 checksum def74d7189fc3d20401e9070e4c8ad37</span><br><span class="line">  Compiled from &quot;CommonContent.java&quot;</span><br><span class="line">public class com.coship.oms.common.CommonContent</span><br><span class="line">  minor version: 0</span><br><span class="line">  major version: 52</span><br><span class="line"><span class="meta">#</span><span class="bash"> major version: 52  代表是java编译版本为1.8</span></span><br></pre></td></tr></table></figure>
-<h2><span id="java编译器版本对应关系"><span id="inline-blue">Java编译器版本对应关系</span></span></h2><pre><code>Unsupported major.minor version 52.0 对应于 JDK1.8（JRE1.8） </code></pre>
-<p>　　Unsupported major.minor version 51.0 对应于 JDK1.7（JRE1.7） </p>
-<p>　　Unsupported major.minor version 50.0 对应于 JDK1.6（JRE1.6） </p>
-<p>　　Unsupported major.minor version 49.0 对应于 JDK1.5（JRE1.5）</p>
-<h2><span id="兼容关系"><span id="inline-blue">兼容关系</span></span></h2><p>Java低版本编译的jar包，可以在高版本Java编译环境下运行，反之，Java高版本编译的jar包不能在低版本Java环境运行</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux文件清空操作</title>
     <url>/Linux/blogs/Linux%E6%96%87%E4%BB%B6%E6%B8%85%E7%A9%BA%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h2><span id="文件清空"><span id="inline-blue">文件清空</span></span></h2><p>windows7 64</p>
@@ -2511,6 +2671,24 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux环境查看class文件编译版本信息</title>
+    <url>/Linux/blogs/Linux%E7%8E%AF%E5%A2%83%E6%9F%A5%E7%9C%8Bclass%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/</url>
+    <content><![CDATA[<h2><span id="查看class文件编译版本信息"><span id="inline-blue">查看class文件编译版本信息</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN common]# javap -v CommonContent.class </span><br><span class="line">Classfile /usr/local/moui_nanjing/V242/coship-oms/webapps/oms/WEB-INF/classes/com/coship/oms/common/CommonContent.class</span><br><span class="line">  Last modified 2021-11-16; size 474 bytes</span><br><span class="line">  MD5 checksum def74d7189fc3d20401e9070e4c8ad37</span><br><span class="line">  Compiled from &quot;CommonContent.java&quot;</span><br><span class="line">public class com.coship.oms.common.CommonContent</span><br><span class="line">  minor version: 0</span><br><span class="line">  major version: 52</span><br><span class="line"><span class="meta">#</span><span class="bash"> major version: 52  代表是java编译版本为1.8</span></span><br></pre></td></tr></table></figure>
+<h2><span id="java编译器版本对应关系"><span id="inline-blue">Java编译器版本对应关系</span></span></h2><pre><code>Unsupported major.minor version 52.0 对应于 JDK1.8（JRE1.8） </code></pre>
+<p>　　Unsupported major.minor version 51.0 对应于 JDK1.7（JRE1.7） </p>
+<p>　　Unsupported major.minor version 50.0 对应于 JDK1.6（JRE1.6） </p>
+<p>　　Unsupported major.minor version 49.0 对应于 JDK1.5（JRE1.5）</p>
+<h2><span id="兼容关系"><span id="inline-blue">兼容关系</span></span></h2><p>Java低版本编译的jar包，可以在高版本Java编译环境下运行，反之，Java高版本编译的jar包不能在低版本Java环境运行</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -2844,8 +3022,8 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>Java</tag>
         <tag>Jboss</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -4771,36 +4949,6 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>windows注册Redis服务</title>
-    <url>/Redis/blogs/windows%E6%B3%A8%E5%86%8Credis%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis下载</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis注册</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis服务自启动设置</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis服务验证</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
-<h1><span id="redis下载"><span id="inline-blue">Redis下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的Redis-x64-3.2.100版本</p>
-<h1><span id="redis注册"><span id="inline-blue">Redis注册</span></span></h1><p>1.运行windows cmd命令，进入Redis安装目录D:\redis_3.2.100\Redis-x64-3.2.100</p>
-<p>2.执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
-<p>3.如果需要卸载Redis服务，执行redis-server –service-uninstall</p>
-<h1><span id="redis服务自启动设置"><span id="inline-blue">Redis服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
-<h1><span id="redis服务验证"><span id="inline-blue">Redis服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows注册nginx服务</title>
     <url>/nginx/blogs/windows%E6%B3%A8%E5%86%8Cnginx%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<!-- toc -->
@@ -4834,6 +4982,36 @@ tmp – 临时文件</code></pre>
       <tags>
         <tag>Windows</tag>
         <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows注册Redis服务</title>
+    <url>/Redis/blogs/windows%E6%B3%A8%E5%86%8Credis%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis下载</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis注册</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis服务自启动设置</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis服务验证</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
+<h1><span id="redis下载"><span id="inline-blue">Redis下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的Redis-x64-3.2.100版本</p>
+<h1><span id="redis注册"><span id="inline-blue">Redis注册</span></span></h1><p>1.运行windows cmd命令，进入Redis安装目录D:\redis_3.2.100\Redis-x64-3.2.100</p>
+<p>2.执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
+<p>3.如果需要卸载Redis服务，执行redis-server –service-uninstall</p>
+<h1><span id="redis服务自启动设置"><span id="inline-blue">Redis服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
+<h1><span id="redis服务验证"><span id="inline-blue">Redis服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
