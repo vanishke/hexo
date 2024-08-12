@@ -26,6 +26,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Apache超文本传输协议压力测试工具</title>
+    <url>/Apache/blogs/Apache%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blueapache-benchspan"><span id="inline-blue">apache bench</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85span"><span id="inline-blue">安装</span></a></li>
+<li><a href="#span-idinline-blue%E8%AF%AD%E6%B3%95span"><span id="inline-blue">语法</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%9E%E4%BE%8Bspan"><span id="inline-blue">实例</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>linux : CentOS Linux release 7.7.1908 (Core)</p>
+<h1><span id="apache-bench"><span id="inline-blue">apache bench</span></span></h1><p>ApacheBench 简称 ab，是 Apache HTTP Server 中的一个性能测试工具，可单独安装，在命令行中直接使用，可基于 HTTP 接口对任意 HTTP 服务器进行性能测试，得到每秒请求数（RPS）、平均请求响应时间等性能指标。</p>
+<h1><span id="安装"><span id="inline-blue">安装</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
+<h1><span id="语法"><span id="inline-blue">语法</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ab [options] [http[s]://]hostname[:port]/path</span><br><span class="line"><span class="meta">$</span><span class="bash"> ab -h</span></span><br><span class="line">Usage: ab [options] [http[s]://]hostname[:port]/path</span><br><span class="line">Options are:</span><br><span class="line">    -n requests     Number of requests to perform</span><br><span class="line">    -c concurrency  Number of multiple requests to make at a time</span><br><span class="line">    -t timelimit    Seconds to max. to spend on benchmarking</span><br><span class="line">                    This implies -n 50000</span><br><span class="line">    -s timeout      Seconds to max. wait for each response</span><br><span class="line">                    Default is 30 seconds</span><br><span class="line">    -b windowsize   Size of TCP send/receive buffer, in bytes</span><br><span class="line">    -B address      Address to bind to when making outgoing connections</span><br><span class="line">    -p postfile     File containing data to POST. Remember also to set -T</span><br><span class="line">    -u putfile      File containing data to PUT. Remember also to set -T</span><br><span class="line">    -T content-type Content-type header to use for POST/PUT data, eg.</span><br><span class="line">                    &#x27;application/x-www-form-urlencoded&#x27;</span><br><span class="line">                    Default is &#x27;text/plain&#x27;</span><br><span class="line">    -v verbosity    How much troubleshooting info to print</span><br><span class="line">    -w              Print out results in HTML tables</span><br><span class="line">    -i              Use HEAD instead of GET</span><br><span class="line">    -x attributes   String to insert as table attributes</span><br><span class="line">    -y attributes   String to insert as tr attributes</span><br><span class="line">    -z attributes   String to insert as td or th attributes</span><br><span class="line">    -C attribute    Add cookie, eg. &#x27;Apache=1234&#x27;. (repeatable)</span><br><span class="line">    -H attribute    Add Arbitrary header line, eg. &#x27;Accept-Encoding: gzip&#x27;</span><br><span class="line">                    Inserted after all normal header lines. (repeatable)</span><br><span class="line">    -A attribute    Add Basic WWW Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -P attribute    Add Basic Proxy Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -X proxy:port   Proxyserver and port number to use</span><br><span class="line">    -V              Print version number and exit</span><br><span class="line">    -k              Use HTTP KeepAlive feature</span><br><span class="line">    -d              Do not show percentiles served table.</span><br><span class="line">    -S              Do not show confidence estimators and warnings.</span><br><span class="line">    -q              Do not show progress when doing more than 150 requests</span><br><span class="line">    -l              Accept variable document length (use this for dynamic pages)</span><br><span class="line">    -g filename     Output collected data to gnuplot format file.</span><br><span class="line">    -e filename     Output CSV file with percentages served</span><br><span class="line">    -r              Don&#x27;t exit on socket receive errors.</span><br><span class="line">    -m method       Method name</span><br><span class="line">    -h              Display usage information (this message)</span><br><span class="line">    -I              Disable TLS Server Name Indication (SNI) extension</span><br><span class="line">    -Z ciphersuite  Specify SSL/TLS cipher suite (See openssl ciphers)</span><br><span class="line">    -f protocol     Specify SSL/TLS protocol</span><br><span class="line">                    (TLS1, TLS1.1, TLS1.2 or ALL)</span><br><span class="line">    -E certfile     Specify optional client certificate chain and private key</span><br></pre></td></tr></table></figure>
+<h1><span id="实例"><span id="inline-blue">实例</span></span></h1><p>指定url请求1000次，并发100</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ab -c100 -n1000 http://10.9.216.12:8098/oms-pic/10146.png</span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1430300 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking 10.9.216.12 (be patient)</span><br><span class="line">Completed 100 requests</span><br><span class="line">Completed 200 requests</span><br><span class="line">Completed 300 requests</span><br><span class="line">Completed 400 requests</span><br><span class="line">Completed 500 requests</span><br><span class="line">Completed 600 requests</span><br><span class="line">Completed 700 requests</span><br><span class="line">Completed 800 requests</span><br><span class="line">Completed 900 requests</span><br><span class="line">Completed 1000 requests</span><br><span class="line">Finished 1000 requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Server Software:        nginx/1.18.0</span><br><span class="line">Server Hostname:        10.9.216.12</span><br><span class="line">Server Port:            8098</span><br><span class="line"></span><br><span class="line">Document Path:          /oms-pic/10146.png</span><br><span class="line">Document Length:        7289 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      100</span><br><span class="line">Time taken for tests:   0.122 seconds</span><br><span class="line">Complete requests:      1000</span><br><span class="line">Failed requests:        0</span><br><span class="line">Write errors:           0</span><br><span class="line">Total transferred:      7524000 bytes</span><br><span class="line">HTML transferred:       7289000 bytes</span><br><span class="line">Requests per second:    8201.97 [#/sec] (mean)</span><br><span class="line">Time per request:       12.192 [ms] (mean)</span><br><span class="line">Time per request:       0.122 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate:          60265.22 [Kbytes/sec] received</span><br><span class="line"></span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:        0    1   1.0      0       5</span><br><span class="line">Processing:     3   11   2.4     11      15</span><br><span class="line">Waiting:        0   11   2.4     11      15</span><br><span class="line">Total:          7   11   1.9     11      15</span><br><span class="line"></span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line"><span class="meta">  50%</span><span class="bash">     11</span></span><br><span class="line"><span class="meta">  66%</span><span class="bash">     12</span></span><br><span class="line"><span class="meta">  75%</span><span class="bash">     13</span></span><br><span class="line"><span class="meta">  80%</span><span class="bash">     13</span></span><br><span class="line"><span class="meta">  90%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta">  95%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta">  98%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta">  99%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta"> 100%</span><span class="bash">     15 (longest request)</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Apache</category>
+      </categories>
+      <tags>
+        <tag>Apache</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C3p0连接池泄漏分析</title>
     <url>/MySQL/blogs/C3p0%E8%BF%9E%E6%8E%A5%E6%B1%A0%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<!-- toc -->
@@ -101,6 +128,33 @@
       <tags>
         <tag>Chrome</tag>
         <tag>Postman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Curl命令请求携带多个参数</title>
+    <url>/Linux/blogs/Curl%E5%91%BD%E4%BB%A4%E8%AF%B7%E6%B1%82%E6%90%BA%E5%B8%A6%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E5%8E%9F%E5%9B%A0span"><span id="inline-blue">原因</span></a></li>
+<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81span"><span id="inline-blue">验证</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>MySQL: Red Hat Enterprise Linux Server release 6.5 (Santiago)</p>
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>使用curl命令测试http接口，接口提示必填参数缺失，但实际上连接上有对应参数信息</p>
+<h1><span id="原因"><span id="inline-blue">原因</span></span></h1><p>curl命令后面的http请求链接如果有多个参数，但链接没有用双引号引起来的情况下，curl只能截取到&amp;标识符后面的第一个参数<br>正确的用法如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl &quot;http://10.9.219.2:28888/ulms/logicInfoList?smartCard=00072514986612787444&amp;stbCode=30320&amp;version=950&amp;flag=2&quot;</span><br></pre></td></tr></table></figure>
+<h1><span id="验证"><span id="inline-blue">验证</span></span></h1><p><img src="/images/linux/Linux_20240812_001.png" alt="Cur接口测试"></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Curl</tag>
       </tags>
   </entry>
   <entry>
@@ -515,28 +569,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Elasticsearch导入导出</title>
-    <url>/Elasticsearch/blogs/Elasticsearch%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/</url>
-    <content><![CDATA[<h2><span id="环境"><span id="inline-blue">环境</span></span></h2><p>linux </p>
-<h2><span id="部署"><span id="inline-blue">部署</span></span></h2><p>下载工具压缩包<br>下载地址：<a href="https://pan.baidu.com/s/1V3If_94FJZRx-004ycLIaQ">https://pan.baidu.com/s/1V3If_94FJZRx-004ycLIaQ</a><br>提取码：qlpg</p>
-<p>EsToolNew.zip上传服务器,解压</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@demo_mdn EsToolNew]#unzip EsToolNew.zip</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/elasticsearch/es_20210226_001.png" alt="部署目录"></p>
-<p>config:配置需要访问的elasticsearch实际地址<br>start.sh: 启动脚本<br>stop.sh: 停止脚本<br>json: 需要导入的数据脚本<br>默认访问端口：8056</p>
-<h3><span id="启动方式"><span id="inline-blue">启动方式</span></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@demo_mdn EsToolNew]# sh start.sh</span><br></pre></td></tr></table></figure>
-<h2><span id="访问"><span id="inline-blue">访问</span></span></h2><p><img src="/images/elasticsearch/es_20210226_002.png" alt="访问"></p>
-<h2><span id="导入"><span id="inline-blue">导入</span></span></h2><p><img src="/images/elasticsearch/es_20210226_003.png" alt="导入"></p>
-<h2><span id="导入"><span id="inline-blue">导入</span></span></h2><p><img src="/images/elasticsearch/es_20210226_004.png" alt="导出"></p>
-]]></content>
-      <categories>
-        <category>Elasticsearch</category>
-      </categories>
-      <tags>
-        <tag>Elasticsearch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ElasticSearch开机自启动</title>
     <url>/Elasticsearch/blogs/Elasticsearch%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
     <content><![CDATA[<!-- toc -->
@@ -930,29 +962,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Hexo安装GitHub插件</title>
-    <url>/Hexo/blogs/Hexo%E5%AE%89%E8%A3%85GitHub%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<h2><span id="上传配置"><span id="inline-blue">上传配置</span></span></h2><p>hexo配置和文件文件添加如下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/userName/repoName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-
-
-<h2><span id="安装插件"><span id="inline-blue">安装插件</span></span></h2><p>安装GitHub部署插件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h2><span id="测试部署"><span id="inline-blue">测试部署</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo d   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo安装Next问题</title>
     <url>/Hexo/blogs/Hexo%E5%AE%89%E8%A3%85Next%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2><span id="问题描述"><span id="inline-blue">问题描述</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Cloning into &#x27;themes/next&#x27;...</span><br><span class="line">remote: Enumerating objects: 12037, done.</span><br><span class="line">error: RPC failed; curl 18 transfer closed with outstanding read data remaining</span><br><span class="line">error: 1285 bytes of body are still expected</span><br><span class="line">fetch-pack: unexpected disconnect while reading sideband packet</span><br><span class="line">fatal: early EOF</span><br><span class="line">fatal: index-pack failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -1285,6 +1294,44 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Hibernate xxx is not mapped 错误原因及解决方法</title>
+    <url>/Hibernate/blogs/Hibernate%20xxx%20is%20not%20mapped%20%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0span"><span id="inline-blue">问题原因</span></a></li>
+<li><a href="#span-idinline-blue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88span"><span id="inline-blue">解决方案</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>SpringMVC项目改造为maven项目之后打包部署启动一直报错Hibernate xxx is not mapped</p>
+<h1><span id="问题原因"><span id="inline-blue">问题原因</span></span></h1><p>错误提示信息应该是hql语句中查询语句使用的表名称和实体类不一致导致，检查之后发现不是这个原因，问题的原因是src/main/java目录中包含hibernate配置文件，打包的时候没有被包含进去。</p>
+<h1><span id="解决方案"><span id="inline-blue">解决方案</span></span></h1><p>pom.xml文件build节点中添加如下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.java<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hibernate</category>
+      </categories>
+      <tags>
+        <tag>Hibernate</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IntelliJ插件Lombok离线安装</title>
+    <url>/IntelliJ/blogs/Intelij%E6%8F%92%E4%BB%B6Lombok%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1><span id="官网下载地址"><span id="inline-blue">官网下载地址</span></span></h1><p><a href="http://plugins.jetbrains.com/plugin/6317-lombok-plugin">http://plugins.jetbrains.com/plugin/6317-lombok-plugin</a><br><img src="/images/intelliJ/inteliJ_2021_03_25_001.png" alt="下载地址"><br><img src="/images/intelliJ/inteliJ_2021_03_25_002.png" alt="版本选择"><br>自行根据Intelij版本下载对应的安装包，intelij版本和lombok保持一致即可。</p>
+<p>提供Intelij2018.2.1版本对应的离线安装包<br><a href="https://pan.baidu.com/s/1kBg_t-75859dIOnRLYe_jg">https://pan.baidu.com/s/1kBg_t-75859dIOnRLYe_jg</a> 提取码：0hn4</p>
+<h1><span id="离线安装"><span id="inline-blue">离线安装</span></span></h1><p><img src="/images/intelliJ/inteliJ_2021_03_25_003.png" alt="lombok离线安装"><br>加载对应版本的zip格式的安装包，重启intelij生效</p>
+]]></content>
+      <categories>
+        <category>IntelliJ</category>
+      </categories>
+      <tags>
+        <tag>IntelliJ</tag>
+        <tag>Lombok</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IntelliJ IDEA 设置忽略SVN文件和文件夹无效.</title>
     <url>/IntelliJ/blogs/IntelliJ%20IDEA%20%E8%AE%BE%E7%BD%AE%E5%BF%BD%E7%95%A5SVN%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E6%97%A0%E6%95%88/</url>
     <content><![CDATA[<!-- toc -->
@@ -1313,41 +1360,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ项目文件同步</title>
-    <url>/IntelliJ/blogs/IntelliJ%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</url>
-    <content><![CDATA[<h2><span id="文件同步"><span id="inline-blue">文件同步</span></span></h2><p>选中项目需要同步的文件，File工具栏选择synchronize同步操作<br><img src="/images/intelliJ/intelliJ_2021_02_18_001.png" alt="同步"></p>
-]]></content>
-      <categories>
-        <category>IntelliJ</category>
-      </categories>
-      <tags>
-        <tag>IntelliJ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hibernate xxx is not mapped 错误原因及解决方法</title>
-    <url>/Hibernate/blogs/Hibernate%20xxx%20is%20not%20mapped%20%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
-<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0span"><span id="inline-blue">问题原因</span></a></li>
-<li><a href="#span-idinline-blue%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88span"><span id="inline-blue">解决方案</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>SpringMVC项目改造为maven项目之后打包部署启动一直报错Hibernate xxx is not mapped</p>
-<h1><span id="问题原因"><span id="inline-blue">问题原因</span></span></h1><p>错误提示信息应该是hql语句中查询语句使用的表名称和实体类不一致导致，检查之后发现不是这个原因，问题的原因是src/main/java目录中包含hibernate配置文件，打包的时候没有被包含进去。</p>
-<h1><span id="解决方案"><span id="inline-blue">解决方案</span></span></h1><p>pom.xml文件build节点中添加如下内容</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/*.java<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Hibernate</category>
-      </categories>
-      <tags>
-        <tag>Hibernate</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IntelliJ推送Git失败</title>
     <url>/IntelliJ/blogs/Intellij%E6%8E%A8%E9%80%81git%E5%A4%B1%E8%B4%A5/</url>
     <content><![CDATA[<h1><span id="现象"><span id="inline-blue">现象</span></span></h1><p>Push failed<br>            Fatal: HttpRequestException encountered.<br>            unable to access ‘<a href="https://github.com/vanishke/DataStructure-Algorithm.git/&#39;">https://github.com/vanishke/DataStructure-Algorithm.git/&#39;</a>: Unknown SSL protocol error in connection to github.com:443</p>
@@ -1373,21 +1385,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       <tags>
         <tag>Git</tag>
         <tag>IntelliJ</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IntelliJ插件Lombok离线安装</title>
-    <url>/IntelliJ/blogs/Intelij%E6%8F%92%E4%BB%B6Lombok%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h1><span id="官网下载地址"><span id="inline-blue">官网下载地址</span></span></h1><p><a href="http://plugins.jetbrains.com/plugin/6317-lombok-plugin">http://plugins.jetbrains.com/plugin/6317-lombok-plugin</a><br><img src="/images/intelliJ/inteliJ_2021_03_25_001.png" alt="下载地址"><br><img src="/images/intelliJ/inteliJ_2021_03_25_002.png" alt="版本选择"><br>自行根据Intelij版本下载对应的安装包，intelij版本和lombok保持一致即可。</p>
-<p>提供Intelij2018.2.1版本对应的离线安装包<br><a href="https://pan.baidu.com/s/1kBg_t-75859dIOnRLYe_jg">https://pan.baidu.com/s/1kBg_t-75859dIOnRLYe_jg</a> 提取码：0hn4</p>
-<h1><span id="离线安装"><span id="inline-blue">离线安装</span></span></h1><p><img src="/images/intelliJ/inteliJ_2021_03_25_003.png" alt="lombok离线安装"><br>加载对应版本的zip格式的安装包，重启intelij生效</p>
-]]></content>
-      <categories>
-        <category>IntelliJ</category>
-      </categories>
-      <tags>
-        <tag>IntelliJ</tag>
-        <tag>Lombok</tag>
       </tags>
   </entry>
   <entry>
@@ -1602,6 +1599,20 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Jetty修改端口号</title>
+    <url>/Jetty/blogs/Jetty%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3/</url>
+    <content><![CDATA[<h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><p>文件名称：start.ini<br>文件路径：jetty安装目录下（/usr/local/jetty_home）<br>#文件内搜索对应标识jetty.port</p>
+<p><img src="/images/jetty/jetty_2021_06_10_001.png" alt="jetty变更端口号"></p>
+]]></content>
+      <categories>
+        <category>Jetty</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Jetty</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Jetty 指定启动JDK版本</title>
     <url>/Jetty/blogs/Jetty%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">文件名称：setenv.sh 文件路径：/usr/<span class="built_in">local</span>/</span><br><span class="line">文件头部添加以下内容：</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.6.0_21</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=/usr/java/jdk1.6.0_21/jre</span><br></pre></td></tr></table></figure>
@@ -1750,6 +1761,26 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux Unicode文件编码转中文</title>
+    <url>/Linux/blogs/Linux%20Unicode%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E8%BD%AC%E4%B8%AD%E6%96%87/</url>
+    <content><![CDATA[<h2><span id="unicode文件转码"><span id="inline-blue">Unicode文件转码</span></span></h2><p>Linux : CentOS Linux release 7.7.1908 (Core)</p>
+<h3><span id="native2ascii"><span id="inline-blue">native2ascii</span></span></h3><p><strong>语法</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">native2ascii -[options] [inputfile [outputfile]]</span><br></pre></td></tr></table></figure>
+<p><strong>选项</strong><br>-[options]：表示命令开关，有两个选项可供选择<br>-reverse：将Unicode编码转为本地或者指定编码，不指定编码情况下，将转为本地编码。<br>-encoding encoding_name：转换为指定编码，encoding_name为编码名称。</p>
+<p>[inputfile [outputfile]]<br>inputfile：表示输入文件全名。<br>outputfile：输出文件名。如果缺少此参数，将输出到控制台。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">native2ascii -encoding UTF-8 -reverse I18nResource.properties I18nResource.bak</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux curl命令GET&amp;POST请求示例</title>
     <url>/Linux/blogs/Linux%20curl%E5%91%BD%E4%BB%A4GET&amp;POST%E8%AF%B7%E6%B1%82%E7%A4%BA%E4%BE%8B/</url>
     <content><![CDATA[<!-- toc -->
@@ -1775,26 +1806,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux Unicode文件编码转中文</title>
-    <url>/Linux/blogs/Linux%20Unicode%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E8%BD%AC%E4%B8%AD%E6%96%87/</url>
-    <content><![CDATA[<h2><span id="unicode文件转码"><span id="inline-blue">Unicode文件转码</span></span></h2><p>Linux : CentOS Linux release 7.7.1908 (Core)</p>
-<h3><span id="native2ascii"><span id="inline-blue">native2ascii</span></span></h3><p><strong>语法</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">native2ascii -[options] [inputfile [outputfile]]</span><br></pre></td></tr></table></figure>
-<p><strong>选项</strong><br>-[options]：表示命令开关，有两个选项可供选择<br>-reverse：将Unicode编码转为本地或者指定编码，不指定编码情况下，将转为本地编码。<br>-encoding encoding_name：转换为指定编码，encoding_name为编码名称。</p>
-<p>[inputfile [outputfile]]<br>inputfile：表示输入文件全名。<br>outputfile：输出文件名。如果缺少此参数，将输出到控制台。</p>
-<p><strong>示例</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">native2ascii -encoding UTF-8 -reverse I18nResource.properties I18nResource.bak</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux tar.xz格式压缩文件解压命令</title>
     <url>/Linux/blogs/Linux%20tar.xz%E6%A0%BC%E5%BC%8F%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<!-- toc -->
@@ -1808,6 +1819,53 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <h1><span id="目的"><span id="inline-blue">目的</span></span></h1><pre><code>tar.xz格式的压缩包和tar.gz格式解压命令不一样，记录一下</code></pre>
 <h1><span id="解压"><span id="inline-blue">解压</span></span></h1><p>压缩文件名：glibc-2.27.tar.xz</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进行两次解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash">先解压xz</span></span><br><span class="line">xz -d glibc-2.27.tar.xz</span><br><span class="line"><span class="meta">#</span><span class="bash">在解压tar格式</span></span><br><span class="line">tar -xvf glibc-2.27.tar</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 实现网络共享NFS</title>
+    <url>/Linux/blogs/Linux%20%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%ABNFS/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%9E%E7%8E%B0span"><span id="inline-blue">实现</span></a><ul>
+<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96nfs-utis-rpcbindspan"><span id="inline-blue">安装依赖nfs-utis、rpcbind</span></a></li>
+<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8nfsrpcbindspan"><span id="inline-blue">启动NFS/rpcbind</span></a></li>
+<li><a href="#span-idinline-blue%E6%8C%82%E8%BD%BD%E5%91%BD%E4%BB%A4span"><span id="inline-blue">挂载命令</span></a></li>
+<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93span"><span id="inline-blue">问题总结</span></a><ul>
+<li><a href="#span-idinline-bluemount-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF-%E9%80%89%E9%A1%B9%E9%94%99%E8%AF%AF-%E7%BC%BA%E5%B0%91%E4%BB%A3%E7%A0%81%E9%A1%B5%E6%88%96%E5%8A%A9%E6%89%8B%E7%A8%8B%E5%BA%8F%E6%88%96%E5%85%B6%E4%BB%96%E9%94%99%E8%AF%AFspan"><span id="inline-blue">mount: 文件系统类型错误、选项错误、缺少代码页或助手程序，或其他错误</span></a></li>
+<li><a href="#span-idinline-blue%E6%89%BE%E4%B8%8D%E5%88%B0portmap%E4%BE%9D%E8%B5%96span"><span id="inline-blue">找不到portmap依赖</span></a></li>
+<li><a href="#span-idinline-blue%E6%8C%82%E8%BD%BD%E4%B9%8B%E5%90%8E%E5%8F%91%E7%8E%B0%E6%B2%A1%E6%9C%89%E5%86%99%E5%85%A5%E6%9D%83%E9%99%90span"><span id="inline-blue">挂载之后发现没有写入权限</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>centos:7.9</p>
+<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>项目部署Linux服务器发现磁盘空间不足，采用网络挂载的方式扩容存储。</p>
+<h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>挂载服务器：10.9.216.170<br>挂载客户端：10.9.216.12</p>
+<p>NFS：<br>网络文件系统(NFS)允许远程主机通过网络挂载文件系统，并像它们是本地挂载的文件系统一样与它们进行交互。这使系统管理员能够将资源整合到网络上的集中式服务器上</p>
+<h2><span id="安装依赖nfs-utis-rpcbind"><span id="inline-blue">安装依赖nfs-utis、rpcbind</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install nfs-utils.x86_64</span><br><span class="line">yum install rpcbind.x86_64</span><br></pre></td></tr></table></figure>
+
+<h2><span id="启动nfsrpcbind"><span id="inline-blue">启动NFS/rpcbind</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start rpcbind.service</span><br><span class="line">systemctl start nfs.service</span><br></pre></td></tr></table></figure>
+
+<h2><span id="挂载命令"><span id="inline-blue">挂载命令</span></span></h2><p>挂载服务器：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/fctab</span><br><span class="line">/home 10.9.216*(rw,no_root_squash,sync)</span><br></pre></td></tr></table></figure>
+<p>ro: 只读<br>rw: 读写<br>root_squash: NFS客户端以root用户访问，映射为匿名用户<br>no_root_squash: NFS客户端以root用户访问，映射为服务端管理员账号<br>all_squash: 无论NFS客户端以什么账号访问，均映射为NFS服务端匿名用户<br>sync: 同步写入，直接写入磁盘<br>async: 异步写入，先写内存在写磁盘，可能导致数据丢失</p>
+<p>挂载客户端：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建挂载点</span></span><br><span class="line">mkdir /mount_home</span><br><span class="line"><span class="meta">#</span><span class="bash">挂载</span></span><br><span class="line">sudo mount -t nfs -o rw,atime -l 10.9.216.170:/home /mount_home</span><br></pre></td></tr></table></figure>
+<h2><span id="问题总结"><span id="inline-blue">问题总结</span></span></h2><h3><span id="mount-文件系统类型错误-选项错误-缺少代码页或助手程序或其他错误"><span id="inline-blue">mount: 文件系统类型错误、选项错误、缺少代码页或助手程序，或其他错误</span></span></h3><p>挂载客户端未安装启动NFS服务</p>
+<h3><span id="找不到portmap依赖"><span id="inline-blue">找不到portmap依赖</span></span></h3><p>安装NFS过程中参考文档一直提示需要安装portmap依赖，其实该依赖自从CentOS 6版本系统之后已被rpcbind依赖替代，并且默认已经安装启动</p>
+<h3><span id="挂载之后发现没有写入权限"><span id="inline-blue">挂载之后发现没有写入权限</span></span></h3><p>执行挂载命令需要加上sudo,提升用户权限</p>
+]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -1872,44 +1930,52 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux 实现网络共享NFS</title>
-    <url>/Linux/blogs/Linux%20%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%ABNFS/</url>
+    <title>Linux-文档编辑</title>
+    <url>/Linux/blogs/Linux-%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91/</url>
     <content><![CDATA[<!-- toc -->
 
 <ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
-<li><a href="#span-idinline-blue%E5%AE%9E%E7%8E%B0span"><span id="inline-blue">实现</span></a><ul>
-<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96nfs-utis-rpcbindspan"><span id="inline-blue">安装依赖nfs-utis、rpcbind</span></a></li>
-<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8nfsrpcbindspan"><span id="inline-blue">启动NFS/rpcbind</span></a></li>
-<li><a href="#span-idinline-blue%E6%8C%82%E8%BD%BD%E5%91%BD%E4%BB%A4span"><span id="inline-blue">挂载命令</span></a></li>
-<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93span"><span id="inline-blue">问题总结</span></a><ul>
-<li><a href="#span-idinline-bluemount-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF-%E9%80%89%E9%A1%B9%E9%94%99%E8%AF%AF-%E7%BC%BA%E5%B0%91%E4%BB%A3%E7%A0%81%E9%A1%B5%E6%88%96%E5%8A%A9%E6%89%8B%E7%A8%8B%E5%BA%8F%E6%88%96%E5%85%B6%E4%BB%96%E9%94%99%E8%AF%AFspan"><span id="inline-blue">mount: 文件系统类型错误、选项错误、缺少代码页或助手程序，或其他错误</span></a></li>
-<li><a href="#span-idinline-blue%E6%89%BE%E4%B8%8D%E5%88%B0portmap%E4%BE%9D%E8%B5%96span"><span id="inline-blue">找不到portmap依赖</span></a></li>
-<li><a href="#span-idinline-blue%E6%8C%82%E8%BD%BD%E4%B9%8B%E5%90%8E%E5%8F%91%E7%8E%B0%E6%B2%A1%E6%9C%89%E5%86%99%E5%85%A5%E6%9D%83%E9%99%90span"><span id="inline-blue">挂载之后发现没有写入权限</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#span-idinline-bluevim%E5%91%BD%E4%BB%A4span"><span id="inline-blue">vim命令</span></a></li>
+<li><a href="#span-idinline-bluehead%E5%91%BD%E4%BB%A4span"><span id="inline-blue">head命令</span></a></li>
+<li><a href="#span-idinline-bluerm%E5%91%BD%E4%BB%A4-span"><span id="inline-blue">rm命令 </span></a></li>
+<li><a href="#span-idinline-bluecat%E5%91%BD%E4%BB%A4span"><span id="inline-blue">cat命令</span></a></li>
+<li><a href="#span-idinline-bluetar%E5%91%BD%E4%BB%A4span"><span id="inline-blue">tar命令</span></a></li>
 </ul>
 <!-- tocstop -->
 
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>centos:7.9</p>
-<h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>项目部署Linux服务器发现磁盘空间不足，采用网络挂载的方式扩容存储。</p>
-<h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>挂载服务器：10.9.216.170<br>挂载客户端：10.9.216.12</p>
-<p>NFS：<br>网络文件系统(NFS)允许远程主机通过网络挂载文件系统，并像它们是本地挂载的文件系统一样与它们进行交互。这使系统管理员能够将资源整合到网络上的集中式服务器上</p>
-<h2><span id="安装依赖nfs-utis-rpcbind"><span id="inline-blue">安装依赖nfs-utis、rpcbind</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install nfs-utils.x86_64</span><br><span class="line">yum install rpcbind.x86_64</span><br></pre></td></tr></table></figure>
+<h2><span id="vim命令"><span id="inline-blue">vim命令</span></span></h2><p><strong>作用</strong><br>vi命令是unix和类unix系统通用全屏幕文本编辑器，vim是vi的加强版，与vi完全兼容，并添加了很多增强功能。<br><strong>选项</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crtl+u: 向文件首翻半屏。</span><br><span class="line">crtl+d: 此文件尾翻半屏。</span><br><span class="line">crtl+f: 向文件首翻一屏。</span><br><span class="line">crtl+b: 向文件尾翻一屏。</span><br><span class="line">ESC:从编辑模式切换到命令模式。</span><br><span class="line">:行号 :光标跳到指定行的行首。</span><br><span class="line">:$ :光标跳到文件尾。</span><br><span class="line">/字符串 :文本查找操作，从光标所在当前位置向文件尾部查找指定的字符串，查找到的字符串高亮显示。</span><br><span class="line">:wq :命令模式下，执行存盘并退出。</span><br><span class="line">:q :命令模式下，执行退出。</span><br><span class="line">:w! :命令模式下，强制执行存盘操作。</span><br><span class="line">:q! :命令模式下，强制执行退出vi命令。</span><br><span class="line">:set number :命令模式下，显示行号。</span><br><span class="line">:set nonumber :命令模式下，不显示行号。</span><br></pre></td></tr></table></figure>
+<p><strong>示例</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示行号</span></span><br><span class="line">  1 [20201203] 16:47:12 Begin</span><br><span class="line">  2 [20201203] 16:47:13 Import assetFileTask_0_20201203_010000_3</span><br><span class="line">  3 [20201203] 16:47:16 Import assetFileTask_0_20201203_010020_4</span><br><span class="line">  4 [20201203] 16:47:22 Import assetMapAssetTypeTask_0_20201203_010000_3</span><br><span class="line">  5 [20201203] 16:47:24 Import assetMapAssetTypeTask_0_20201203_010003_4</span><br><span class="line">  6 [20201203] 16:47:26 Import assetOrAssetFileTask_0_20201203_010000_9</span><br><span class="line">  7 [20201203] 16:47:28 Import assetOrAssetFileTask_0_20201203_010040_10</span><br><span class="line">  8 [20201203] 16:47:30 Import assetOrAssetFileTask_0_20201203_010047_11</span><br><span class="line">  9 [20201203] 16:47:32 Import assetOrAssetFileTask_0_20201203_010055_12</span><br><span class="line"> 10 [20201203] 16:47:34 Import assetTask_0_20201203_010000_3</span><br><span class="line"> 11 [20201203] 16:47:38 Import assetTask_0_20201203_010019_4</span><br><span class="line"> 12 [20201203] 16:47:41 Import assetTypeTask_0_20201203_010000_0</span><br><span class="line"> 13 [20201203] 16:47:43 Import cdrTask_0_20201203_020000_15</span><br><span class="line"> 14 [20201203] 16:47:46 Import cdrTask_0_20201203_021042_16</span><br><span class="line"> 15 [20201203] 16:47:52 Import cdrTask_0_20201203_021201_17</span><br><span class="line"> 16 [20201203] 16:47:59 Import cdrTask_0_20201203_021321_18</span><br><span class="line"> 17 [20201203] 16:48:06 Import cdrTask_0_20201203_021441_19</span><br><span class="line"> 18 [20201203] 16:48:14 Import cdrTask_0_20201203_021600_20</span><br><span class="line"> 19 [20201203] 16:48:20 Import channelTask_0_20201203_010000_0</span><br><span class="line"> 20 [20201203] 16:48:22 Import cmsDictTask_0_20201203_010000_0</span><br><span class="line"> 21 [20201203] 16:48:23 Import columnTask_0_20201203_010000_0</span><br><span class="line"> 22 [20201203] 16:48:25 Import orderTask_0_20201203_010000_0</span><br><span class="line"> 23 [20201203] 16:48:27 Import portalOrderInfoTask_0_20201203_010000_0</span><br><span class="line"> 24 [20201203] 16:48:28 Import productColumnTask_0_20201203_010000_0</span><br><span class="line"> 25 [20201203] 16:48:29 Import productResourceTask_0_20201203_010000_0</span><br><span class="line"> 26 [20201203] 16:48:30 Import productSpecMapTask_0_20201203_010000_0</span><br><span class="line"> 27 [20201203] 16:48:32 Import programGuideTask_0_20201203_010000_0</span><br><span class="line"> 28 [20201203] 16:48:33 Import providerTask_0_20201203_010000_0</span><br><span class="line"> 29 [20201203] 16:48:34 Import resColumnTask_0_20201203_010000_0</span><br><span class="line"> 30 [20201203] 16:48:38 Import resourcePkgTask_0_20201203_010000_0</span><br><span class="line"> 31 [20201203] 16:48:41 Import serviceProductInfo_0_20201203_010000_0</span><br><span class="line"> 32 [20201203] 16:48:42 Import serviceResourceInfo_0_20201203_010000_0</span><br><span class="line"> 33 [20201203] 16:48:44 Import userRelationTask_0_20201203_010000_0</span><br><span class="line"> 34 [20201203] 16:48:45 Import userTask_0_20201203_010000_69</span><br><span class="line"> 35 [20201203] 16:48:48 Import userTask_0_20201203_010117_70</span><br><span class="line">:set number   </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查找columnTask字符串对应的内容。</span></span><br><span class="line">  1 [20201203] 16:47:12 Begin</span><br><span class="line">  2 [20201203] 16:47:13 Import assetFileTask_0_20201203_010000_3</span><br><span class="line">  3 [20201203] 16:47:16 Import assetFileTask_0_20201203_010020_4</span><br><span class="line">  4 [20201203] 16:47:22 Import assetMapAssetTypeTask_0_20201203_010000_3</span><br><span class="line">  5 [20201203] 16:47:24 Import assetMapAssetTypeTask_0_20201203_010003_4</span><br><span class="line">  6 [20201203] 16:47:26 Import assetOrAssetFileTask_0_20201203_010000_9</span><br><span class="line">  7 [20201203] 16:47:28 Import assetOrAssetFileTask_0_20201203_010040_10</span><br><span class="line">  8 [20201203] 16:47:30 Import assetOrAssetFileTask_0_20201203_010047_11</span><br><span class="line">  9 [20201203] 16:47:32 Import assetOrAssetFileTask_0_20201203_010055_12</span><br><span class="line"> 10 [20201203] 16:47:34 Import assetTask_0_20201203_010000_3</span><br><span class="line"> 11 [20201203] 16:47:38 Import assetTask_0_20201203_010019_4</span><br><span class="line"> 12 [20201203] 16:47:41 Import assetTypeTask_0_20201203_010000_0</span><br><span class="line"> 13 [20201203] 16:47:43 Import cdrTask_0_20201203_020000_15</span><br><span class="line"> 14 [20201203] 16:47:46 Import cdrTask_0_20201203_021042_16</span><br><span class="line"> 15 [20201203] 16:47:52 Import cdrTask_0_20201203_021201_17</span><br><span class="line"> 16 [20201203] 16:47:59 Import cdrTask_0_20201203_021321_18</span><br><span class="line"> 17 [20201203] 16:48:06 Import cdrTask_0_20201203_021441_19</span><br><span class="line"> 18 [20201203] 16:48:14 Import cdrTask_0_20201203_021600_20</span><br><span class="line"> 19 [20201203] 16:48:20 Import channelTask_0_20201203_010000_0</span><br><span class="line"> 20 [20201203] 16:48:22 Import cmsDictTask_0_20201203_010000_0</span><br><span class="line"> 21 [20201203] 16:48:23 Import columnTask_0_20201203_010000_0</span><br><span class="line"> 22 [20201203] 16:48:25 Import orderTask_0_20201203_010000_0</span><br><span class="line"> 23 [20201203] 16:48:27 Import portalOrderInfoTask_0_20201203_010000_0</span><br><span class="line"> 24 [20201203] 16:48:28 Import productColumnTask_0_20201203_010000_0</span><br><span class="line"> 25 [20201203] 16:48:29 Import productResourceTask_0_20201203_010000_0</span><br><span class="line"> 26 [20201203] 16:48:30 Import productSpecMapTask_0_20201203_010000_0</span><br><span class="line"> 27 [20201203] 16:48:32 Import programGuideTask_0_20201203_010000_0</span><br><span class="line"> 28 [20201203] 16:48:33 Import providerTask_0_20201203_010000_0</span><br><span class="line"> 29 [20201203] 16:48:34 Import resColumnTask_0_20201203_010000_0</span><br><span class="line"> 30 [20201203] 16:48:38 Import resourcePkgTask_0_20201203_010000_0</span><br><span class="line"> 31 [20201203] 16:48:41 Import serviceProductInfo_0_20201203_010000_0</span><br><span class="line"> 32 [20201203] 16:48:42 Import serviceResourceInfo_0_20201203_010000_0</span><br><span class="line"> 33 [20201203] 16:48:44 Import userRelationTask_0_20201203_010000_0</span><br><span class="line"> 34 [20201203] 16:48:45 Import userTask_0_20201203_010000_69</span><br><span class="line"> 35 [20201203] 16:48:48 Import userTask_0_20201203_010117_70</span><br><span class="line">/columnTask</span><br></pre></td></tr></table></figure>
 
-<h2><span id="启动nfsrpcbind"><span id="inline-blue">启动NFS/rpcbind</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start rpcbind.service</span><br><span class="line">systemctl start nfs.service</span><br></pre></td></tr></table></figure>
+<h2><span id="head命令"><span id="inline-blue">head命令</span></span></h2><p><strong>作用</strong><br>    显示文件开头内容，默认显示前10行</p>
+<p><strong>选项</strong></p>
+<p>-n&lt;数字&gt; :指定显示的行数<br>-c&lt;数字&gt; :指定显示的字符数<br>-v :显示文件头部信息<br>-q :不显示文件头部信息</p>
+<p><strong>示例</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示my.cnf.bak文件的前3行内容</span></span><br><span class="line">[root@dap mysql]# head -3 my.cnf.bak </span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示100个字符</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> For advi[root@dap mysql]<span class="comment"># head -c 100 my.cnf.bak</span></span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-co</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">显示my.cnf.bak 文件头部信息</span></span><br><span class="line">[root@dap mysql]# head -v my.cnf.bak </span><br><span class="line">==&gt; my.cnf.bak &lt;==</span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># and set to the amount of RAM for the most important data</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cache <span class="keyword">in</span> MySQL. Start at 70% of total RAM <span class="keyword">for</span> dedicated server, <span class="keyword">else</span> 10%.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> innodb_buffer_pool_size = 128M</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># to turn on a very important data integrity option: logging</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">不显示my.cnf.bak文件头部信息</span></span><br><span class="line">[root@dap mysql]# head -q my.cnf.bak </span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># and set to the amount of RAM for the most important data</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cache <span class="keyword">in</span> MySQL. Start at 70% of total RAM <span class="keyword">for</span> dedicated server, <span class="keyword">else</span> 10%.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> innodb_buffer_pool_size = 128M</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># to turn on a very important data integrity option: logging</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2><span id="挂载命令"><span id="inline-blue">挂载命令</span></span></h2><p>挂载服务器：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/fctab</span><br><span class="line">/home 10.9.216*(rw,no_root_squash,sync)</span><br></pre></td></tr></table></figure>
-<p>ro: 只读<br>rw: 读写<br>root_squash: NFS客户端以root用户访问，映射为匿名用户<br>no_root_squash: NFS客户端以root用户访问，映射为服务端管理员账号<br>all_squash: 无论NFS客户端以什么账号访问，均映射为NFS服务端匿名用户<br>sync: 同步写入，直接写入磁盘<br>async: 异步写入，先写内存在写磁盘，可能导致数据丢失</p>
-<p>挂载客户端：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建挂载点</span></span><br><span class="line">mkdir /mount_home</span><br><span class="line"><span class="meta">#</span><span class="bash">挂载</span></span><br><span class="line">sudo mount -t nfs -o rw,atime -l 10.9.216.170:/home /mount_home</span><br></pre></td></tr></table></figure>
-<h2><span id="问题总结"><span id="inline-blue">问题总结</span></span></h2><h3><span id="mount-文件系统类型错误-选项错误-缺少代码页或助手程序或其他错误"><span id="inline-blue">mount: 文件系统类型错误、选项错误、缺少代码页或助手程序，或其他错误</span></span></h3><p>挂载客户端未安装启动NFS服务</p>
-<h3><span id="找不到portmap依赖"><span id="inline-blue">找不到portmap依赖</span></span></h3><p>安装NFS过程中参考文档一直提示需要安装portmap依赖，其实该依赖自从CentOS 6版本系统之后已被rpcbind依赖替代，并且默认已经安装启动</p>
-<h3><span id="挂载之后发现没有写入权限"><span id="inline-blue">挂载之后发现没有写入权限</span></span></h3><p>执行挂载命令需要加上sudo,提升用户权限</p>
+<h2><span id="rm命令"><span id="inline-blue">rm命令 </span></span></h2><p><strong>作用</strong><br>    删除一个目录下的多个文件或目录，对于链接文件，只删除整个链接文件，而原有文件不变。</p>
+<p><strong>选项</strong> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-d 直接把目录的硬链接数删除为0，删除该目录。</span><br><span class="line">-f 强制删除该目录。</span><br><span class="line">-i 删除前先询问是否删除。</span><br><span class="line">-r 递归删除目录下的文件和子目录。</span><br><span class="line">-v 显示详细的删除信息</span><br></pre></td></tr></table></figure>
+<p><strong>示例</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 删除b.sh文件</span></span><br><span class="line">[root@demo_mdn script]# rm b.sh</span><br><span class="line">rm：是否删除普通空文件 &quot;b.sh&quot;？y</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 强制删除b.sh文件</span></span><br><span class="line">[root@demo_mdn script]# rm -f b.sh</span><br><span class="line">[root@demo_mdn script]# </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 强制递归删除newDir目录，并显示详细信息</span></span><br><span class="line">[root@demo_mdn script]# rm -rfv newDir</span><br><span class="line">已删除&quot;newDir/1.txt&quot;</span><br><span class="line">已删除&quot;newDir/1.txt~&quot;</span><br><span class="line">已删除目录：&quot;newDir/oldDir&quot;</span><br><span class="line">已删除目录：&quot;newDir&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2><span id="cat命令"><span id="inline-blue">cat命令</span></span></h2><p><strong><em>作用</em></strong><br>    合并文件内容并显示</p>
+<p><strong><em>选项</em></strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-A //显示特殊字符	</span><br><span class="line">-n //对所有输出的行编号</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>实例</em></strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">显示特殊字符</span></span><br><span class="line">[root@demo_mdn user]# cat -A jdbc1.properties</span><br><span class="line">dbSrc=mysql$</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">对输出行编号</span></span><br><span class="line">[root@demo_mdn user]# cat -n jdbc2.properties </span><br><span class="line"> 1	dbUrl=jdbc:mysql://10.9.216.14:3306/test?useUnicode=true&amp;amp;characterEncoding=UTF-8</span><br><span class="line"> 2	dbUserName=root</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">合并jdbc1.properties、jdbc2.properties 文件内容到jdbc.properties并输出</span></span><br><span class="line">[root@demo_mdn user]# cat jdbc1.properties jdbc2.properties &gt;jdbc.properties</span><br><span class="line">dbSrc=mysql</span><br><span class="line">dbUrl=jdbc:mysql://10.9.216.14:3306/test?useUnicode=true&amp;amp;characterEncoding=UTF-8</span><br><span class="line">dbUserName=root</span><br></pre></td></tr></table></figure>
+
+<h2><span id="tar命令"><span id="inline-blue">tar命令</span></span></h2><p>选项</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">运行tar时必须要有下列参数中的至少一个才可运行：</span><br><span class="line">-A | --catenate | --concatenate 将一存档与已有的存档合并</span><br><span class="line">-c | --create 建立新的存档</span><br><span class="line">-d | --diff, --compare 比较存档与当前文件的不同之处</span><br><span class="line">--delete 从存档中删除</span><br><span class="line">-r | --append 附加到存档结尾</span><br><span class="line">-t | --list 列出存档中文件的目录</span><br><span class="line">-u |--update 仅将较新的文件附加到存档中</span><br><span class="line">-x | --extract | --get 从存档展开文件</span><br><span class="line">-z | --gzip | --ungzip 用gzip对存档压缩或解压</span><br><span class="line">-f | --file [HOSTNAME:]F 指定存档或设备（缺省为 /dev/rmt0）</span><br><span class="line">-x | --extract | --get 从存档展开文件</span><br><span class="line">-v | --verbose 详细显示处理的文件</span><br></pre></td></tr></table></figure>
+<p><strong><em>压缩</em></strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">命令格式：tar -czf  压缩文件名.tar.gz  被压缩文件名</span><br><span class="line"></span><br><span class="line">可先切换到当前目录下。压缩文件名和被压缩文件名都可加入路径。</span><br><span class="line"></span><br><span class="line">示例：tar -czf etl.V300R002B042.tar.gz etl.V300R002B042/</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 ]]></content>
       <categories>
         <category>Linux</category>
@@ -2013,23 +2079,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux查看cpu配置信息</title>
-    <url>/Linux/blogs/Linux%E6%9F%A5%E7%9C%8Bcpu%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/</url>
-    <content><![CDATA[<h2><span id="cpu信息"><span id="inline-blue">cpu信息</span></span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#查看cpu信息(配置)</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br><span class="line">      8  Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz</span><br><span class="line">	  </span><br><span class="line">#查看物理cpu个数</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo| grep &quot;physical id&quot;| sort| uniq| wc -l</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line"># 查看每个物理CPU中core的个数(即核数)</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo| grep &quot;cpu cores&quot;| uniq</span><br><span class="line">cpu cores	: 4</span><br><span class="line"></span><br><span class="line"># 查看逻辑CPU的个数</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo| grep &quot;processor&quot;| wc -l</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux查找指定class文件所在位置</title>
     <url>/Linux/blogs/Linux%E6%9F%A5%E6%89%BE%E6%8C%87%E5%AE%9Aclass%E6%96%87%E4%BB%B6%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE/</url>
     <content><![CDATA[<!-- toc -->
@@ -2054,6 +2103,23 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Linux查看cpu配置信息</title>
+    <url>/Linux/blogs/Linux%E6%9F%A5%E7%9C%8Bcpu%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/</url>
+    <content><![CDATA[<h2><span id="cpu信息"><span id="inline-blue">cpu信息</span></span></h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#查看cpu信息(配置)</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br><span class="line">      8  Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz</span><br><span class="line">	  </span><br><span class="line">#查看物理cpu个数</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo| grep &quot;physical id&quot;| sort| uniq| wc -l</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line"># 查看每个物理CPU中core的个数(即核数)</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo| grep &quot;cpu cores&quot;| uniq</span><br><span class="line">cpu cores	: 4</span><br><span class="line"></span><br><span class="line"># 查看逻辑CPU的个数</span><br><span class="line">[root@lwdCSCDN ~]# cat &#x2F;proc&#x2F;cpuinfo| grep &quot;processor&quot;| wc -l</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux查看当前目录空间占用</title>
     <url>/Linux/blogs/Linux%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E7%A9%BA%E9%97%B4%E5%8D%A0%E7%94%A8/</url>
     <content><![CDATA[<h2><span id="查看空间占用"><span id="inline-blue">查看空间占用</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN elasticsearch-2.4.4]# ls</span><br><span class="line">bin  config  data  EsToolNew  jdk1.7.0_67  lib  LICENSE.txt  logs  modules  NOTICE.txt  pid  plugins  README.textile</span><br><span class="line"><span class="meta">#</span><span class="bash">查看当前目录占用情况</span></span><br><span class="line">[root@lwdCSCDN elasticsearch-2.4.4]# du -sh *</span><br><span class="line">336K	bin</span><br><span class="line">16K	config</span><br><span class="line">31G	data</span><br><span class="line">20M	EsToolNew</span><br><span class="line">285M	jdk1.7.0_67</span><br><span class="line">25M	lib</span><br><span class="line">12K	LICENSE.txt</span><br><span class="line">229M	logs</span><br><span class="line">5.0M	modules</span><br><span class="line">4.0K	NOTICE.txt</span><br><span class="line">4.0K	pid</span><br><span class="line">21M	plugins</span><br><span class="line">12K	README.textile</span><br></pre></td></tr></table></figure>
@@ -2065,6 +2131,24 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux环境查看class文件编译版本信息</title>
+    <url>/Linux/blogs/Linux%E7%8E%AF%E5%A2%83%E6%9F%A5%E7%9C%8Bclass%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/</url>
+    <content><![CDATA[<h2><span id="查看class文件编译版本信息"><span id="inline-blue">查看class文件编译版本信息</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN common]# javap -v CommonContent.class </span><br><span class="line">Classfile /usr/local/moui_nanjing/V242/coship-oms/webapps/oms/WEB-INF/classes/com/coship/oms/common/CommonContent.class</span><br><span class="line">  Last modified 2021-11-16; size 474 bytes</span><br><span class="line">  MD5 checksum def74d7189fc3d20401e9070e4c8ad37</span><br><span class="line">  Compiled from &quot;CommonContent.java&quot;</span><br><span class="line">public class com.coship.oms.common.CommonContent</span><br><span class="line">  minor version: 0</span><br><span class="line">  major version: 52</span><br><span class="line"><span class="meta">#</span><span class="bash"> major version: 52  代表是java编译版本为1.8</span></span><br></pre></td></tr></table></figure>
+<h2><span id="java编译器版本对应关系"><span id="inline-blue">Java编译器版本对应关系</span></span></h2><pre><code>Unsupported major.minor version 52.0 对应于 JDK1.8（JRE1.8） </code></pre>
+<p>　　Unsupported major.minor version 51.0 对应于 JDK1.7（JRE1.7） </p>
+<p>　　Unsupported major.minor version 50.0 对应于 JDK1.6（JRE1.6） </p>
+<p>　　Unsupported major.minor version 49.0 对应于 JDK1.5（JRE1.5）</p>
+<h2><span id="兼容关系"><span id="inline-blue">兼容关系</span></span></h2><p>Java低版本编译的jar包，可以在高版本Java编译环境下运行，反之，Java高版本编译的jar包不能在低版本Java环境运行</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3119,7 +3203,7 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>MySQL: 5.7<br>chameleon: chameleon-6.0.0<br>OpenGauss: openGauss-6.0.0</p>
 <h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>项目迁移到国产操作系统，对应的数据库也一并更换为openGauss,需要将MySQL全量数据迁移到OpenGauss</p>
 <h2><span id="安装chameleon"><span id="inline-blue">安装chameleon</span></span></h2><p>chameleon:<br>chameleon是一个用Python3编写的将MySQL迁移至openGauss的实时复制工具，支持初始全量数据的复制以及后续增量数据的实时在线复制功能。chameleon通过一次初始化配置，使用只读模式，将MySQL的数据全量拉取到openGauss。支持在同一快照下，表间数据并行迁移。<br>全量迁移支持的功能：支持表及表数据、视图、触发器、自定义函数、存储过程的全量迁移</p>
-<p>下载chameleon：<a href="https://opengauss.obs.cn-south-1.myhuaweicloud.com/latest/tools/openEuler20.03/chameleon-6.0.0-x86_64.tar.gz">https://opengauss.obs.cn-south-1.myhuaweicloud.com/latest/tools/openEuler20.03/chameleon-6.0.0-x86_64.tar.gz</a><br>openEuler20.03操作系统x86_64架构，如果需要其他类型的安装包切换到下面地址：<a href="https://gitee.com/opengauss/openGauss-tools-chameleon/blob/master/chameleon%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">https://gitee.com/opengauss/openGauss-tools-chameleon/blob/master/chameleon%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md</a><br>2.2节提供所有类型的安装包，可自行选择。</p>
+<p>下载chameleon：<br><a href="https://opengauss.obs.cn-south-1.myhuaweicloud.com/latest/tools/openEuler20.03/chameleon-6.0.0-x86_64.tar.gz">https://opengauss.obs.cn-south-1.myhuaweicloud.com/latest/tools/openEuler20.03/chameleon-6.0.0-x86_64.tar.gz</a><br>openEuler20.03操作系统x86_64架构，如果需要其他类型的安装包切换到下面地址：<br><a href="https://gitee.com/opengauss/openGauss-tools-chameleon/blob/master/chameleon%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">https://gitee.com/opengauss/openGauss-tools-chameleon/blob/master/chameleon%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md</a><br>2.2节提供所有类型的安装包，可自行选择。</p>
 <p>安装过程中，将自动安装该工具依赖的其他库，请确保本机的pip能正常下载安装相关依赖。相关依赖库及版本要求为：<br>PyMySQL&gt;=0.10.0, &lt;1.0.0<br>argparse&gt;=1.2.1<br>mysql-replication&gt;=0.22<br>py-opengauss&gt;=1.3.1<br>PyYAML&gt;=5.1.2<br>tabulate&gt;=0.8.1<br>daemonize&gt;=2.4.7<br>rollbar&gt;=0.13.17<br>geomet&gt;=0.3.0<br>mysqlclient&gt;=2.1.1<br>mysqlclient的安装需要先使用yum安装mysql-devel，直接使用yum install mysql-devel即可。</p>
 <p>如果对应的yum源没有以上的依赖，可通过离线安装的方式下载依赖并上传安装，下载离线镜像源的地址：<a href="https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/">https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/</a></p>
 <p>Chameleon安装需要依赖python3环境，自行安装配置即可</p>
@@ -3135,8 +3219,12 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <p>假设已经在chameleon所在服务器安装了mysql-devel、mysqlclient依赖，但还是提示libmysqlclient.so.20找不到，造成这个问题的原因是安装mysql-devel、mysqlclient之后对应.so文件没有被拷贝到/usr/lib64路径下，依赖没有被识别，解决办法是在安装了mysql的其他服务器上，rpm格式安装包安装的依赖在/usr/lib64路径下，采用免安装版MySQL在安装目录lib下，拷贝一份相同的文件到chameleon服务器/usr/lib64路径下<br>libmysqlclient.so.20文件后缀名不一致通过做软连接的方式处理下就可以了，命令如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s libmysqlclient.so.20.3.20 libmysqlclient.so.20</span><br></pre></td></tr></table></figure>
 <p><img src="/images/Chameleon/Chameleon_20240812_001.png" alt="chameleon数据迁移"></p>
+<p>创建Python虚拟环境并激活</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /chameleon/chameleon-6.0.0/</span><br><span class="line">python3 -m venv venv</span><br><span class="line">source venv/bin/activate</span><br></pre></td></tr></table></figure>
-<h2><span id="数据迁移"><span id="inline-blue">数据迁移</span></span></h2><p>创建chameleon配置文件<br>进入Python虚拟环境安装好chameleon工具。<br>执行如下命令创建chameleon配置文件目录。</p>
+<h2><span id="数据迁移"><span id="inline-blue">数据迁移</span></span></h2><p>MySQL开启复制功能,mysql配置文件mysqld节点下新增如下配置，MySQL服务重启生效</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@S21614 home]# vim /etc/my.cnf</span><br><span class="line">[mysqld]</span><br><span class="line">binlog_format = ROW</span><br><span class="line">log_bin = mysql-bin</span><br><span class="line">server_id = 1</span><br><span class="line">binlog_row_image = FULL</span><br></pre></td></tr></table></figure>
+
+<p>创建chameleon配置文件<br>进入Python虚拟环境安装好chameleon工具。<br>执行如下命令创建chameleon配置文件目录。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chameleon set_configuration_files</span><br></pre></td></tr></table></figure>
 <p>执行该命令后，将在~/.pg_chameleon/configuration目录下创建默认的配置文件模板。<br>执行如下命令复制一份默认的配置文件模板保存为default.yml。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd ~/.pg_chameleon/configuration</span><br><span class="line">cp config-example.yml default.yml</span><br></pre></td></tr></table></figure>
@@ -3148,7 +3236,7 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <p>迁移数据时，MySQL侧使用的用户名密码分别是 root 和 coship。MySQL服务器的IP和port分别是10.9.216.14和3306，待迁移的数据库是test。<br> openGauss侧使用的用户名密码分别是 admin/admin@123。openGauss服务器的IP和port分别是10.9.216.172和5432，目标数据库是test，同时会在test数据库创建指定shema，迁移的表都将位于该schema下。</p>
 <p>需要注意的是，这里使用的用户需要有远程连接MySQL和openGauss的权限，以及对对应数据库的读写权限。同时对于openGauss，运行chameleon所在的机器需要在openGauss的远程访问白名单中。对于MySQL，用户还需要有RELOAD、REPLICATION CLIENT、REPLICATION SLAVE的权限。</p>
 <p>初始化迁移</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd  /chameleon/chameleon-6.0.0/venv/bin</span><br><span class="line">chameleon create_replica_schema --config default</span><br><span class="line">chameleon add_source --config default --source mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd  /chameleon/chameleon-6.0.0/venv/bin</span><br><span class="line">./chameleon create_replica_schema --config default</span><br><span class="line">./chameleon add_source --config default --source mysql</span><br></pre></td></tr></table></figure>
 <p>复制基础数据</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /chameleon/chameleon-6.0.0/venv/bin</span><br><span class="line">./chameleon init_replica --config default --source mysql</span><br></pre></td></tr></table></figure>
 <p>该步骤完成之后，数据库表全量数据就迁移完成了</p>
@@ -3165,7 +3253,7 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /chameleon/chameleon-6.0.0/venv/bin</span><br><span class="line">./chameleon start_proc_replica --config default --source mysql --debug</span><br></pre></td></tr></table></figure>
 
 <p>迁移结束清理资源</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chameleon stop_replica --config default --source mysql</span><br><span class="line">chameleon detach_replica --config default --source mysql</span><br><span class="line">chameleon drop_replica_schema --config default</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./chameleon stop_replica --config default --source mysql</span><br><span class="line">./chameleon detach_replica --config default --source mysql</span><br><span class="line">./chameleon drop_replica_schema --config default</span><br></pre></td></tr></table></figure>
 
 <h1><span id="问题汇总"><span id="inline-blue">问题汇总</span></span></h1><h2><span id="问题一"><span id="inline-blue">问题一</span></span></h2><p>chameleon执行完初始化和复制初始化数据命令之后，发现日志没有报错，但MySQL数据库中的表数据库没有迁移到openGauss,可以到openGauss的日志运行目录查看对应的日志<br>，日志目录：/data/openGauss/gaussdb/data/db1/pg_log</p>
 <h2><span id="问题二"><span id="inline-blue">问题二</span></span></h2><p>执行数据迁移命令后openGauss日志报错，提示数据库不兼容，原因是创建数据库时没有加上指定的兼容参数。</p>
@@ -3174,6 +3262,7 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <h2><span id="问题三"><span id="inline-blue">问题三</span></span></h2><p>执行数据迁移命令后openGauss日志报错，提示迁移用户权限不足，原因是没有给迁移用户分配足够的权限。<br>给迁移用户admin增加对应的权限</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">赋予创建角色权限</span></span><br><span class="line">alter user admin with Create role;</span><br><span class="line"><span class="meta">#</span><span class="bash">赋予创建数据库权限</span></span><br><span class="line">alter user admin with Create DB;</span><br><span class="line"><span class="meta">#</span><span class="bash">赋予备份权限</span></span><br><span class="line">alter user admin with Replication;</span><br><span class="line"><span class="meta">#</span><span class="bash">赋予系统管理员权限</span></span><br><span class="line">alter user admin with Sysadmin;</span><br></pre></td></tr></table></figure>
 <p>更改用户权限之后，执行\du 可以查看用户权限<br><img src="/images/Chameleon/Chameleon_20240812_003.png" alt="chameleon数据迁移"></p>
+<p>参考文档：<a href="https://gitee.com/opengauss/openGauss-tools-chameleon/blob/master/chameleon%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">https://gitee.com/opengauss/openGauss-tools-chameleon/blob/master/chameleon%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md</a></p>
 ]]></content>
       <categories>
         <category>MySQL</category>
@@ -3189,14 +3278,15 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 
 <ul>
 <li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a><ul>
-<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E4%B8%80span"><span id="inline-blue">问题一</span></a></li>
-<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E4%BA%8Cspan"><span id="inline-blue">问题二</span></a></li>
-</ul>
-</li>
+<li><a href="#span-idinline-blue%E8%83%8C%E6%99%AFspan"><span id="inline-blue">背景</span></a></li>
 <li><a href="#span-idinline-blue%E5%AE%9E%E7%8E%B0span"><span id="inline-blue">实现</span></a><ul>
 <li><a href="#span-idinline-blue%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AEspan"><span id="inline-blue">修改配置</span></a></li>
 <li><a href="#span-idinline-bluenavicate%E8%BF%9E%E6%8E%A5opengaussspan"><span id="inline-blue">navicate连接OpenGauss</span></a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93span"><span id="inline-blue">问题总结</span></a><ul>
+<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E4%B8%80span"><span id="inline-blue">问题一</span></a></li>
+<li><a href="#span-idinline-blue%E9%97%AE%E9%A2%98%E4%BA%8Cspan"><span id="inline-blue">问题二</span></a></li>
 </ul>
 </li>
 </ul>
@@ -3204,14 +3294,14 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 
 <h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>系统：openEuler release 20.03 (LTS-SP3)<br>数据库： openGauss-6.0.0-RC1</p>
 <h1><span id="背景"><span id="inline-blue">背景</span></span></h1><p>使用navicate连接远程OpenGauss数据库，提示没有权限被拒绝。</p>
-<h2><span id="问题一"><span id="inline-blue">问题一</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Forbid remote connection with initial user.</span><br></pre></td></tr></table></figure>
-<p>openGauss不允许使用超员来远程连接，应该重新创建一个数据库用户进而使用远程连接。</p>
-<h2><span id="问题二"><span id="inline-blue">问题二</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">none of the server&#x27;s SASL authentication mechanisms are supported</span><br></pre></td></tr></table></figure>
-<p>说明你的用户密码加密方式不支持远程连接，要按如下流程修改。</p>
 <h1><span id="实现"><span id="inline-blue">实现</span></span></h1><h2><span id="修改配置"><span id="inline-blue">修改配置</span></span></h2><p>修改OpenGauss配置文件postgresql.conf，文件路径如下：<br>/data/openGauss/gaussdb/data/db1<br>找到password_encryption_type 这个属性，将注释取消，然后将value改成 0（密码格式sha256 MD5 都可用），更改好后按：wq保存<br><img src="/images/OpenGauss/OpenGauss_20240812_001.png" alt="OpenGauss配置"><br>修改OpenGauss配置文件pg_hba.conf，文件路径如下：<br>/data/openGauss/gaussdb/data/db1<br>增加如下两项配置，将远程连接授权方式修改为MD5<br>0.0.0.0 :表示所有外部主机都可以访问<br>10.9.212.55：表示使用navicate连接OpenGauss的windows主机地址<br><img src="/images/OpenGauss/OpenGauss_20240812_002.png" alt="OpenGauss配置"></p>
 <p>配置文件修改完成之后需要修改用户的密码。变更加密方式，或者直接重新创建一个用户</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建新用户</span></span><br><span class="line">CREATE USER admin WITH PASSWORD &#x27;admin@123&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更改用户密码</span></span><br><span class="line">ALTER ROLE admin IDENTIFIED BY &#x27;新密码&#x27; REPLACE &#x27;旧密码&#x27;</span><br></pre></td></tr></table></figure>
 <h2><span id="navicate连接opengauss"><span id="inline-blue">navicate连接OpenGauss</span></span></h2><p><img src="/images/OpenGauss/OpenGauss_20240812_003.png" alt="navicate连接OpenGauss"><br><img src="/images/OpenGauss/OpenGauss_20240812_004.png" alt="navicate连接OpenGauss"></p>
+<h1><span id="问题总结"><span id="inline-blue">问题总结</span></span></h1><h2><span id="问题一"><span id="inline-blue">问题一</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Forbid remote connection with initial user.</span><br></pre></td></tr></table></figure>
+<p>openGauss不允许使用超员来远程连接，应该重新创建一个数据库用户进而使用远程连接。</p>
+<h2><span id="问题二"><span id="inline-blue">问题二</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">none of the server&#x27;s SASL authentication mechanisms are supported</span><br></pre></td></tr></table></figure>
+<p>说明你的用户密码加密方式不支持远程连接，要按以上流程修改。</p>
 ]]></content>
       <categories>
         <category>OpenGauss</category>
@@ -3423,7 +3513,7 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
 <h1><span id="目的"><span id="inline-blue">目的</span></span></h1><p>管理后台上传到FTP的图片目录，需要通过使用nginx代理给接口下载使用，但nginx如果采用回源方案的话导致在接口大量并发的情况下，nginx源服务器出现报错，代理下载nginx服务器缓存出现异常，不能正常提供下载服务。所以将nginx都修改为代理本地服务器的目录，通过rsync将上传文件的FTP目录同步到nginx服务器，减少回源的时间。</p>
 <h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>1、先查看linux的内核是否支持inotify，支持inotify的内核最小为2.6.13，输入命令：uname –a。如下图所示，内核为3.10.0，支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Linux S21614 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
-<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#114;&#111;&#111;&#116;&#x40;&#49;&#x39;&#x32;&#46;&#x31;&#x36;&#56;&#46;&#x31;&#48;&#48;&#x2e;&#49;&#48;&#49;">&#114;&#111;&#111;&#116;&#x40;&#49;&#x39;&#x32;&#46;&#x31;&#x36;&#56;&#46;&#x31;&#48;&#48;&#x2e;&#49;&#48;&#49;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
+<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#114;&#x6f;&#111;&#116;&#x40;&#49;&#x39;&#50;&#46;&#49;&#x36;&#56;&#46;&#x31;&#x30;&#48;&#46;&#49;&#48;&#49;">&#114;&#x6f;&#111;&#116;&#x40;&#49;&#x39;&#50;&#46;&#49;&#x36;&#56;&#46;&#x31;&#x30;&#48;&#46;&#49;&#48;&#49;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_queued_events</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_instances</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_watches</span><br></pre></td></tr></table></figure>
 <p>5、取得软件包inotify-tools-3.13.tar.gz，放在/tmp下。<br>6、输入命令：tar zvxf inotify-tools-3.13.tar.gz，解压软件包。<br>7、输入命令：cd inotify-tools-3.13，进入解压后的目录。<br>8、输入命令：./configure<br>9、输入命令：make<br>10、输入命令：make install<br>11、在系统下执行命令：man inotify、 man inotifywait、 man inotifywatch即可得到相应的帮助信息，表示inotify安装成功。<br>12、输入命令：rsync，查看rsync是否安装。<br>rsync一般是系统默认安装，如果没有安装就取得软件包，安装方法同inotify。</p>
 <p>1、取得syncapps.sh、versService.dat脚本。<br>syncapps.sh脚本内容如下：</p>
@@ -3879,6 +3969,27 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Tomcat 启动配置优化</title>
+    <url>/Tomcat/blogs/Tomcat%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h2><span id="内存优化"><span id="inline-blue">内存优化</span></span></h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">文件名称：catalina.sh </span><br><span class="line">文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin</span><br><span class="line">JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2><span id="连接数优化"><span id="inline-blue">连接数优化</span></span></h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">文件名称：server.xml  </span><br><span class="line">文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf</span><br><span class="line">&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2><span id="启动参数优化"><span id="inline-blue">启动参数优化</span></span></h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">文件名称：catalina.properties </span><br><span class="line">文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf</span><br><span class="line"></span><br><span class="line">1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\</span><br><span class="line">2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可</span><br><span class="line">3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar</span><br><span class="line">4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Tomcat 指定启动JDK版本</title>
     <url>/Tomcat/blogs/Tomcat%E6%8C%87%E5%AE%9A%E5%90%AF%E5%8A%A8jdk%E7%89%88%E6%9C%AC/</url>
     <content><![CDATA[<h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">假设jdk版本7，目录为/home/user1/jdk</span><br><span class="line">进入到tomcat的bin目录下，修改setclasspath.sh文件，在文件首部添加两行代码</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/home/user/jdk</span><br><span class="line">export JRE_HOME=/home/user/jdk/jre</span><br></pre></td></tr></table></figure>
@@ -3892,34 +4003,6 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat部署war,访问不带项目名称</title>
-    <url>/Tomcat/blogs/Tomcat%E9%83%A8%E7%BD%B2war,%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%B8%A6%E9%A1%B9%E7%9B%AE%E5%90%8D%E7%A7%B0/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blue%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95span"><span id="inline-blue">解决办法</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>Tomcat: 8.0.38<br>项目部署Tomcat之后，访问后台和接口不带项目名称</p>
-<h1><span id="解决办法"><span id="inline-blue">解决办法</span></span></h1><p>修改配置文件server.xml,文件所在路径：/usr/local/tomcat8/conf/server.xml<br>添加如下内容：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># path设置为&quot;&quot;,docBase设置为对应项目名称，reloadable=&quot;true&quot; 标识项目文件的修改不需要重启便可以生效</span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">&quot;&quot;</span> <span class="attr">docBase</span>=<span class="string">&quot;myproject&quot;</span> <span class="attr">reloadable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>完整内容如下：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  Licensed to the Apache Software Foundation (ASF) under one or more</span></span><br><span class="line"><span class="comment">  contributor license agreements.  See the NOTICE file distributed with</span></span><br><span class="line"><span class="comment">  this work for additional information regarding copyright ownership.</span></span><br><span class="line"><span class="comment">  The ASF licenses this file to You under the Apache License, Version 2.0</span></span><br><span class="line"><span class="comment">  (the &quot;License&quot;); you may not use this file except in compliance with</span></span><br><span class="line"><span class="comment">  the License.  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">  limitations under the License.</span></span><br><span class="line"><span class="comment">--&gt;</span><span class="comment">&lt;!-- <span class="doctag">Note:</span>  A &quot;Server&quot; is not itself a &quot;Container&quot;, so you may not</span></span><br><span class="line"><span class="comment">     define subcomponents such as &quot;Valves&quot; at this level.</span></span><br><span class="line"><span class="comment">     Documentation at /docs/config/server.html</span></span><br><span class="line"><span class="comment"> --&gt;</span><span class="tag">&lt;<span class="name">Server</span> <span class="attr">port</span>=<span class="string">&quot;8007&quot;</span> <span class="attr">shutdown</span>=<span class="string">&quot;SHUTDOWN&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.startup.VersionLoggerListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Security listener. Documentation at /docs/config/listeners.html</span></span><br><span class="line"><span class="comment">  &lt;Listener className=&quot;org.apache.catalina.security.SecurityListener&quot; /&gt;</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--APR library loader. Documentation at /docs/apr.html --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">SSLEngine</span>=<span class="string">&quot;on&quot;</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.core.AprLifecycleListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Prevent memory leaks due to use of particular java/javax APIs--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Global JNDI resources</span></span><br><span class="line"><span class="comment">       Documentation at /docs/jndi-resources-howto.html</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">GlobalNamingResources</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Editable user database that can also be used by</span></span><br><span class="line"><span class="comment">         UserDatabaseRealm to authenticate users</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Resource</span> <span class="attr">auth</span>=<span class="string">&quot;Container&quot;</span> <span class="attr">description</span>=<span class="string">&quot;User database that can be updated and saved&quot;</span> <span class="attr">factory</span>=<span class="string">&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;</span> <span class="attr">name</span>=<span class="string">&quot;UserDatabase&quot;</span> <span class="attr">pathname</span>=<span class="string">&quot;conf/tomcat-users.xml&quot;</span> <span class="attr">type</span>=<span class="string">&quot;org.apache.catalina.UserDatabase&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">GlobalNamingResources</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- A &quot;Service&quot; is a collection of one or more &quot;Connectors&quot; that share</span></span><br><span class="line"><span class="comment">       a single &quot;Container&quot; <span class="doctag">Note:</span>  A &quot;Service&quot; is not itself a &quot;Container&quot;,</span></span><br><span class="line"><span class="comment">       so you may not define subcomponents such as &quot;Valves&quot; at this level.</span></span><br><span class="line"><span class="comment">       Documentation at /docs/config/service.html</span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Service</span> <span class="attr">name</span>=<span class="string">&quot;Catalina&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--The connectors can use a shared executor, you can define one or more named thread pools--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;</span></span><br><span class="line"><span class="comment">        maxThreads=&quot;150&quot; minSpareThreads=&quot;4&quot;/&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- A &quot;Connector&quot; represents an endpoint by which requests are received</span></span><br><span class="line"><span class="comment">         and responses are returned. Documentation at :</span></span><br><span class="line"><span class="comment">         Java HTTP Connector: /docs/config/http.html (blocking &amp; non-blocking)</span></span><br><span class="line"><span class="comment">         Java AJP  Connector: /docs/config/ajp.html</span></span><br><span class="line"><span class="comment">         APR (HTTP/AJP) Connector: /docs/apr.html</span></span><br><span class="line"><span class="comment">         Define a non-SSL/TLS HTTP/1.1 Connector on port 8080</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span> <span class="attr">port</span>=<span class="string">&quot;10088&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- A &quot;Connector&quot; using the shared thread pool--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;Connector executor=&quot;tomcatThreadPool&quot;</span></span><br><span class="line"><span class="comment">               port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span></span><br><span class="line"><span class="comment">               connectionTimeout=&quot;20000&quot;</span></span><br><span class="line"><span class="comment">               redirectPort=&quot;8443&quot; /&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443</span></span><br><span class="line"><span class="comment">         This connector uses the NIO implementation that requires the JSSE</span></span><br><span class="line"><span class="comment">         style configuration. When using the APR/native implementation, the</span></span><br><span class="line"><span class="comment">         OpenSSL style configuration is required as described in the APR/native</span></span><br><span class="line"><span class="comment">         documentation --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span></span><br><span class="line"><span class="comment">               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;</span></span><br><span class="line"><span class="comment">               clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Define an AJP 1.3 Connector on port 8009 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;18009&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;AJP/1.3&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- An Engine represents the entry point (within Catalina) that processes</span></span><br><span class="line"><span class="comment">         every request.  The Engine implementation for Tomcat stand alone</span></span><br><span class="line"><span class="comment">         analyzes the HTTP headers included with the request, and passes them</span></span><br><span class="line"><span class="comment">         on to the appropriate Host (virtual host).</span></span><br><span class="line"><span class="comment">         Documentation at /docs/config/engine.html --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- You should set jvmRoute to support load-balancing via AJP ie :</span></span><br><span class="line"><span class="comment">    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot; jvmRoute=&quot;jvm1&quot;&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Catalina&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!--For clustering, please take a look at documentation at:</span></span><br><span class="line"><span class="comment">          /docs/cluster-howto.html  (simple how to)</span></span><br><span class="line"><span class="comment">          /docs/config/cluster.html (reference documentation) --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      &lt;Cluster className=&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;/&gt;</span></span><br><span class="line"><span class="comment">      --&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Use the LockOutRealm to prevent attempts to guess user passwords</span></span><br><span class="line"><span class="comment">           via a brute-force attack --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Realm</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.realm.LockOutRealm&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This Realm uses the UserDatabase configured in the global JNDI</span></span><br><span class="line"><span class="comment">             resources under the key &quot;UserDatabase&quot;.  Any edits</span></span><br><span class="line"><span class="comment">             that are performed against this UserDatabase are immediately</span></span><br><span class="line"><span class="comment">             available for use by the Realm.  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Realm</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;</span> <span class="attr">resourceName</span>=<span class="string">&quot;UserDatabase&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Realm</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- SingleSignOn valve, share authentication between web applications</span></span><br><span class="line"><span class="comment">             Documentation at: /docs/config/valve.html --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        &lt;Valve className=&quot;org.apache.catalina.authenticator.SingleSignOn&quot; /&gt;</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- Access log processes all example.</span></span><br><span class="line"><span class="comment">             Documentation at: /docs/config/valve.html</span></span><br><span class="line"><span class="comment">             <span class="doctag">Note:</span> The pattern used is equivalent to using pattern=&quot;common&quot; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.valves.AccessLogValve&quot;</span> <span class="attr">directory</span>=<span class="string">&quot;logs&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;%h %l %u %t <span class="symbol">&amp;quot;</span>%r<span class="symbol">&amp;quot;</span> %s %b&quot;</span> <span class="attr">prefix</span>=<span class="string">&quot;localhost_access_log&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;.txt&quot;</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">&quot;&quot;</span> <span class="attr">docBase</span>=<span class="string">&quot;myproject&quot;</span> <span class="attr">reloadable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Engine</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Server</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
-      <tags>
         <tag>Tomcat</tag>
       </tags>
   </entry>
@@ -4597,17 +4680,29 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Jetty修改端口号</title>
-    <url>/Jetty/blogs/Jetty%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3/</url>
-    <content><![CDATA[<h2><span id="linux环境"><span id="inline-blue">linux环境</span></span></h2><p>文件名称：start.ini<br>文件路径：jetty安装目录下（/usr/local/jetty_home）<br>#文件内搜索对应标识jetty.port</p>
-<p><img src="/images/jetty/jetty_2021_06_10_001.png" alt="jetty变更端口号"></p>
+    <title>Hexo近期文章设置</title>
+    <url>/Hexo/blogs/hexo%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h2><span id="近期文章设置"><span id="inline-blue">近期文章设置</span></span></h2><p>新建 source/_data/sidebar.njk 文件(如没有对应目录则自行创建)，内容如下：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&#123;# RecentPosts #&#125;</span><br><span class="line">&#123;%- if theme<span class="selector-class">.recent_posts</span> %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-recent-posts motion-element&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-recent-posts-title&quot;&gt;</span><br><span class="line">      &#123;%- if theme<span class="selector-class">.recent_posts</span><span class="selector-class">.icon</span> %&#125;</span><br><span class="line">      &lt;i class=&quot;&#123;&#123; theme.recent_posts.icon &#125;&#125; fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line">      &#123;&#123; theme<span class="selector-class">.recent_posts</span><span class="selector-class">.title</span> &#125;&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-recent-posts-list&quot;&gt;</span><br><span class="line">      &#123;%- set posts = site.posts.sort(&#x27;date&#x27;, &#x27;desc&#x27;).toArray() %&#125;</span><br><span class="line">      &#123;%- for post in posts.slice(&#x27;0&#x27;, theme.recent_posts.max_count) %&#125;</span><br><span class="line">        &lt;li class=&quot;links-of-recent-posts-item&quot;&gt;</span><br><span class="line">          &#123;&#123; next_url(post<span class="selector-class">.path</span>, post<span class="selector-class">.title</span>, &#123;title: post.path&#125;) &#125;&#125;</span><br><span class="line">        &lt;/<span class="selector-tag">li</span>&gt;</span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">ul</span>&gt;</span><br><span class="line">  &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改next主题下_config.yml配置文件,取消 custom_file_path 中的 sidebar 和 style 两个注释，并新增 recent_posts 内容。variable 应该是设置另外的功能时打开的，和此处无关。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="string">source/_data/sidebar.njk</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">  <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br><span class="line"></span><br><span class="line"><span class="attr">recent_posts:</span></span><br><span class="line"><span class="comment"># 块标题</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">最近文章</span></span><br><span class="line"><span class="comment"># 图标</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-history</span></span><br><span class="line"><span class="comment"># 最多多少文章链接</span></span><br><span class="line">  <span class="attr">max_count:</span> <span class="number">5</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在 next主题目录下source/_data/styles.styl 文件中添加以下内容(文件不存在新建即可):</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 近期文章</span><br><span class="line"><span class="selector-class">.links-of-recent-posts</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.8125em</span></span><br><span class="line">  margin-top: <span class="number">10px</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-title</span><br><span class="line">  font-size: <span class="number">1.03em</span></span><br><span class="line">  font-weight: <span class="number">600</span></span><br><span class="line">  margin-top: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-list</span><br><span class="line">  list-style: none</span><br><span class="line">  margin: <span class="number">0</span></span><br><span class="line">  padding: <span class="number">0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 ]]></content>
       <categories>
-        <category>Jetty</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
-        <tag>Jetty</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -5120,93 +5215,17 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Linux-文档编辑</title>
-    <url>/Linux/blogs/Linux-%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-bluevim%E5%91%BD%E4%BB%A4span"><span id="inline-blue">vim命令</span></a></li>
-<li><a href="#span-idinline-bluehead%E5%91%BD%E4%BB%A4span"><span id="inline-blue">head命令</span></a></li>
-<li><a href="#span-idinline-bluerm%E5%91%BD%E4%BB%A4-span"><span id="inline-blue">rm命令 </span></a></li>
-<li><a href="#span-idinline-bluecat%E5%91%BD%E4%BB%A4span"><span id="inline-blue">cat命令</span></a></li>
-<li><a href="#span-idinline-bluetar%E5%91%BD%E4%BB%A4span"><span id="inline-blue">tar命令</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="vim命令"><span id="inline-blue">vim命令</span></span></h2><p><strong>作用</strong><br>vi命令是unix和类unix系统通用全屏幕文本编辑器，vim是vi的加强版，与vi完全兼容，并添加了很多增强功能。<br><strong>选项</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crtl+u: 向文件首翻半屏。</span><br><span class="line">crtl+d: 此文件尾翻半屏。</span><br><span class="line">crtl+f: 向文件首翻一屏。</span><br><span class="line">crtl+b: 向文件尾翻一屏。</span><br><span class="line">ESC:从编辑模式切换到命令模式。</span><br><span class="line">:行号 :光标跳到指定行的行首。</span><br><span class="line">:$ :光标跳到文件尾。</span><br><span class="line">/字符串 :文本查找操作，从光标所在当前位置向文件尾部查找指定的字符串，查找到的字符串高亮显示。</span><br><span class="line">:wq :命令模式下，执行存盘并退出。</span><br><span class="line">:q :命令模式下，执行退出。</span><br><span class="line">:w! :命令模式下，强制执行存盘操作。</span><br><span class="line">:q! :命令模式下，强制执行退出vi命令。</span><br><span class="line">:set number :命令模式下，显示行号。</span><br><span class="line">:set nonumber :命令模式下，不显示行号。</span><br></pre></td></tr></table></figure>
-<p><strong>示例</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示行号</span></span><br><span class="line">  1 [20201203] 16:47:12 Begin</span><br><span class="line">  2 [20201203] 16:47:13 Import assetFileTask_0_20201203_010000_3</span><br><span class="line">  3 [20201203] 16:47:16 Import assetFileTask_0_20201203_010020_4</span><br><span class="line">  4 [20201203] 16:47:22 Import assetMapAssetTypeTask_0_20201203_010000_3</span><br><span class="line">  5 [20201203] 16:47:24 Import assetMapAssetTypeTask_0_20201203_010003_4</span><br><span class="line">  6 [20201203] 16:47:26 Import assetOrAssetFileTask_0_20201203_010000_9</span><br><span class="line">  7 [20201203] 16:47:28 Import assetOrAssetFileTask_0_20201203_010040_10</span><br><span class="line">  8 [20201203] 16:47:30 Import assetOrAssetFileTask_0_20201203_010047_11</span><br><span class="line">  9 [20201203] 16:47:32 Import assetOrAssetFileTask_0_20201203_010055_12</span><br><span class="line"> 10 [20201203] 16:47:34 Import assetTask_0_20201203_010000_3</span><br><span class="line"> 11 [20201203] 16:47:38 Import assetTask_0_20201203_010019_4</span><br><span class="line"> 12 [20201203] 16:47:41 Import assetTypeTask_0_20201203_010000_0</span><br><span class="line"> 13 [20201203] 16:47:43 Import cdrTask_0_20201203_020000_15</span><br><span class="line"> 14 [20201203] 16:47:46 Import cdrTask_0_20201203_021042_16</span><br><span class="line"> 15 [20201203] 16:47:52 Import cdrTask_0_20201203_021201_17</span><br><span class="line"> 16 [20201203] 16:47:59 Import cdrTask_0_20201203_021321_18</span><br><span class="line"> 17 [20201203] 16:48:06 Import cdrTask_0_20201203_021441_19</span><br><span class="line"> 18 [20201203] 16:48:14 Import cdrTask_0_20201203_021600_20</span><br><span class="line"> 19 [20201203] 16:48:20 Import channelTask_0_20201203_010000_0</span><br><span class="line"> 20 [20201203] 16:48:22 Import cmsDictTask_0_20201203_010000_0</span><br><span class="line"> 21 [20201203] 16:48:23 Import columnTask_0_20201203_010000_0</span><br><span class="line"> 22 [20201203] 16:48:25 Import orderTask_0_20201203_010000_0</span><br><span class="line"> 23 [20201203] 16:48:27 Import portalOrderInfoTask_0_20201203_010000_0</span><br><span class="line"> 24 [20201203] 16:48:28 Import productColumnTask_0_20201203_010000_0</span><br><span class="line"> 25 [20201203] 16:48:29 Import productResourceTask_0_20201203_010000_0</span><br><span class="line"> 26 [20201203] 16:48:30 Import productSpecMapTask_0_20201203_010000_0</span><br><span class="line"> 27 [20201203] 16:48:32 Import programGuideTask_0_20201203_010000_0</span><br><span class="line"> 28 [20201203] 16:48:33 Import providerTask_0_20201203_010000_0</span><br><span class="line"> 29 [20201203] 16:48:34 Import resColumnTask_0_20201203_010000_0</span><br><span class="line"> 30 [20201203] 16:48:38 Import resourcePkgTask_0_20201203_010000_0</span><br><span class="line"> 31 [20201203] 16:48:41 Import serviceProductInfo_0_20201203_010000_0</span><br><span class="line"> 32 [20201203] 16:48:42 Import serviceResourceInfo_0_20201203_010000_0</span><br><span class="line"> 33 [20201203] 16:48:44 Import userRelationTask_0_20201203_010000_0</span><br><span class="line"> 34 [20201203] 16:48:45 Import userTask_0_20201203_010000_69</span><br><span class="line"> 35 [20201203] 16:48:48 Import userTask_0_20201203_010117_70</span><br><span class="line">:set number   </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查找columnTask字符串对应的内容。</span></span><br><span class="line">  1 [20201203] 16:47:12 Begin</span><br><span class="line">  2 [20201203] 16:47:13 Import assetFileTask_0_20201203_010000_3</span><br><span class="line">  3 [20201203] 16:47:16 Import assetFileTask_0_20201203_010020_4</span><br><span class="line">  4 [20201203] 16:47:22 Import assetMapAssetTypeTask_0_20201203_010000_3</span><br><span class="line">  5 [20201203] 16:47:24 Import assetMapAssetTypeTask_0_20201203_010003_4</span><br><span class="line">  6 [20201203] 16:47:26 Import assetOrAssetFileTask_0_20201203_010000_9</span><br><span class="line">  7 [20201203] 16:47:28 Import assetOrAssetFileTask_0_20201203_010040_10</span><br><span class="line">  8 [20201203] 16:47:30 Import assetOrAssetFileTask_0_20201203_010047_11</span><br><span class="line">  9 [20201203] 16:47:32 Import assetOrAssetFileTask_0_20201203_010055_12</span><br><span class="line"> 10 [20201203] 16:47:34 Import assetTask_0_20201203_010000_3</span><br><span class="line"> 11 [20201203] 16:47:38 Import assetTask_0_20201203_010019_4</span><br><span class="line"> 12 [20201203] 16:47:41 Import assetTypeTask_0_20201203_010000_0</span><br><span class="line"> 13 [20201203] 16:47:43 Import cdrTask_0_20201203_020000_15</span><br><span class="line"> 14 [20201203] 16:47:46 Import cdrTask_0_20201203_021042_16</span><br><span class="line"> 15 [20201203] 16:47:52 Import cdrTask_0_20201203_021201_17</span><br><span class="line"> 16 [20201203] 16:47:59 Import cdrTask_0_20201203_021321_18</span><br><span class="line"> 17 [20201203] 16:48:06 Import cdrTask_0_20201203_021441_19</span><br><span class="line"> 18 [20201203] 16:48:14 Import cdrTask_0_20201203_021600_20</span><br><span class="line"> 19 [20201203] 16:48:20 Import channelTask_0_20201203_010000_0</span><br><span class="line"> 20 [20201203] 16:48:22 Import cmsDictTask_0_20201203_010000_0</span><br><span class="line"> 21 [20201203] 16:48:23 Import columnTask_0_20201203_010000_0</span><br><span class="line"> 22 [20201203] 16:48:25 Import orderTask_0_20201203_010000_0</span><br><span class="line"> 23 [20201203] 16:48:27 Import portalOrderInfoTask_0_20201203_010000_0</span><br><span class="line"> 24 [20201203] 16:48:28 Import productColumnTask_0_20201203_010000_0</span><br><span class="line"> 25 [20201203] 16:48:29 Import productResourceTask_0_20201203_010000_0</span><br><span class="line"> 26 [20201203] 16:48:30 Import productSpecMapTask_0_20201203_010000_0</span><br><span class="line"> 27 [20201203] 16:48:32 Import programGuideTask_0_20201203_010000_0</span><br><span class="line"> 28 [20201203] 16:48:33 Import providerTask_0_20201203_010000_0</span><br><span class="line"> 29 [20201203] 16:48:34 Import resColumnTask_0_20201203_010000_0</span><br><span class="line"> 30 [20201203] 16:48:38 Import resourcePkgTask_0_20201203_010000_0</span><br><span class="line"> 31 [20201203] 16:48:41 Import serviceProductInfo_0_20201203_010000_0</span><br><span class="line"> 32 [20201203] 16:48:42 Import serviceResourceInfo_0_20201203_010000_0</span><br><span class="line"> 33 [20201203] 16:48:44 Import userRelationTask_0_20201203_010000_0</span><br><span class="line"> 34 [20201203] 16:48:45 Import userTask_0_20201203_010000_69</span><br><span class="line"> 35 [20201203] 16:48:48 Import userTask_0_20201203_010117_70</span><br><span class="line">/columnTask</span><br></pre></td></tr></table></figure>
-
-<h2><span id="head命令"><span id="inline-blue">head命令</span></span></h2><p><strong>作用</strong><br>    显示文件开头内容，默认显示前10行</p>
-<p><strong>选项</strong></p>
-<p>-n&lt;数字&gt; :指定显示的行数<br>-c&lt;数字&gt; :指定显示的字符数<br>-v :显示文件头部信息<br>-q :不显示文件头部信息</p>
-<p><strong>示例</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示my.cnf.bak文件的前3行内容</span></span><br><span class="line">[root@dap mysql]# head -3 my.cnf.bak </span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示100个字符</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> For advi[root@dap mysql]<span class="comment"># head -c 100 my.cnf.bak</span></span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-co</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">显示my.cnf.bak 文件头部信息</span></span><br><span class="line">[root@dap mysql]# head -v my.cnf.bak </span><br><span class="line">==&gt; my.cnf.bak &lt;==</span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># and set to the amount of RAM for the most important data</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cache <span class="keyword">in</span> MySQL. Start at 70% of total RAM <span class="keyword">for</span> dedicated server, <span class="keyword">else</span> 10%.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> innodb_buffer_pool_size = 128M</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># to turn on a very important data integrity option: logging</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">不显示my.cnf.bak文件头部信息</span></span><br><span class="line">[root@dap mysql]# head -q my.cnf.bak </span><br><span class="line"><span class="meta">#</span><span class="bash"> For advice on how to change settings please see</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span></span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># and set to the amount of RAM for the most important data</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> cache <span class="keyword">in</span> MySQL. Start at 70% of total RAM <span class="keyword">for</span> dedicated server, <span class="keyword">else</span> 10%.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> innodb_buffer_pool_size = 128M</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remove leading <span class="comment"># to turn on a very important data integrity option: logging</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2><span id="rm命令"><span id="inline-blue">rm命令 </span></span></h2><p><strong>作用</strong><br>    删除一个目录下的多个文件或目录，对于链接文件，只删除整个链接文件，而原有文件不变。</p>
-<p><strong>选项</strong> </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-d 直接把目录的硬链接数删除为0，删除该目录。</span><br><span class="line">-f 强制删除该目录。</span><br><span class="line">-i 删除前先询问是否删除。</span><br><span class="line">-r 递归删除目录下的文件和子目录。</span><br><span class="line">-v 显示详细的删除信息</span><br></pre></td></tr></table></figure>
-<p><strong>示例</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 删除b.sh文件</span></span><br><span class="line">[root@demo_mdn script]# rm b.sh</span><br><span class="line">rm：是否删除普通空文件 &quot;b.sh&quot;？y</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 强制删除b.sh文件</span></span><br><span class="line">[root@demo_mdn script]# rm -f b.sh</span><br><span class="line">[root@demo_mdn script]# </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 强制递归删除newDir目录，并显示详细信息</span></span><br><span class="line">[root@demo_mdn script]# rm -rfv newDir</span><br><span class="line">已删除&quot;newDir/1.txt&quot;</span><br><span class="line">已删除&quot;newDir/1.txt~&quot;</span><br><span class="line">已删除目录：&quot;newDir/oldDir&quot;</span><br><span class="line">已删除目录：&quot;newDir&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2><span id="cat命令"><span id="inline-blue">cat命令</span></span></h2><p><strong><em>作用</em></strong><br>    合并文件内容并显示</p>
-<p><strong><em>选项</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-A //显示特殊字符	</span><br><span class="line">-n //对所有输出的行编号</span><br></pre></td></tr></table></figure>
-
-<p><strong><em>实例</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">显示特殊字符</span></span><br><span class="line">[root@demo_mdn user]# cat -A jdbc1.properties</span><br><span class="line">dbSrc=mysql$</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">对输出行编号</span></span><br><span class="line">[root@demo_mdn user]# cat -n jdbc2.properties </span><br><span class="line"> 1	dbUrl=jdbc:mysql://10.9.216.14:3306/test?useUnicode=true&amp;amp;characterEncoding=UTF-8</span><br><span class="line"> 2	dbUserName=root</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">合并jdbc1.properties、jdbc2.properties 文件内容到jdbc.properties并输出</span></span><br><span class="line">[root@demo_mdn user]# cat jdbc1.properties jdbc2.properties &gt;jdbc.properties</span><br><span class="line">dbSrc=mysql</span><br><span class="line">dbUrl=jdbc:mysql://10.9.216.14:3306/test?useUnicode=true&amp;amp;characterEncoding=UTF-8</span><br><span class="line">dbUserName=root</span><br></pre></td></tr></table></figure>
-
-<h2><span id="tar命令"><span id="inline-blue">tar命令</span></span></h2><p>选项</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">运行tar时必须要有下列参数中的至少一个才可运行：</span><br><span class="line">-A | --catenate | --concatenate 将一存档与已有的存档合并</span><br><span class="line">-c | --create 建立新的存档</span><br><span class="line">-d | --diff, --compare 比较存档与当前文件的不同之处</span><br><span class="line">--delete 从存档中删除</span><br><span class="line">-r | --append 附加到存档结尾</span><br><span class="line">-t | --list 列出存档中文件的目录</span><br><span class="line">-u |--update 仅将较新的文件附加到存档中</span><br><span class="line">-x | --extract | --get 从存档展开文件</span><br><span class="line">-z | --gzip | --ungzip 用gzip对存档压缩或解压</span><br><span class="line">-f | --file [HOSTNAME:]F 指定存档或设备（缺省为 /dev/rmt0）</span><br><span class="line">-x | --extract | --get 从存档展开文件</span><br><span class="line">-v | --verbose 详细显示处理的文件</span><br></pre></td></tr></table></figure>
-<p><strong><em>压缩</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">命令格式：tar -czf  压缩文件名.tar.gz  被压缩文件名</span><br><span class="line"></span><br><span class="line">可先切换到当前目录下。压缩文件名和被压缩文件名都可加入路径。</span><br><span class="line"></span><br><span class="line">示例：tar -czf etl.V300R002B042.tar.gz etl.V300R002B042/</span><br></pre></td></tr></table></figure>
+    <title>Hexo安装GitHub插件</title>
+    <url>/Hexo/blogs/Hexo%E5%AE%89%E8%A3%85GitHub%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<h2><span id="上传配置"><span id="inline-blue">上传配置</span></span></h2><p>hexo配置和文件文件添加如下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/userName/repoName.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 
 
+<h2><span id="安装插件"><span id="inline-blue">安装插件</span></span></h2><p>安装GitHub部署插件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
-
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux环境查看class文件编译版本信息</title>
-    <url>/Linux/blogs/Linux%E7%8E%AF%E5%A2%83%E6%9F%A5%E7%9C%8Bclass%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/</url>
-    <content><![CDATA[<h2><span id="查看class文件编译版本信息"><span id="inline-blue">查看class文件编译版本信息</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN common]# javap -v CommonContent.class </span><br><span class="line">Classfile /usr/local/moui_nanjing/V242/coship-oms/webapps/oms/WEB-INF/classes/com/coship/oms/common/CommonContent.class</span><br><span class="line">  Last modified 2021-11-16; size 474 bytes</span><br><span class="line">  MD5 checksum def74d7189fc3d20401e9070e4c8ad37</span><br><span class="line">  Compiled from &quot;CommonContent.java&quot;</span><br><span class="line">public class com.coship.oms.common.CommonContent</span><br><span class="line">  minor version: 0</span><br><span class="line">  major version: 52</span><br><span class="line"><span class="meta">#</span><span class="bash"> major version: 52  代表是java编译版本为1.8</span></span><br></pre></td></tr></table></figure>
-<h2><span id="java编译器版本对应关系"><span id="inline-blue">Java编译器版本对应关系</span></span></h2><pre><code>Unsupported major.minor version 52.0 对应于 JDK1.8（JRE1.8） </code></pre>
-<p>　　Unsupported major.minor version 51.0 对应于 JDK1.7（JRE1.7） </p>
-<p>　　Unsupported major.minor version 50.0 对应于 JDK1.6（JRE1.6） </p>
-<p>　　Unsupported major.minor version 49.0 对应于 JDK1.5（JRE1.5）</p>
-<h2><span id="兼容关系"><span id="inline-blue">兼容关系</span></span></h2><p>Java低版本编译的jar包，可以在高版本Java编译环境下运行，反之，Java高版本编译的jar包不能在低版本Java环境运行</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo近期文章设置</title>
-    <url>/Hexo/blogs/hexo%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<h2><span id="近期文章设置"><span id="inline-blue">近期文章设置</span></span></h2><p>新建 source/_data/sidebar.njk 文件(如没有对应目录则自行创建)，内容如下：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&#123;# RecentPosts #&#125;</span><br><span class="line">&#123;%- if theme<span class="selector-class">.recent_posts</span> %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-recent-posts motion-element&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-recent-posts-title&quot;&gt;</span><br><span class="line">      &#123;%- if theme<span class="selector-class">.recent_posts</span><span class="selector-class">.icon</span> %&#125;</span><br><span class="line">      &lt;i class=&quot;&#123;&#123; theme.recent_posts.icon &#125;&#125; fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line">      &#123;&#123; theme<span class="selector-class">.recent_posts</span><span class="selector-class">.title</span> &#125;&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-recent-posts-list&quot;&gt;</span><br><span class="line">      &#123;%- set posts = site.posts.sort(&#x27;date&#x27;, &#x27;desc&#x27;).toArray() %&#125;</span><br><span class="line">      &#123;%- for post in posts.slice(&#x27;0&#x27;, theme.recent_posts.max_count) %&#125;</span><br><span class="line">        &lt;li class=&quot;links-of-recent-posts-item&quot;&gt;</span><br><span class="line">          &#123;&#123; next_url(post<span class="selector-class">.path</span>, post<span class="selector-class">.title</span>, &#123;title: post.path&#125;) &#125;&#125;</span><br><span class="line">        &lt;/<span class="selector-tag">li</span>&gt;</span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">ul</span>&gt;</span><br><span class="line">  &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>修改next主题下_config.yml配置文件,取消 custom_file_path 中的 sidebar 和 style 两个注释，并新增 recent_posts 内容。variable 应该是设置另外的功能时打开的，和此处无关。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="string">source/_data/sidebar.njk</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">  <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br><span class="line"></span><br><span class="line"><span class="attr">recent_posts:</span></span><br><span class="line"><span class="comment"># 块标题</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">最近文章</span></span><br><span class="line"><span class="comment"># 图标</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-history</span></span><br><span class="line"><span class="comment"># 最多多少文章链接</span></span><br><span class="line">  <span class="attr">max_count:</span> <span class="number">5</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在 next主题目录下source/_data/styles.styl 文件中添加以下内容(文件不存在新建即可):</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 近期文章</span><br><span class="line"><span class="selector-class">.links-of-recent-posts</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.8125em</span></span><br><span class="line">  margin-top: <span class="number">10px</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-title</span><br><span class="line">  font-size: <span class="number">1.03em</span></span><br><span class="line">  font-weight: <span class="number">600</span></span><br><span class="line">  margin-top: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-list</span><br><span class="line">  list-style: none</span><br><span class="line">  margin: <span class="number">0</span></span><br><span class="line">  padding: <span class="number">0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2><span id="测试部署"><span id="inline-blue">测试部署</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo d   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -5216,6 +5235,40 @@ tmp – 临时文件</code></pre>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IntelliJ项目文件同步</title>
+    <url>/IntelliJ/blogs/IntelliJ%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/</url>
+    <content><![CDATA[<h2><span id="文件同步"><span id="inline-blue">文件同步</span></span></h2><p>选中项目需要同步的文件，File工具栏选择synchronize同步操作<br><img src="/images/intelliJ/intelliJ_2021_02_18_001.png" alt="同步"></p>
+]]></content>
+      <categories>
+        <category>IntelliJ</category>
+      </categories>
+      <tags>
+        <tag>IntelliJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Elasticsearch导入导出</title>
+    <url>/Elasticsearch/blogs/Elasticsearch%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/</url>
+    <content><![CDATA[<h2><span id="环境"><span id="inline-blue">环境</span></span></h2><p>linux </p>
+<h2><span id="部署"><span id="inline-blue">部署</span></span></h2><p>下载工具压缩包<br>下载地址：<a href="https://pan.baidu.com/s/1V3If_94FJZRx-004ycLIaQ">https://pan.baidu.com/s/1V3If_94FJZRx-004ycLIaQ</a><br>提取码：qlpg</p>
+<p>EsToolNew.zip上传服务器,解压</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@demo_mdn EsToolNew]#unzip EsToolNew.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/elasticsearch/es_20210226_001.png" alt="部署目录"></p>
+<p>config:配置需要访问的elasticsearch实际地址<br>start.sh: 启动脚本<br>stop.sh: 停止脚本<br>json: 需要导入的数据脚本<br>默认访问端口：8056</p>
+<h3><span id="启动方式"><span id="inline-blue">启动方式</span></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@demo_mdn EsToolNew]# sh start.sh</span><br></pre></td></tr></table></figure>
+<h2><span id="访问"><span id="inline-blue">访问</span></span></h2><p><img src="/images/elasticsearch/es_20210226_002.png" alt="访问"></p>
+<h2><span id="导入"><span id="inline-blue">导入</span></span></h2><p><img src="/images/elasticsearch/es_20210226_003.png" alt="导入"></p>
+<h2><span id="导入"><span id="inline-blue">导入</span></span></h2><p><img src="/images/elasticsearch/es_20210226_004.png" alt="导出"></p>
+]]></content>
+      <categories>
+        <category>Elasticsearch</category>
+      </categories>
+      <tags>
+        <tag>Elasticsearch</tag>
       </tags>
   </entry>
   <entry>
@@ -5288,54 +5341,6 @@ tmp – 临时文件</code></pre>
         <tag>Elasticsearch</tag>
         <tag>Logstash</tag>
         <tag>Kibana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Apache超文本传输协议压力测试工具</title>
-    <url>/Apache/blogs/Apache%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blueapache-benchspan"><span id="inline-blue">apache bench</span></a></li>
-<li><a href="#span-idinline-blue%E5%AE%89%E8%A3%85span"><span id="inline-blue">安装</span></a></li>
-<li><a href="#span-idinline-blue%E8%AF%AD%E6%B3%95span"><span id="inline-blue">语法</span></a></li>
-<li><a href="#span-idinline-blue%E5%AE%9E%E4%BE%8Bspan"><span id="inline-blue">实例</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>linux : CentOS Linux release 7.7.1908 (Core)</p>
-<h1><span id="apache-bench"><span id="inline-blue">apache bench</span></span></h1><p>ApacheBench 简称 ab，是 Apache HTTP Server 中的一个性能测试工具，可单独安装，在命令行中直接使用，可基于 HTTP 接口对任意 HTTP 服务器进行性能测试，得到每秒请求数（RPS）、平均请求响应时间等性能指标。</p>
-<h1><span id="安装"><span id="inline-blue">安装</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
-<h1><span id="语法"><span id="inline-blue">语法</span></span></h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ab [options] [http[s]://]hostname[:port]/path</span><br><span class="line"><span class="meta">$</span><span class="bash"> ab -h</span></span><br><span class="line">Usage: ab [options] [http[s]://]hostname[:port]/path</span><br><span class="line">Options are:</span><br><span class="line">    -n requests     Number of requests to perform</span><br><span class="line">    -c concurrency  Number of multiple requests to make at a time</span><br><span class="line">    -t timelimit    Seconds to max. to spend on benchmarking</span><br><span class="line">                    This implies -n 50000</span><br><span class="line">    -s timeout      Seconds to max. wait for each response</span><br><span class="line">                    Default is 30 seconds</span><br><span class="line">    -b windowsize   Size of TCP send/receive buffer, in bytes</span><br><span class="line">    -B address      Address to bind to when making outgoing connections</span><br><span class="line">    -p postfile     File containing data to POST. Remember also to set -T</span><br><span class="line">    -u putfile      File containing data to PUT. Remember also to set -T</span><br><span class="line">    -T content-type Content-type header to use for POST/PUT data, eg.</span><br><span class="line">                    &#x27;application/x-www-form-urlencoded&#x27;</span><br><span class="line">                    Default is &#x27;text/plain&#x27;</span><br><span class="line">    -v verbosity    How much troubleshooting info to print</span><br><span class="line">    -w              Print out results in HTML tables</span><br><span class="line">    -i              Use HEAD instead of GET</span><br><span class="line">    -x attributes   String to insert as table attributes</span><br><span class="line">    -y attributes   String to insert as tr attributes</span><br><span class="line">    -z attributes   String to insert as td or th attributes</span><br><span class="line">    -C attribute    Add cookie, eg. &#x27;Apache=1234&#x27;. (repeatable)</span><br><span class="line">    -H attribute    Add Arbitrary header line, eg. &#x27;Accept-Encoding: gzip&#x27;</span><br><span class="line">                    Inserted after all normal header lines. (repeatable)</span><br><span class="line">    -A attribute    Add Basic WWW Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -P attribute    Add Basic Proxy Authentication, the attributes</span><br><span class="line">                    are a colon separated username and password.</span><br><span class="line">    -X proxy:port   Proxyserver and port number to use</span><br><span class="line">    -V              Print version number and exit</span><br><span class="line">    -k              Use HTTP KeepAlive feature</span><br><span class="line">    -d              Do not show percentiles served table.</span><br><span class="line">    -S              Do not show confidence estimators and warnings.</span><br><span class="line">    -q              Do not show progress when doing more than 150 requests</span><br><span class="line">    -l              Accept variable document length (use this for dynamic pages)</span><br><span class="line">    -g filename     Output collected data to gnuplot format file.</span><br><span class="line">    -e filename     Output CSV file with percentages served</span><br><span class="line">    -r              Don&#x27;t exit on socket receive errors.</span><br><span class="line">    -m method       Method name</span><br><span class="line">    -h              Display usage information (this message)</span><br><span class="line">    -I              Disable TLS Server Name Indication (SNI) extension</span><br><span class="line">    -Z ciphersuite  Specify SSL/TLS cipher suite (See openssl ciphers)</span><br><span class="line">    -f protocol     Specify SSL/TLS protocol</span><br><span class="line">                    (TLS1, TLS1.1, TLS1.2 or ALL)</span><br><span class="line">    -E certfile     Specify optional client certificate chain and private key</span><br></pre></td></tr></table></figure>
-<h1><span id="实例"><span id="inline-blue">实例</span></span></h1><p>指定url请求1000次，并发100</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ab -c100 -n1000 http://10.9.216.12:8098/oms-pic/10146.png</span><br><span class="line">This is ApacheBench, Version 2.3 &lt;$Revision: 1430300 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking 10.9.216.12 (be patient)</span><br><span class="line">Completed 100 requests</span><br><span class="line">Completed 200 requests</span><br><span class="line">Completed 300 requests</span><br><span class="line">Completed 400 requests</span><br><span class="line">Completed 500 requests</span><br><span class="line">Completed 600 requests</span><br><span class="line">Completed 700 requests</span><br><span class="line">Completed 800 requests</span><br><span class="line">Completed 900 requests</span><br><span class="line">Completed 1000 requests</span><br><span class="line">Finished 1000 requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Server Software:        nginx/1.18.0</span><br><span class="line">Server Hostname:        10.9.216.12</span><br><span class="line">Server Port:            8098</span><br><span class="line"></span><br><span class="line">Document Path:          /oms-pic/10146.png</span><br><span class="line">Document Length:        7289 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      100</span><br><span class="line">Time taken for tests:   0.122 seconds</span><br><span class="line">Complete requests:      1000</span><br><span class="line">Failed requests:        0</span><br><span class="line">Write errors:           0</span><br><span class="line">Total transferred:      7524000 bytes</span><br><span class="line">HTML transferred:       7289000 bytes</span><br><span class="line">Requests per second:    8201.97 [#/sec] (mean)</span><br><span class="line">Time per request:       12.192 [ms] (mean)</span><br><span class="line">Time per request:       0.122 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate:          60265.22 [Kbytes/sec] received</span><br><span class="line"></span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:        0    1   1.0      0       5</span><br><span class="line">Processing:     3   11   2.4     11      15</span><br><span class="line">Waiting:        0   11   2.4     11      15</span><br><span class="line">Total:          7   11   1.9     11      15</span><br><span class="line"></span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line"><span class="meta">  50%</span><span class="bash">     11</span></span><br><span class="line"><span class="meta">  66%</span><span class="bash">     12</span></span><br><span class="line"><span class="meta">  75%</span><span class="bash">     13</span></span><br><span class="line"><span class="meta">  80%</span><span class="bash">     13</span></span><br><span class="line"><span class="meta">  90%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta">  95%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta">  98%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta">  99%</span><span class="bash">     15</span></span><br><span class="line"><span class="meta"> 100%</span><span class="bash">     15 (longest request)</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Apache</category>
-      </categories>
-      <tags>
-        <tag>Apache</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat 启动配置优化</title>
-    <url>/Tomcat/blogs/Tomcat%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h2><span id="内存优化"><span id="inline-blue">内存优化</span></span></h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">文件名称：catalina.sh </span><br><span class="line">文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/bin</span><br><span class="line">JAVA_OPTS=&quot;-Djava.awt.headless=true -Xms1024m -Xmx2048m -XX:PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+HeapDumpOnOutOfMemoryError&quot;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2><span id="连接数优化"><span id="inline-blue">连接数优化</span></span></h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">文件名称：server.xml  </span><br><span class="line">文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf</span><br><span class="line">&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; maxThreads=&quot;2000&quot; minSpareThreads=&quot;100&quot; maxSpareThreads=&quot;1000&quot; minProcessors=&quot;100&quot; maxProcessors=&quot;1000&quot; compression=&quot;on&quot; compressionMinSize=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain&quot;  redirectPort=&quot;8443&quot;/&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2><span id="启动参数优化"><span id="inline-blue">启动参数优化</span></span></h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">文件名称：catalina.properties </span><br><span class="line">文件路径：/usr/local/guangdong/ERMproxy/apache-tomcat-6.0.13/conf</span><br><span class="line"></span><br><span class="line">1.找到代码tomcat.util.scan.StandardJarScanFilter.jarsToScan=\</span><br><span class="line">2.这行代码下面的jar包的都是需要扫描的，这也是导致tomcat启动过慢的元凶，所以删除下面的jar包即可</span><br><span class="line">3.将tomcat.util.scan.StandardJarScanFilter.jarsToScan=\修改为tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar</span><br><span class="line">4.修改完之后保存回到eclipse删除以前的tomcat配置，并重新配置</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Tomcat</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -5689,6 +5694,34 @@ tmp – 临时文件</code></pre>
       </categories>
       <tags>
         <tag>JAXB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat部署war,访问不带项目名称</title>
+    <url>/Tomcat/blogs/Tomcat%E9%83%A8%E7%BD%B2war,%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%B8%A6%E9%A1%B9%E7%9B%AE%E5%90%8D%E7%A7%B0/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blue%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95span"><span id="inline-blue">解决办法</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>Tomcat: 8.0.38<br>项目部署Tomcat之后，访问后台和接口不带项目名称</p>
+<h1><span id="解决办法"><span id="inline-blue">解决办法</span></span></h1><p>修改配置文件server.xml,文件所在路径：/usr/local/tomcat8/conf/server.xml<br>添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># path设置为&quot;&quot;,docBase设置为对应项目名称，reloadable=&quot;true&quot; 标识项目文件的修改不需要重启便可以生效</span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">&quot;&quot;</span> <span class="attr">docBase</span>=<span class="string">&quot;myproject&quot;</span> <span class="attr">reloadable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>完整内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  Licensed to the Apache Software Foundation (ASF) under one or more</span></span><br><span class="line"><span class="comment">  contributor license agreements.  See the NOTICE file distributed with</span></span><br><span class="line"><span class="comment">  this work for additional information regarding copyright ownership.</span></span><br><span class="line"><span class="comment">  The ASF licenses this file to You under the Apache License, Version 2.0</span></span><br><span class="line"><span class="comment">  (the &quot;License&quot;); you may not use this file except in compliance with</span></span><br><span class="line"><span class="comment">  the License.  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">  limitations under the License.</span></span><br><span class="line"><span class="comment">--&gt;</span><span class="comment">&lt;!-- <span class="doctag">Note:</span>  A &quot;Server&quot; is not itself a &quot;Container&quot;, so you may not</span></span><br><span class="line"><span class="comment">     define subcomponents such as &quot;Valves&quot; at this level.</span></span><br><span class="line"><span class="comment">     Documentation at /docs/config/server.html</span></span><br><span class="line"><span class="comment"> --&gt;</span><span class="tag">&lt;<span class="name">Server</span> <span class="attr">port</span>=<span class="string">&quot;8007&quot;</span> <span class="attr">shutdown</span>=<span class="string">&quot;SHUTDOWN&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.startup.VersionLoggerListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Security listener. Documentation at /docs/config/listeners.html</span></span><br><span class="line"><span class="comment">  &lt;Listener className=&quot;org.apache.catalina.security.SecurityListener&quot; /&gt;</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--APR library loader. Documentation at /docs/apr.html --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">SSLEngine</span>=<span class="string">&quot;on&quot;</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.core.AprLifecycleListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Prevent memory leaks due to use of particular java/javax APIs--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Global JNDI resources</span></span><br><span class="line"><span class="comment">       Documentation at /docs/jndi-resources-howto.html</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">GlobalNamingResources</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Editable user database that can also be used by</span></span><br><span class="line"><span class="comment">         UserDatabaseRealm to authenticate users</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Resource</span> <span class="attr">auth</span>=<span class="string">&quot;Container&quot;</span> <span class="attr">description</span>=<span class="string">&quot;User database that can be updated and saved&quot;</span> <span class="attr">factory</span>=<span class="string">&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;</span> <span class="attr">name</span>=<span class="string">&quot;UserDatabase&quot;</span> <span class="attr">pathname</span>=<span class="string">&quot;conf/tomcat-users.xml&quot;</span> <span class="attr">type</span>=<span class="string">&quot;org.apache.catalina.UserDatabase&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">GlobalNamingResources</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- A &quot;Service&quot; is a collection of one or more &quot;Connectors&quot; that share</span></span><br><span class="line"><span class="comment">       a single &quot;Container&quot; <span class="doctag">Note:</span>  A &quot;Service&quot; is not itself a &quot;Container&quot;,</span></span><br><span class="line"><span class="comment">       so you may not define subcomponents such as &quot;Valves&quot; at this level.</span></span><br><span class="line"><span class="comment">       Documentation at /docs/config/service.html</span></span><br><span class="line"><span class="comment">   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Service</span> <span class="attr">name</span>=<span class="string">&quot;Catalina&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--The connectors can use a shared executor, you can define one or more named thread pools--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;</span></span><br><span class="line"><span class="comment">        maxThreads=&quot;150&quot; minSpareThreads=&quot;4&quot;/&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- A &quot;Connector&quot; represents an endpoint by which requests are received</span></span><br><span class="line"><span class="comment">         and responses are returned. Documentation at :</span></span><br><span class="line"><span class="comment">         Java HTTP Connector: /docs/config/http.html (blocking &amp; non-blocking)</span></span><br><span class="line"><span class="comment">         Java AJP  Connector: /docs/config/ajp.html</span></span><br><span class="line"><span class="comment">         APR (HTTP/AJP) Connector: /docs/apr.html</span></span><br><span class="line"><span class="comment">         Define a non-SSL/TLS HTTP/1.1 Connector on port 8080</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span> <span class="attr">port</span>=<span class="string">&quot;10088&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- A &quot;Connector&quot; using the shared thread pool--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;Connector executor=&quot;tomcatThreadPool&quot;</span></span><br><span class="line"><span class="comment">               port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span></span><br><span class="line"><span class="comment">               connectionTimeout=&quot;20000&quot;</span></span><br><span class="line"><span class="comment">               redirectPort=&quot;8443&quot; /&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Define a SSL/TLS HTTP/1.1 Connector on port 8443</span></span><br><span class="line"><span class="comment">         This connector uses the NIO implementation that requires the JSSE</span></span><br><span class="line"><span class="comment">         style configuration. When using the APR/native implementation, the</span></span><br><span class="line"><span class="comment">         OpenSSL style configuration is required as described in the APR/native</span></span><br><span class="line"><span class="comment">         documentation --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span></span><br><span class="line"><span class="comment">               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;</span></span><br><span class="line"><span class="comment">               clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Define an AJP 1.3 Connector on port 8009 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;18009&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;AJP/1.3&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- An Engine represents the entry point (within Catalina) that processes</span></span><br><span class="line"><span class="comment">         every request.  The Engine implementation for Tomcat stand alone</span></span><br><span class="line"><span class="comment">         analyzes the HTTP headers included with the request, and passes them</span></span><br><span class="line"><span class="comment">         on to the appropriate Host (virtual host).</span></span><br><span class="line"><span class="comment">         Documentation at /docs/config/engine.html --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- You should set jvmRoute to support load-balancing via AJP ie :</span></span><br><span class="line"><span class="comment">    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot; jvmRoute=&quot;jvm1&quot;&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Engine</span> <span class="attr">defaultHost</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Catalina&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!--For clustering, please take a look at documentation at:</span></span><br><span class="line"><span class="comment">          /docs/cluster-howto.html  (simple how to)</span></span><br><span class="line"><span class="comment">          /docs/config/cluster.html (reference documentation) --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">      &lt;Cluster className=&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;/&gt;</span></span><br><span class="line"><span class="comment">      --&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Use the LockOutRealm to prevent attempts to guess user passwords</span></span><br><span class="line"><span class="comment">           via a brute-force attack --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Realm</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.realm.LockOutRealm&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- This Realm uses the UserDatabase configured in the global JNDI</span></span><br><span class="line"><span class="comment">             resources under the key &quot;UserDatabase&quot;.  Any edits</span></span><br><span class="line"><span class="comment">             that are performed against this UserDatabase are immediately</span></span><br><span class="line"><span class="comment">             available for use by the Realm.  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Realm</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;</span> <span class="attr">resourceName</span>=<span class="string">&quot;UserDatabase&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Realm</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">Host</span> <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- SingleSignOn valve, share authentication between web applications</span></span><br><span class="line"><span class="comment">             Documentation at: /docs/config/valve.html --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        &lt;Valve className=&quot;org.apache.catalina.authenticator.SingleSignOn&quot; /&gt;</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- Access log processes all example.</span></span><br><span class="line"><span class="comment">             Documentation at: /docs/config/valve.html</span></span><br><span class="line"><span class="comment">             <span class="doctag">Note:</span> The pattern used is equivalent to using pattern=&quot;common&quot; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">&quot;org.apache.catalina.valves.AccessLogValve&quot;</span> <span class="attr">directory</span>=<span class="string">&quot;logs&quot;</span> <span class="attr">pattern</span>=<span class="string">&quot;%h %l %u %t <span class="symbol">&amp;quot;</span>%r<span class="symbol">&amp;quot;</span> %s %b&quot;</span> <span class="attr">prefix</span>=<span class="string">&quot;localhost_access_log&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;.txt&quot;</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">&quot;&quot;</span> <span class="attr">docBase</span>=<span class="string">&quot;myproject&quot;</span> <span class="attr">reloadable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Engine</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Server</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Tomcat</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
