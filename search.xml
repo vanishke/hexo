@@ -2121,6 +2121,26 @@ dockerfile-maven-plugin: 1.4.9</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot Devtools导致类型转换异常</title>
+    <url>/SpringBoot/blogs/SpringBoot%20Devtools%E5%AF%BC%E8%87%B4%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h2><span id="环境"><span id="inline-blue">环境</span></span></h2><p>os: Windows7<br>Java: 1.8<br>SpringBoot: 2.2.6.Release<br>SpringCloud: 2021.0.5<br>spring-boot-devtools: 2.2.6.Release</p>
+<h3><span id="现象"><span id="inline-blue">现象</span></span></h3><p>本地启动SpringBoot项目，请求后天接口提示错误，错误信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java.lang.ClassCastException: com.ffcs.common.model.LoginUser cannot be cast to com.ffcs.common.model.LoginUser</span><br></pre></td></tr></table></figure>
+<h3><span id="代码调用"><span id="inline-blue">代码调用</span></span></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserUtils</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LoginUser <span class="title">getLoginUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        LoginUser loginUser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            loginUser = (LoginUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;UserUtils异常:&quot;</span>, e);</span><br><span class="line">            UserUtils.log.info(<span class="string">&quot;============当前无登录信息，请注意================&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loginUser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="问题排查"><span id="inline-blue">问题排查</span></span></h3><p>错误信息很奇怪，同一个Class类对象居然不能转换，本地存在转换异常，但是如果打包后部署到Linux服务器上后，请求一切正常，接下来就是逐步排查提交的代码是否是因为修改代码逻辑导致出现请求异常。<br>代码没有找到特别的地方，怀疑是否是编译器做了什么优化，导致本地编译运行的class和打包后的不一致导致运行出现异常，特别检查了本地的class和反编译后的jar包内容是否一致，结果也没有变化。<br>因为重写了SpringSecurity的UserDetails对象，怀疑是否是loadUserByUsername方法和当前调用不一致导致，修改为一致的对象发现也没有效果，最后查看资料发现spring-boot-devtools依赖使用的是自己的类加载器，导致对象无法正常转换。</p>
+<h3><span id="问题原因"><span id="inline-blue">问题原因</span></span></h3><p>项目启动时加载项目中的类使用的加载器都是org.springframework.boot.devtools.restart.classloader.RestartClassLoader，代码调用处左右两边的对象使用的不同的类加载器，左边使用的是sun.misc.Launcher.AppClassLoader，而右边使用的是org.springframework.boot.devtools.restart.classloader.RestartClassLoader<br>这是spring-boot-devtools自己封装的类加载器，方便重新加载变化的对象。就因为这个差别导致异常发生。</p>
+<h3><span id="解决办法"><span id="inline-blue">解决办法</span></span></h3><p>项目pom.xml删除所有spring-boot-devtools依赖项</p>
+]]></content>
+      <categories>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>Devtools</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud Gateway集成Sentinel实现Nacos和Sentinel控制台双向同步</title>
     <url>/SpringCloud/blogs/SpringCloud%20Gateway%E9%9B%86%E6%88%90Sentinel%E5%AE%9E%E7%8E%B0Nacos%E5%92%8CSentinel%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%8F%8C%E5%90%91%E5%90%8C%E6%AD%A5/</url>
     <content><![CDATA[<h2><span id="环境"><span id="inline-blue">环境</span></span></h2><p>Java: 1.8<br>SpringBoot: 2.2.6.Release<br>SpringCloud: 2021.0.5<br>Sentinel: 1.8.7<br>nacos：2.2.0</p>
@@ -2149,28 +2169,8 @@ dockerfile-maven-plugin: 1.4.9</code></pre>
       <tags>
         <tag>SpringCloud</tag>
         <tag>Java</tag>
-        <tag>Nacos</tag>
         <tag>Sentinel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot Devtools导致类型转换异常</title>
-    <url>/SpringBoot/blogs/SpringBoot%20Devtools%E5%AF%BC%E8%87%B4%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h2><span id="环境"><span id="inline-blue">环境</span></span></h2><p>os: Windows7<br>Java: 1.8<br>SpringBoot: 2.2.6.Release<br>SpringCloud: 2021.0.5<br>spring-boot-devtools: 2.2.6.Release</p>
-<h3><span id="现象"><span id="inline-blue">现象</span></span></h3><p>本地启动SpringBoot项目，请求后天接口提示错误，错误信息如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java.lang.ClassCastException: com.ffcs.common.model.LoginUser cannot be cast to com.ffcs.common.model.LoginUser</span><br></pre></td></tr></table></figure>
-<h3><span id="代码调用"><span id="inline-blue">代码调用</span></span></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserUtils</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LoginUser <span class="title">getLoginUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        LoginUser loginUser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            loginUser = (LoginUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;UserUtils异常:&quot;</span>, e);</span><br><span class="line">            UserUtils.log.info(<span class="string">&quot;============当前无登录信息，请注意================&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> loginUser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="问题排查"><span id="inline-blue">问题排查</span></span></h3><p>错误信息很奇怪，同一个Class类对象居然不能转换，本地存在转换异常，但是如果打包后部署到Linux服务器上后，请求一切正常，接下来就是逐步排查提交的代码是否是因为修改代码逻辑导致出现请求异常。<br>代码没有找到特别的地方，怀疑是否是编译器做了什么优化，导致本地编译运行的class和打包后的不一致导致运行出现异常，特别检查了本地的class和反编译后的jar包内容是否一致，结果也没有变化。<br>因为重写了SpringSecurity的UserDetails对象，怀疑是否是loadUserByUsername方法和当前调用不一致导致，修改为一致的对象发现也没有效果，最后查看资料发现spring-boot-devtools依赖使用的是自己的类加载器，导致对象无法正常转换。</p>
-<h3><span id="问题原因"><span id="inline-blue">问题原因</span></span></h3><p>项目启动时加载项目中的类使用的加载器都是org.springframework.boot.devtools.restart.classloader.RestartClassLoader，代码调用处左右两边的对象使用的不同的类加载器，左边使用的是sun.misc.Launcher.AppClassLoader，而右边使用的是org.springframework.boot.devtools.restart.classloader.RestartClassLoader<br>这是spring-boot-devtools自己封装的类加载器，方便重新加载变化的对象。就因为这个差别导致异常发生。</p>
-<h3><span id="解决办法"><span id="inline-blue">解决办法</span></span></h3><p>项目pom.xml删除所有spring-boot-devtools依赖项</p>
-]]></content>
-      <categories>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-        <tag>Devtools</tag>
+        <tag>Nacos</tag>
       </tags>
   </entry>
   <entry>
@@ -2671,7 +2671,7 @@ dockerfile-maven-plugin: 1.4.9</code></pre>
 <h1><span id="目的"><span id="inline-blue">目的</span></span></h1><p>管理后台上传到FTP的图片目录，需要通过使用nginx代理给接口下载使用，但nginx如果采用回源方案的话导致在接口大量并发的情况下，nginx源服务器出现报错，代理下载nginx服务器缓存出现异常，不能正常提供下载服务。所以将nginx都修改为代理本地服务器的目录，通过rsync将上传文件的FTP目录同步到nginx服务器，减少回源的时间。</p>
 <h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>1、先查看linux的内核是否支持inotify，支持inotify的内核最小为2.6.13，输入命令：uname –a。如下图所示，内核为3.10.0，支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Linux S21614 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
-<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#114;&#111;&#111;&#116;&#64;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#x38;&#46;&#49;&#48;&#x30;&#46;&#x31;&#48;&#x31;">&#114;&#111;&#111;&#116;&#64;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#x38;&#46;&#49;&#48;&#x30;&#46;&#x31;&#48;&#x31;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
+<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#x32;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#48;&#x30;&#x2e;&#49;&#x30;&#x31;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#49;&#x39;&#x32;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#48;&#x30;&#x2e;&#49;&#x30;&#x31;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_queued_events</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_instances</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_watches</span><br></pre></td></tr></table></figure>
 <p>5、取得软件包inotify-tools-3.13.tar.gz，放在/tmp下。<br>6、输入命令：tar zvxf inotify-tools-3.13.tar.gz，解压软件包。<br>7、输入命令：cd inotify-tools-3.13，进入解压后的目录。<br>8、输入命令：./configure<br>9、输入命令：make<br>10、输入命令：make install<br>11、在系统下执行命令：man inotify、 man inotifywait、 man inotifywatch即可得到相应的帮助信息，表示inotify安装成功。<br>12、输入命令：rsync，查看rsync是否安装。<br>rsync一般是系统默认安装，如果没有安装就取得软件包，安装方法同inotify。</p>
 <p>1、取得syncapps.sh、versService.dat脚本。<br>syncapps.sh脚本内容如下：</p>
@@ -4451,8 +4451,8 @@ DockerToolbox-18.03.0-ce.exe</code></pre>
         <category>Jsp</category>
       </categories>
       <tags>
-        <tag>Js</tag>
         <tag>Jsp</tag>
+        <tag>Js</tag>
       </tags>
   </entry>
   <entry>
@@ -5062,28 +5062,6 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Hexo新建404</title>
-    <url>/Hexo/blogs/Hexo%E6%96%B0%E5%BB%BA404/</url>
-    <content><![CDATA[<h2><span id="新建404"><span id="inline-blue">新建404</span></span></h2><p>在站点根目录下,输入 hexo new page 404,默认在Hexo 站点下/source/404/index.md<br>打开新建的404界面，在顶部插入一行，写上permalink: /404，这表示指定该页固定链接为 http://“主页”/404.html</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">permalink: /404</span><br><span class="line">---</span><br><span class="line">title: #404 Not Found：该页无法显示</span><br><span class="line">date: 2017-09-06 15:37:18</span><br><span class="line">comments: false</span><br><span class="line">permalink: /404</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo文章置顶功能</title>
     <url>/Hexo/blogs/Hexo%E6%96%87%E7%AB%A0%E7%BD%AE%E9%A1%B6%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<h2><span id="移除默认安装的插件"><span id="inline-blue">移除默认安装的插件</span></span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-generator-index --save</span><br></pre></td></tr></table></figure>
@@ -5100,6 +5078,28 @@ tmp – 临时文件</code></pre>
 
 <p>如下图所示位置：</p>
 <p><img src="/images/hexo/next/hexo_next_2021_01_10_002.png" alt="hexo文章置顶图标"></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo新建404</title>
+    <url>/Hexo/blogs/Hexo%E6%96%B0%E5%BB%BA404/</url>
+    <content><![CDATA[<h2><span id="新建404"><span id="inline-blue">新建404</span></span></h2><p>在站点根目录下,输入 hexo new page 404,默认在Hexo 站点下/source/404/index.md<br>打开新建的404界面，在顶部插入一行，写上permalink: /404，这表示指定该页固定链接为 http://“主页”/404.html</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">permalink: /404</span><br><span class="line">---</span><br><span class="line">title: #404 Not Found：该页无法显示</span><br><span class="line">date: 2017-09-06 15:37:18</span><br><span class="line">comments: false</span><br><span class="line">permalink: /404</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -6092,6 +6092,36 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>windows注册Redis服务</title>
+    <url>/Redis/blogs/Windows%E6%B3%A8%E5%86%8CRedis%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis下载</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis注册</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis服务自启动设置</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis服务验证</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
+<h1><span id="redis下载"><span id="inline-blue">Redis下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的Redis-x64-3.2.100版本</p>
+<h1><span id="redis注册"><span id="inline-blue">Redis注册</span></span></h1><p>1.运行windows cmd命令，进入Redis安装目录D:\redis_3.2.100\Redis-x64-3.2.100</p>
+<p>2.执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
+<p>3.如果需要卸载Redis服务，执行redis-server –service-uninstall</p>
+<h1><span id="redis服务自启动设置"><span id="inline-blue">Redis服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
+<h1><span id="redis服务验证"><span id="inline-blue">Redis服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows注册Nginx服务</title>
     <url>/Nginx/blogs/Windows%E6%B3%A8%E5%86%8CNginx%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<!-- toc -->
@@ -6125,36 +6155,6 @@ tmp – 临时文件</code></pre>
       <tags>
         <tag>Windows</tag>
         <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows注册Redis服务</title>
-    <url>/Redis/blogs/Windows%E6%B3%A8%E5%86%8CRedis%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis下载</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis注册</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis服务自启动设置</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis服务验证</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
-<h1><span id="redis下载"><span id="inline-blue">Redis下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的Redis-x64-3.2.100版本</p>
-<h1><span id="redis注册"><span id="inline-blue">Redis注册</span></span></h1><p>1.运行windows cmd命令，进入Redis安装目录D:\redis_3.2.100\Redis-x64-3.2.100</p>
-<p>2.执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
-<p>3.如果需要卸载Redis服务，执行redis-server –service-uninstall</p>
-<h1><span id="redis服务自启动设置"><span id="inline-blue">Redis服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
-<h1><span id="redis服务验证"><span id="inline-blue">Redis服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
