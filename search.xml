@@ -389,6 +389,833 @@
       </tags>
   </entry>
   <entry>
+    <title>Cursor Remote-SSH 免密登录远程开发服务器</title>
+    <url>/Cursor/blogs/Cursor-Remote-SSH%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%A6%82%E8%BF%B0span"><span id="inline-blue">概述</span></a></li>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82span"><span id="inline-blue">环境要求</span></a></li>
+<li><a href="#span-idinline-blue%E6%A0%B8%E5%BF%83%E6%AD%A5%E9%AA%A4span"><span id="inline-blue">核心步骤</span></a><ul>
+<li><a href="#%E5%AE%89%E8%A3%85-cursor-%E4%B8%8E-remote-ssh-%E6%8F%92%E4%BB%B6">安装 Cursor 与 Remote-SSH 插件</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0-ssh-%E5%AF%86%E9%92%A5windows">生成本地 SSH 密钥（Windows）</a></li>
+<li><a href="#%E5%B0%86%E5%85%AC%E9%92%A5%E9%83%A8%E7%BD%B2%E5%88%B0%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8">将公钥部署到远程开发服务器</a><ul>
+<li><a href="#%E6%96%B9%E5%BC%8F%E4%B8%80ssh-copy-id%E6%9C%80%E7%9C%81%E4%BA%8B">方式一：ssh-copy-id（最省事）</a></li>
+<li><a href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%E6%89%8B%E5%8A%A8%E8%BF%BD%E5%8A%A0-authorized_keys%E9%80%9A%E7%94%A8">方式二：手动追加 authorized_keys（通用）</a></li>
+</ul>
+</li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0-ssh-config%E5%BB%BA%E8%AE%AE%E5%BF%85%E5%81%9A">配置本地 SSH Config（建议必做）</a></li>
+<li><a href="#%E5%9C%A8-cursor-%E4%B8%AD%E5%8F%91%E8%B5%B7-remote-ssh-%E8%BF%9E%E6%8E%A5">在 Cursor 中发起 Remote-SSH 连接</a></li>
+<li><a href="#%E6%89%93%E5%BC%80%E8%BF%9C%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E5%B9%B6%E5%BC%80%E5%8F%91">打开远程项目目录并开发</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%AA%8C%E8%AF%81span"><span id="inline-blue">配置与验证</span></a></li>
+<li><a href="#span-idinline-blue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98span"><span id="inline-blue">常见问题</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%8C%E6%95%B4%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95span"><span id="inline-blue">完整命令清单</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="概述"><span id="inline-blue">概述</span></span></h1><p>本文记录如何在 <strong>Windows 开发机</strong>使用 <strong>Cursor + Remote-SSH</strong> 实现<strong>免密 SSH 登录</strong>到一台 Ubuntu 代码开发服务器，并在服务器上打开代码目录进行日常开发。</p>
+<p>文中涉及的 <strong>服务器地址、仓库名、用户名等均已脱敏</strong>，并使用“随机示例数据”替代真实信息，便于阅读理解且不泄露内网信息。</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目标</td>
+<td>Windows 上用 Cursor Remote-SSH 免密登录 Ubuntu 开发服务器</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>服务器资源更强、统一构建/依赖环境、代码不落地本机</td>
+</tr>
+<tr>
+<td>关键点</td>
+<td>本地密钥 + <code>~/.ssh/config</code> + Cursor 远程连接</td>
+</tr>
+</tbody></table>
+<p><strong>环境示例：</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>示例地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>远程开发服务器</td>
+<td><code>devbox-02 (10.23.45.67:22)</code></td>
+</tr>
+<tr>
+<td>远程项目目录</td>
+<td><code>/data/workspace/photo-frame-cloud</code></td>
+</tr>
+</tbody></table>
+<p>参见下篇（远程服务器免密推送到 Gitea）：<a href="./%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95Gitea%E5%B9%B6%E5%AE%9E%E7%8E%B0Git%E6%8E%A8%E9%80%81%EF%BC%88%E4%B8%8B%EF%BC%89.md">开发服务器免密登录Gitea并实现Git推送（下）</a></p>
+<h1><span id="环境要求"><span id="inline-blue">环境要求</span></span></h1><blockquote>
+<p>版本号以“本教程验证环境”为例，和你的实际环境不一致也通常不影响，核心是 Remote-SSH 能工作、SSH 能免密登录。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>建议/示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows</td>
+<td>Windows 11 Pro 23H2</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>0.50.x（任意近期版本均可）</td>
+</tr>
+<tr>
+<td>Git for Windows</td>
+<td>2.47.0</td>
+</tr>
+<tr>
+<td>OpenSSH Client</td>
+<td>Windows 自带 OpenSSH（可选）</td>
+</tr>
+<tr>
+<td>远程服务器 OS</td>
+<td>Ubuntu 18.04/20.04/22.04（示例：Ubuntu 18.04.6 LTS）</td>
+</tr>
+</tbody></table>
+<p><strong>Remote-SSH 插件信息（示例）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插件名称</td>
+<td>Remote - SSH</td>
+</tr>
+<tr>
+<td>提供者</td>
+<td>Microsoft</td>
+</tr>
+<tr>
+<td>版本</td>
+<td>0.113.1</td>
+</tr>
+</tbody></table>
+<h1><span id="核心步骤"><span id="inline-blue">核心步骤</span></span></h1><h2><span id="安装-cursor-与-remote-ssh-插件">安装 Cursor 与 Remote-SSH 插件</span></h2><ol>
+<li>安装 Cursor（略）。</li>
+<li>打开扩展市场（<code>Ctrl+Shift+X</code>），搜索并安装 <code>Remote - SSH</code>。</li>
+</ol>
+<blockquote>
+<p>安装完成后，左下角会出现远程连接入口（形如 <code>&gt;&lt;</code>），并可在命令面板看到 <code>Remote-SSH:</code> 相关命令。</p>
+</blockquote>
+<h2><span id="生成本地-ssh-密钥windows">生成本地 SSH 密钥（Windows）</span></h2><p>在 <strong>PowerShell</strong> 或 <strong>Git Bash</strong> 执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;dev.user@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认会生成：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">~<span class="regexp">/.ssh/i</span>d_ed25519</span><br><span class="line">~<span class="regexp">/.ssh/i</span>d_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>安全要求：</strong>私钥文件 <code>id_ed25519</code> 不要拷贝到群聊/邮件，不要提交到仓库；如设置了 passphrase，建议配合系统密钥代理使用。</p>
+</blockquote>
+<h2><span id="将公钥部署到远程开发服务器">将公钥部署到远程开发服务器</span></h2><h3><span id="方式一ssh-copy-id最省事">方式一：ssh-copy-id（最省事）</span></h3><p>如果你本地安装了 <code>ssh-copy-id</code>（Git Bash / WSL 常见）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_ed25519.pub devuser@10.23.45.67</span><br></pre></td></tr></table></figure>
+
+<h3><span id="方式二手动追加-authorized_keys通用">方式二：手动追加 authorized_keys（通用）</span></h3><ol>
+<li>本地查看公钥内容：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>登录远程服务器后，将公钥追加到：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;粘贴你的公钥一整行&gt;&quot;</span> &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h2><span id="配置本地-ssh-config建议必做">配置本地 SSH Config（建议必做）</span></h2><p>编辑本地 <code>~/.ssh/config</code>，添加一个易读别名：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host devbox-02</span><br><span class="line">    HostName 10.23.45.67</span><br><span class="line">    User devuser</span><br><span class="line">    Port 22</span><br><span class="line">    IdentityFile ~&#x2F;.ssh&#x2F;id_ed25519</span><br><span class="line">    ServerAliveInterval 60</span><br><span class="line">    ServerAliveCountMax 3</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Host</code></td>
+<td>连接别名（Cursor 里也会显示）</td>
+</tr>
+<tr>
+<td><code>HostName</code></td>
+<td>服务器 IP/域名（示例已脱敏）</td>
+</tr>
+<tr>
+<td><code>IdentityFile</code></td>
+<td>指定私钥路径，避免选错密钥</td>
+</tr>
+<tr>
+<td><code>ServerAliveInterval</code></td>
+<td>保活心跳，减少断连</td>
+</tr>
+</tbody></table>
+<p>本地验证免密是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh devbox-02</span><br></pre></td></tr></table></figure>
+
+<p>预期：不再提示输入密码（如设置了私钥口令，可能提示输入 passphrase）。</p>
+<h2><span id="在-cursor-中发起-remote-ssh-连接">在 Cursor 中发起 Remote-SSH 连接</span></h2><ol>
+<li>打开命令面板 <code>Ctrl+Shift+P</code>。</li>
+<li>选择 <code>Remote-SSH: Connect to Host...</code>。</li>
+<li>选择 <code>devbox-02</code>（即 <code>~/.ssh/config</code> 里配置的 <code>Host</code>）。</li>
+<li>首次连接会自动在远程安装服务端组件（耗时取决于网络与服务器性能）。</li>
+</ol>
+<p>连接成功后，左下角会显示类似：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">SSH</span>: devbox-<span class="number">02</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="打开远程项目目录并开发">打开远程项目目录并开发</span></h2><p>连接到远程后：</p>
+<ol>
+<li><code>File -&gt; Open Folder</code> 打开远程目录，例如：</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/data/</span>workspace/photo-frame-cloud</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>打开集成终端（<code>Ctrl+`</code>），终端会在远程服务器执行命令：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line">ls -la</span><br></pre></td></tr></table></figure>
+
+<h1><span id="配置与验证"><span id="inline-blue">配置与验证</span></span></h1><table>
+<thead>
+<tr>
+<th>验证项</th>
+<th>命令/现象</th>
+<th>通过标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SSH 免密登录</td>
+<td><code>ssh devbox-02</code></td>
+<td>不再提示输入服务器密码</td>
+</tr>
+<tr>
+<td>Cursor 远程状态</td>
+<td>左下角显示 <code>SSH: devbox-02</code></td>
+<td>连接稳定、可打开远程文件</td>
+</tr>
+<tr>
+<td>终端是否远程</td>
+<td>终端执行 <code>hostname</code></td>
+<td>输出远程主机名（示例：<code>devbox-02</code>）</td>
+</tr>
+</tbody></table>
+<h1><span id="常见问题"><span id="inline-blue">常见问题</span></span></h1><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cursor 连接时要求输服务器密码</td>
+<td>公钥未部署或权限不对</td>
+<td>检查 <code>~/.ssh/authorized_keys</code> 是否包含公钥且权限 <code>700/600</code></td>
+</tr>
+<tr>
+<td><code>Permission denied (publickey)</code></td>
+<td><code>IdentityFile</code> 指向错误密钥</td>
+<td>在 <code>~/.ssh/config</code> 明确 <code>IdentityFile</code>，并用 <code>ssh -v devbox-02</code> 查看选用的 key</td>
+</tr>
+<tr>
+<td>连接一段时间后断开</td>
+<td>网络抖动/空闲断开</td>
+<td>加 <code>ServerAliveInterval/CountMax</code>；必要时调整服务器端 <code>sshd_config</code></td>
+</tr>
+</tbody></table>
+<h1><span id="完整命令清单"><span id="inline-blue">完整命令清单</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ── 1. Windows 本地：生成密钥 ──</span></span><br><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;dev.user@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 2. Windows 本地：写 SSH config（示例）──</span></span><br><span class="line"><span class="comment">#   编辑 ~/.ssh/config，加入 devbox-02 段</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 3. Windows 本地：验证免密 ──</span></span><br><span class="line">ssh devbox-02</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 4. 远程服务器：创建并设置 authorized_keys（手动方式）──</span></span><br><span class="line">mkdir -p ~/.ssh</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;粘贴你的公钥一整行&gt;&quot;</span> &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>完成以上配置后，继续按下篇将“远程服务器 → Gitea”也配置为免密推送：参见 <a href="./%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95Gitea%E5%B9%B6%E5%AE%9E%E7%8E%B0Git%E6%8E%A8%E9%80%81.md">开发服务器免密登录Gitea并实现Git推送</a>。</p>
+]]></content>
+      <categories>
+        <category>Cursor</category>
+      </categories>
+      <tags>
+        <tag>Cursor</tag>
+        <tag>Remote-SSH</tag>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SVN迁移到Gitea</title>
+    <url>/Git/blogs/SVN%E8%BF%81%E7%A7%BB%E5%88%B0Gitea%EF%BC%9A%E4%BF%9D%E7%95%99%E5%AE%8C%E6%95%B4%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2%E7%9A%84%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%A6%82%E8%BF%B0span"><span id="inline-blue">概述</span></a></li>
+<li><a href="#span-idinline-blue%E8%BF%81%E7%A7%BB%E7%9B%AE%E6%A0%87span"><span id="inline-blue">迁移目标</span></a></li>
+<li><a href="#span-idinline-blue%E8%BF%81%E7%A7%BB%E8%8C%83%E5%9B%B4%E8%AF%B4%E6%98%8Espan"><span id="inline-blue">迁移范围说明</span></a><ul>
+<li><a href="#svn-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">SVN 项目目录结构</a></li>
+<li><a href="#%E5%8F%AA%E8%BF%81%E7%A7%BB-trunk-%E4%BC%9A%E5%8C%85%E5%90%AB%E4%BB%80%E4%B9%88-%E4%B8%8D%E5%8C%85%E5%90%AB%E4%BB%80%E4%B9%88">只迁移 trunk 会包含什么、不包含什么</a></li>
+<li><a href="#%E5%85%B3%E9%94%AE%E8%AE%A4%E7%9F%A5init-%E9%98%B6%E6%AE%B5%E5%BF%85%E9%A1%BB%E6%8C%87%E5%AE%9A%E5%B8%83%E5%B1%80">关键认知：init 阶段必须指定布局</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82span"><span id="inline-blue">环境要求</span></a></li>
+<li><a href="#span-idinline-blue%E7%94%9F%E6%88%90-authorstxtspan"><span id="inline-blue">生成 authors.txt</span></a><ul>
+<li><a href="#%E6%AD%A5%E9%AA%A4-1%E5%AF%BC%E5%87%BA-svn-%E6%8F%90%E4%BA%A4%E6%97%A5%E5%BF%97">步骤 1：导出 SVN 提交日志</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4-2%E6%8F%90%E5%8F%96%E5%8E%BB%E9%87%8D%E5%90%8E%E7%9A%84%E4%BD%9C%E8%80%85%E5%88%97%E8%A1%A8">步骤 2：提取去重后的作者列表</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4-3%E7%94%9F%E6%88%90-authorstxt-%E5%88%9D%E7%A8%BF">步骤 3：生成 authors.txt 初稿</a></li>
+<li><a href="#%E6%AD%A5%E9%AA%A4-4%E6%89%8B%E5%B7%A5%E6%A0%A1%E5%AF%B9">步骤 4：手工校对</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E6%A0%B8%E5%BF%83%E8%BF%81%E7%A7%BB%E6%AD%A5%E9%AA%A4span"><span id="inline-blue">核心迁移步骤</span></a><ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95">创建本地工作目录</a></li>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96-git-svn">初始化 git-svn</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E4%BD%9C%E8%80%85%E6%98%A0%E5%B0%84">配置作者映射</a></li>
+<li><a href="#%E6%8B%89%E5%8F%96-svn-%E5%8E%86%E5%8F%B2">拉取 SVN 历史</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E6%A3%80%E5%87%BA%E5%88%86%E6%94%AF%E4%B8%8E%E7%A9%BA%E7%9B%AE%E5%BD%95%E5%A4%84%E7%90%86span"><span id="inline-blue">检出分支与空目录处理</span></a><ul>
+<li><a href="#%E6%A3%80%E5%87%BA%E4%B8%BB%E5%88%86%E6%94%AF%E5%B9%B6%E8%A7%84%E8%8C%83%E5%88%86%E6%94%AF%E5%90%8D">检出主分支并规范分支名</a></li>
+<li><a href="#%E4%BF%9D%E7%95%99%E7%A9%BA%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">保留空目录结构</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-bluegit-%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AEspan"><span id="inline-blue">Git 仓库配置</span></a><ul>
+<li><a href="#%E6%8F%90%E4%BA%A4%E4%BA%BA%E4%BF%A1%E6%81%AF">提交人信息</a></li>
+<li><a href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E7%AD%96%E7%95%A5">大小写策略</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E6%8E%A8%E9%80%81%E5%88%B0-giteaspan"><span id="inline-blue">推送到 Gitea</span></a></li>
+<li><a href="#span-idinline-blue%E8%BF%81%E7%A7%BB%E7%BB%93%E6%9E%9C%E9%AA%8C%E8%AF%81span"><span id="inline-blue">迁移结果验证</span></a></li>
+<li><a href="#span-idinline-blue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98span"><span id="inline-blue">常见问题</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%8C%E6%95%B4%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95span"><span id="inline-blue">完整命令清单</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="概述"><span id="inline-blue">概述</span></span></h1><p>本文记录将公司 SVN 项目（标准「序号 + 项目名」结构）迁移为 Git 仓库并推送到 Gitea 的完整流程，以某 Java 微服务项目为例。迁移工具采用 **Git 自带的 <code>git svn</code>**（Git Bash 环境下已验证可用）。</p>
+<p>文中涉及的服务器地址、仓库名、人员信息均已脱敏，实际迁移时请替换为真实值。。</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>迁移工具</td>
+<td><code>git svn</code>（Git for Windows 内置）</td>
+</tr>
+<tr>
+<td>目标平台</td>
+<td>Gitea</td>
+</tr>
+<tr>
+<td>迁移范围</td>
+<td><code>02.src/trunk</code> 源码主干及提交历史</td>
+</tr>
+<tr>
+<td>默认分支</td>
+<td><code>main</code>（与 Gitea 默认分支一致）</td>
+</tr>
+</tbody></table>
+<p><strong>环境示例：</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>示例地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SVN 大仓库根</td>
+<td><code>http://&lt;svn-host&gt;/&lt;repo-root&gt;</code></td>
+</tr>
+<tr>
+<td>SVN 项目目录</td>
+<td><code>XX.ProjectName</code></td>
+</tr>
+<tr>
+<td>SVN 源码 trunk</td>
+<td><code>http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName/02.src/trunk</code></td>
+</tr>
+<tr>
+<td>Gitea 仓库</td>
+<td><code>http://&lt;gitea-host&gt;:&lt;port&gt;/&lt;org&gt;/ProjectName.git</code></td>
+</tr>
+</tbody></table>
+<h1><span id="迁移目标"><span id="inline-blue">迁移目标</span></span></h1><table>
+<thead>
+<tr>
+<th>目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>保留提交历史</td>
+<td>作者、时间、提交说明完整保留</td>
+</tr>
+<tr>
+<td>正确识别分支与标签</td>
+<td><code>branches</code>、<code>tags</code> 作为 Git ref，不作为普通目录带入主分支</td>
+</tr>
+<tr>
+<td>源码与文档分离</td>
+<td><code>01.doc</code>（转测资料归档）不进入日常开发仓库</td>
+</tr>
+<tr>
+<td>规范默认分支</td>
+<td>本地 <code>master</code> 重命名为 <code>main</code> 后推送 Gitea</td>
+</tr>
+</tbody></table>
+<h1><span id="迁移范围说明"><span id="inline-blue">迁移范围说明</span></span></h1><h2><span id="svn-项目目录结构">SVN 项目目录结构</span></h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">XX.ProjectName/</span><br><span class="line">├── <span class="number">01</span>.doc/              <span class="meta"># 版本转测资料归档（不迁移到源码 Git 仓库）</span></span><br><span class="line">└── <span class="number">02</span>.src/</span><br><span class="line">    ├── trunk/           <span class="meta"># 日常开发源码（迁移目标）</span></span><br><span class="line">    ├── branches/        <span class="meta"># SVN 分支</span></span><br><span class="line">    └── tags/            <span class="meta"># SVN 标签</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="只迁移-trunk-会包含什么-不包含什么">只迁移 trunk 会包含什么、不包含什么</span></h2><table>
+<thead>
+<tr>
+<th>范围</th>
+<th>是否进入 Git 源码仓库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>02.src/trunk</code> 下全部源码及提交历史</td>
+<td>是</td>
+</tr>
+<tr>
+<td><code>02.src/branches</code>、<code>02.src/tags</code></td>
+<td>作为 Git ref 迁移，不作为目录出现在主分支</td>
+</tr>
+<tr>
+<td><code>01.doc</code></td>
+<td>否</td>
+</tr>
+</tbody></table>
+<p>若业务上也需要保留 <code>01.doc</code> 的历史，建议单独建归档 Git 仓库，或保留 SVN 只读访问。</p>
+<h2><span id="关键认知init-阶段必须指定布局">关键认知：init 阶段必须指定布局</span></h2><p>迁移时<strong>不能</strong>使用下面这种配置方式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git svn init http://&lt;svn-host&gt;/&lt;repo-root&gt;</span><br><span class="line">git config svn.trunk <span class="string">&quot;XX.ProjectName/02.src/trunk&quot;</span></span><br><span class="line">git config svn.branches <span class="string">&quot;XX.ProjectName/02.src/branches&quot;</span></span><br><span class="line">git config svn.tags <span class="string">&quot;XX.ProjectName/02.src/tags&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>git svn</code> <strong>不识别</strong> <code>svn.trunk</code>、<code>svn.branches</code>、<code>svn.tags</code> 这类配置项。错误配置会导致 <code>git svn fetch</code> 把项目根目录整体当成一个普通分支迁移，最终 <code>main</code> 分支里会出现：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="number">01</span>.doc/</span><br><span class="line"><span class="number">02</span>.src<span class="regexp">/trunk/</span></span><br><span class="line"><span class="number">02</span>.src<span class="regexp">/branches/</span></span><br><span class="line"><span class="number">02</span>.src<span class="regexp">/tags/</span></span><br></pre></td></tr></table></figure>
+
+<p>正确做法是在 <code>git svn init</code> 时通过 <code>-T</code>、<code>-b</code>、<code>-t</code> 明确指定 SVN 布局。</p>
+<h1><span id="环境要求"><span id="inline-blue">环境要求</span></span></h1><table>
+<thead>
+<tr>
+<th>项</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作系统</td>
+<td>Windows（Git Bash / MINGW64）或 Linux</td>
+</tr>
+<tr>
+<td>磁盘</td>
+<td>预留足够空间（大仓库 <code>.git</code> 可达数 GB）</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>可稳定访问 SVN 服务器与 Gitea</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">git svn --version</span><br><span class="line">svn --version</span><br></pre></td></tr></table></figure>
+
+<p>建议在 <strong>Git Bash</strong> 中执行，路径统一使用 Unix 风格（如 <code>/path/to/migrate</code>）。</p>
+<h1><span id="生成-authorstxt"><span id="inline-blue">生成 authors.txt</span></span></h1><p><code>authors.txt</code> 用于将 SVN 提交人（域账号、工号等）映射为 Git 要求的 <code>姓名 &lt;邮箱&gt;</code> 格式。迁移前必须先生成此文件。</p>
+<h2><span id="步骤-1导出-svn-提交日志">步骤 1：导出 SVN 提交日志</span></h2><p>以项目根目录为范围导出，可覆盖 trunk、branches、tags 的全部提交人：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">svn <span class="built_in">log</span> <span class="string">&quot;http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName&quot;</span> --xml &gt; /path/to/migrate/svn-log.xml</span><br></pre></td></tr></table></figure>
+
+<p>若只需 trunk 范围的提交人，可缩小路径：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">svn <span class="built_in">log</span> <span class="string">&quot;http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName/02.src/trunk&quot;</span> --xml &gt; /path/to/migrate/svn-log.xml</span><br></pre></td></tr></table></figure>
+
+<h2><span id="步骤-2提取去重后的作者列表">步骤 2：提取去重后的作者列表</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&#x27;&lt;author&gt;&#x27;</span> /path/to/migrate/svn-log.xml \</span><br><span class="line">  | sed <span class="string">&#x27;s/.*&lt;author&gt;\(.*\)&lt;\/author&gt;.*/\1/&#x27;</span> \</span><br><span class="line">  | sort -u &gt; /path/to/migrate/svn-authors-raw.txt</span><br><span class="line"></span><br><span class="line">cat /path/to/migrate/svn-authors-raw.txt</span><br></pre></td></tr></table></figure>
+
+<p>典型输出示例（已脱敏）：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">DOMAIN</span>\user<span class="number">001</span></span><br><span class="line"><span class="attribute">DOMAIN</span>\user<span class="number">002</span></span><br><span class="line"><span class="attribute">user003</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="步骤-3生成-authorstxt-初稿">步骤 3：生成 authors.txt 初稿</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> author; <span class="keyword">do</span></span><br><span class="line">  name=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$author</span>&quot;</span> | sed <span class="string">&#x27;s/.*\\//&#x27;</span>)</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$author</span> = <span class="variable">$name</span> &lt;<span class="variable">$&#123;name&#125;</span>@example.com&gt;&quot;</span></span><br><span class="line"><span class="keyword">done</span> &lt; /path/to/migrate/svn-authors-raw.txt &gt; /path/to/migrate/authors.txt</span><br></pre></td></tr></table></figure>
+
+<h2><span id="步骤-4手工校对">步骤 4：手工校对</span></h2><p>将右侧邮箱替换为真实姓名和公司邮箱：</p>
+<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">DOMAIN<span class="string">\user001</span> = 张三 &lt;zhangsan@example.com&gt;</span><br><span class="line">DOMAIN<span class="string">\user002</span> = 李四 &lt;lisi@example.com&gt;</span><br><span class="line">user003 = 王五 &lt;wangwu@example.com&gt;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>等号左边</td>
+<td>必须与 SVN <code>&lt;author&gt;</code> <strong>完全一致</strong>（含域前缀、大小写）</td>
+</tr>
+<tr>
+<td>等号右边</td>
+<td>Git 提交人格式：<code>显示名 &lt;邮箱&gt;</code></td>
+</tr>
+<tr>
+<td>未映射后果</td>
+<td>迁移后显示为 <code>(no author)</code> 或原始 SVN 账号</td>
+</tr>
+</tbody></table>
+<p><strong>安全要求：</strong></p>
+<ul>
+<li><code>authors.txt</code> 含真实姓名与邮箱，<strong>不得</strong>提交到公开仓库。</li>
+<li>建议放在迁移工作目录外，通过 <code>git config svn.authorsfile</code> 引用绝对路径。</li>
+</ul>
+<blockquote>
+<p><strong>备选方式（无需 XML）</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">svn <span class="built_in">log</span> <span class="string">&quot;http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName&quot;</span> -q \</span><br><span class="line">  | grep <span class="string">&#x27;^r&#x27;</span> | awk -F<span class="string">&#x27;|&#x27;</span> <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> | sed <span class="string">&#x27;s/^ //;s/ $//&#x27;</span> | sort -u</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1><span id="核心迁移步骤"><span id="inline-blue">核心迁移步骤</span></span></h1><h2><span id="创建本地工作目录">创建本地工作目录</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p /path/to/migrate/ProjectName</span><br><span class="line"><span class="built_in">cd</span> /path/to/migrate/ProjectName</span><br></pre></td></tr></table></figure>
+
+<h2><span id="初始化-git-svn">初始化 git-svn</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git svn init http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName \</span><br><span class="line">  -T 02.src/trunk \</span><br><span class="line">  -b 02.src/branches \</span><br><span class="line">  -t 02.src/tags \</span><br><span class="line">  --no-metadata</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-T 02.src/trunk</code></td>
+<td>SVN 主干源码目录</td>
+</tr>
+<tr>
+<td><code>-b 02.src/branches</code></td>
+<td>SVN 分支目录</td>
+</tr>
+<tr>
+<td><code>-t 02.src/tags</code></td>
+<td>SVN 标签目录</td>
+</tr>
+<tr>
+<td><code>--no-metadata</code></td>
+<td>不在提交说明中追加 <code>git-svn-id</code></td>
+</tr>
+</tbody></table>
+<h2><span id="配置作者映射">配置作者映射</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config svn.authorsfile /path/to/migrate/authors.txt</span><br></pre></td></tr></table></figure>
+
+<h2><span id="拉取-svn-历史">拉取 SVN 历史</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git svn fetch --log-window-size 1000</span><br></pre></td></tr></table></figure>
+
+<p><code>--log-window-size 1000</code> 控制 git-svn 查询 SVN log 的窗口大小，适合大仓库迁移。</p>
+<p>若出现如下警告，通常可忽略：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">W: Ignoring <span class="keyword">error</span> <span class="keyword">from</span> SVN, path probably <span class="keyword">does</span> <span class="keyword">not</span> exist</span><br><span class="line">W: Do <span class="keyword">not</span> be alarmed <span class="keyword">at</span> <span class="keyword">the</span> <span class="keyword">above</span> message git-svn <span class="keyword">is</span> just searching aggressively <span class="keyword">for</span> old history.</span><br></pre></td></tr></table></figure>
+
+<p>这是早期 revision 中路径尚不存在，git-svn 正在向前扫描历史。只要仍在推进（如 <code>Checked through r20000</code>），继续等待即可。</p>
+<p>按 revision 分段拉取（可选）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git svn fetch -r 1:1000</span><br><span class="line">git svn fetch -r 1001:2000</span><br><span class="line">git svn fetch   <span class="comment"># 补齐到最新</span></span><br></pre></td></tr></table></figure>
+
+<h1><span id="检出分支与空目录处理"><span id="inline-blue">检出分支与空目录处理</span></span></h1><h2><span id="检出主分支并规范分支名">检出主分支并规范分支名</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b master refs/remotes/origin/trunk</span><br><span class="line">git branch -M main</span><br><span class="line">git branch -v</span><br></pre></td></tr></table></figure>
+
+<h2><span id="保留空目录结构">保留空目录结构</span></h2><p>Git 不跟踪空目录。SVN 迁移后如需保留空目录结构，添加 <code>.gitkeep</code> 占位文件。</p>
+<p>列出所有空目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> d -not -path <span class="string">&#x27;./.git/*&#x27;</span> -not -path <span class="string">&#x27;./.git&#x27;</span> -empty | sort</span><br></pre></td></tr></table></figure>
+
+<p>批量生成 <code>.gitkeep</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find . -<span class="built_in">type</span> d -not -path <span class="string">&#x27;./.git/*&#x27;</span> -not -path <span class="string">&#x27;./.git&#x27;</span> -empty \</span><br><span class="line">  ! -<span class="built_in">exec</span> <span class="built_in">test</span> -f <span class="string">&#x27;&#123;&#125;/.gitkeep&#x27;</span> \; \</span><br><span class="line">  -<span class="built_in">exec</span> touch <span class="string">&#x27;&#123;&#125;/.gitkeep&#x27;</span> \;</span><br></pre></td></tr></table></figure>
+
+<p>提交：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add -A</span><br><span class="line">git status</span><br><span class="line">git commit -m <span class="string">&quot;为空目录添加 .gitkeep 占位文件，保留目录结构&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1><span id="git-仓库配置"><span id="inline-blue">Git 仓库配置</span></span></h1><h2><span id="提交人信息">提交人信息</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">&quot;&lt;你的姓名&gt;&quot;</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email <span class="string">&quot;&lt;your.email@example.com&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="大小写策略">大小写策略</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config core.ignorecase          <span class="comment"># 查看当前值</span></span><br><span class="line">git config core.ignorecase <span class="literal">false</span>    <span class="comment"># 仓库级：严格区分大小写</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Windows 文件系统默认不区分大小写。若项目中存在仅大小写不同的文件名，建议先统一命名规范，再调整该配置。</p>
+</blockquote>
+<h1><span id="推送到-gitea"><span id="inline-blue">推送到 Gitea</span></span></h1><p>在 Gitea 创建<strong>空仓库</strong>（<strong>不要</strong>勾选 README 初始化），然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br><span class="line">git remote remove origin   <span class="comment"># 若已有错误远程</span></span><br><span class="line"></span><br><span class="line">git remote add origin http://&lt;gitea-host&gt;:&lt;port&gt;/&lt;org&gt;/ProjectName.git</span><br><span class="line">git push -u origin main</span><br><span class="line">git push origin --tags     <span class="comment"># 可选：推送标签</span></span><br></pre></td></tr></table></figure>
+
+<p>若本地分支仍为 <code>master</code> 而远程默认 <code>main</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<h1><span id="迁移结果验证"><span id="inline-blue">迁移结果验证</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 确认 git-svn 布局配置</span></span><br><span class="line">git config --get-regexp <span class="string">&quot;svn-remote&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 期望输出示例：</span></span><br><span class="line"><span class="comment"># svn-remote.svn.url http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName</span></span><br><span class="line"><span class="comment"># svn-remote.svn.fetch 02.src/trunk:refs/remotes/origin/trunk</span></span><br><span class="line"><span class="comment"># svn-remote.svn.branches 02.src/branches/*:refs/remotes/origin/*</span></span><br><span class="line"><span class="comment"># svn-remote.svn.tags 02.src/tags/*:refs/remotes/origin/tags/*</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 确认远程 refs</span></span><br><span class="line">git for-each-ref refs/remotes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 确认工作区根目录为源码内容（而非 02.src/trunk 子目录）</span></span><br><span class="line">ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 确认提交历史和作者映射</span></span><br><span class="line">git <span class="built_in">log</span> --oneline -20</span><br><span class="line">git <span class="built_in">log</span> --format=<span class="string">&quot;%an &lt;%ae&gt;&quot;</span> | sort -u</span><br></pre></td></tr></table></figure>
+
+<p>迁移正确时，仓库根目录应直接是源码内容（如 <code>pom.xml</code>、各服务模块、<code>docker</code>、<code>conf</code> 等），不应再包含 <code>02.src/trunk</code> 前缀。作者列表中不应出现 <code>(no author)</code>。</p>
+<h1><span id="常见问题"><span id="inline-blue">常见问题</span></span></h1><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>main 含 <code>01.doc</code>、<code>02.src/trunk</code> 等</td>
+<td>init 未用 <code>-T/-b/-t</code>，<code>git config svn.trunk</code> 无效</td>
+<td>重新迁移，init 时指定布局</td>
+</tr>
+<tr>
+<td><code>--fetch-size</code> 报错</td>
+<td><code>git svn fetch</code> 不支持该参数</td>
+<td>使用 <code>--log-window-size</code> 或 <code>-r</code> 分段</td>
+</tr>
+<tr>
+<td>提交人显示 <code>(no author)</code></td>
+<td><code>authors.txt</code> 映射不完整</td>
+<td>用 SVN log 补全作者后重新 fetch</td>
+</tr>
+<tr>
+<td><code>01.doc</code> 是否进源码仓库</td>
+<td>不在 trunk 范围内</td>
+<td>单独建归档仓库或保留 SVN 只读</td>
+</tr>
+<tr>
+<td>本地 <code>master</code>、远程 <code>main</code></td>
+<td>分支命名不一致</td>
+<td><code>git branch -M main</code> 后推送</td>
+</tr>
+<tr>
+<td><code>git svn fetch</code> 很慢</td>
+<td>大仓库 revision 多</td>
+<td>使用 <code>-r</code> 分段拉取，避免中断</td>
+</tr>
+</tbody></table>
+<h1><span id="完整命令清单"><span id="inline-blue">完整命令清单</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ── 1. 提取 SVN 作者并生成 authors.txt ──</span></span><br><span class="line">svn <span class="built_in">log</span> <span class="string">&quot;http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName&quot;</span> --xml &gt; /path/to/migrate/svn-log.xml</span><br><span class="line"></span><br><span class="line">grep <span class="string">&#x27;&lt;author&gt;&#x27;</span> /path/to/migrate/svn-log.xml \</span><br><span class="line">  | sed <span class="string">&#x27;s/.*&lt;author&gt;\(.*\)&lt;\/author&gt;.*/\1/&#x27;</span> \</span><br><span class="line">  | sort -u &gt; /path/to/migrate/svn-authors-raw.txt</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> author; <span class="keyword">do</span></span><br><span class="line">  name=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$author</span>&quot;</span> | sed <span class="string">&#x27;s/.*\\//&#x27;</span>)</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$author</span> = <span class="variable">$name</span> &lt;<span class="variable">$&#123;name&#125;</span>@example.com&gt;&quot;</span></span><br><span class="line"><span class="keyword">done</span> &lt; /path/to/migrate/svn-authors-raw.txt &gt; /path/to/migrate/authors.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手工编辑 authors.txt，将邮箱替换为真实信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 2. 初始化并拉取 ──</span></span><br><span class="line">mkdir -p /path/to/migrate/ProjectName</span><br><span class="line"><span class="built_in">cd</span> /path/to/migrate/ProjectName</span><br><span class="line"></span><br><span class="line">git svn init http://&lt;svn-host&gt;/&lt;repo-root&gt;/XX.ProjectName \</span><br><span class="line">  -T 02.src/trunk \</span><br><span class="line">  -b 02.src/branches \</span><br><span class="line">  -t 02.src/tags \</span><br><span class="line">  --no-metadata</span><br><span class="line"></span><br><span class="line">git config svn.authorsfile /path/to/migrate/authors.txt</span><br><span class="line">git svn fetch --log-window-size 1000</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 3. 检出、补全空目录、规范分支 ──</span></span><br><span class="line">git checkout -b master refs/remotes/origin/trunk</span><br><span class="line"></span><br><span class="line">find . -<span class="built_in">type</span> d -not -path <span class="string">&#x27;./.git/*&#x27;</span> -not -path <span class="string">&#x27;./.git&#x27;</span> -empty \</span><br><span class="line">  ! -<span class="built_in">exec</span> <span class="built_in">test</span> -f <span class="string">&#x27;&#123;&#125;/.gitkeep&#x27;</span> \; \</span><br><span class="line">  -<span class="built_in">exec</span> touch <span class="string">&#x27;&#123;&#125;/.gitkeep&#x27;</span> \;</span><br><span class="line"></span><br><span class="line">git add -A &amp;&amp; git commit -m <span class="string">&quot;为空目录添加 .gitkeep 占位文件，保留目录结构&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 4. 配置提交人并推送 ──</span></span><br><span class="line">git config --<span class="built_in">local</span> user.name <span class="string">&quot;&lt;你的姓名&gt;&quot;</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email <span class="string">&quot;&lt;your.email@example.com&gt;&quot;</span></span><br><span class="line"></span><br><span class="line">git remote add origin http://&lt;gitea-host&gt;:&lt;port&gt;/&lt;org&gt;/ProjectName.git</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<p>完成以上迁移后，团队成员可通过 <code>git clone</code> 获取新仓库。</p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>SVN</tag>
+        <tag>Gitea</tag>
+        <tag>git-svn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开发服务器免密登录 Gitea 并实现 Git 推送</title>
+    <url>/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/blogs/%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95Gitea%E5%B9%B6%E5%AE%9E%E7%8E%B0Git%E6%8E%A8%E9%80%81/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%A6%82%E8%BF%B0span"><span id="inline-blue">概述</span></a></li>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82span"><span id="inline-blue">环境要求</span></a></li>
+<li><a href="#span-idinline-blue%E6%A0%B8%E5%BF%83%E6%AD%A5%E9%AA%A4span"><span id="inline-blue">核心步骤</span></a><ul>
+<li><a href="#%E5%9C%A8%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%9F%E6%88%90-ssh-key%E7%94%A8%E4%BA%8E%E6%8E%A8%E9%80%81">在远程开发服务器生成 SSH Key（用于推送）</a></li>
+<li><a href="#%E5%B0%86%E5%85%AC%E9%92%A5%E6%B7%BB%E5%8A%A0%E5%88%B0-gitea">将公钥添加到 Gitea</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8-~sshconfig%E6%8C%87%E5%AE%9A-gitea-ssh-%E7%AB%AF%E5%8F%A3%E7%94%A8%E6%88%B7%E5%AF%86%E9%92%A5">配置远程服务器 <code>~/.ssh/config</code>（指定 Gitea SSH 端口/用户/密钥）</a></li>
+<li><a href="#%E5%B0%86-git-remote-%E4%BB%8E-http-%E5%88%87%E6%8D%A2%E4%B8%BA-ssh%E5%85%B3%E9%94%AE">将 Git Remote 从 HTTP 切换为 SSH（关键）</a></li>
+<li><a href="#%E5%85%8D%E5%AF%86%E6%8E%A8%E9%80%81%E9%AA%8C%E8%AF%81">免密推送验证</a></li>
+</ul>
+</li>
+<li><a href="#span-idinline-blue%E9%85%8D%E7%BD%AE%E4%B8%8E%E9%AA%8C%E8%AF%81span"><span id="inline-blue">配置与验证</span></a></li>
+<li><a href="#span-idinline-blue%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98span"><span id="inline-blue">常见问题</span></a></li>
+<li><a href="#span-idinline-blue%E5%AE%8C%E6%95%B4%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95span"><span id="inline-blue">完整命令清单</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="概述"><span id="inline-blue">概述</span></span></h1><p>本文承接上篇 Remote-SSH 远程开发，继续解决一个常见痛点：<strong>在远程开发服务器上 <code>git push</code> 时仍需要输入用户名/密码</strong>。</p>
+<p>核心思路是让“远程开发服务器 → Gitea”走 <strong>SSH 协议 + SSH Key</strong>，并确保仓库 <code>origin</code> 使用 <strong>SSH remote</strong>（而不是 HTTP remote）。</p>
+<p>文中涉及的 <strong>服务器地址、仓库名、用户名等均已脱敏</strong>，并使用“随机示例数据”替代真实信息，便于阅读理解且不泄露内网信息。</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目标</td>
+<td>在远程开发服务器上免密推送到 Gitea</td>
+</tr>
+<tr>
+<td>关键点</td>
+<td><code>~/.ssh/config</code> 指定端口/用户/密钥 + <code>git remote set-url</code> 切换到 SSH</td>
+</tr>
+<tr>
+<td>常见误区</td>
+<td>Gitea 配了 SSH Key，但 remote 仍是 <code>http://...</code>，导致必须输入账号密码</td>
+</tr>
+</tbody></table>
+<p><strong>环境示例：</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>示例地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>远程开发服务器</td>
+<td><code>devbox-02 (10.23.45.67)</code></td>
+</tr>
+<tr>
+<td>Gitea Web</td>
+<td><code>http://10.88.1.20:3000</code></td>
+</tr>
+<tr>
+<td>Gitea SSH</td>
+<td><code>git.lab.local:2222</code></td>
+</tr>
+<tr>
+<td>仓库路径</td>
+<td><code>ACME/PhotoFrame-Cloud</code></td>
+</tr>
+</tbody></table>
+<p>参见上篇（Cursor Remote-SSH 免密登录）：<a href="./Cursor-Remote-SSH%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8.md">Cursor-Remote-SSH免密登录远程开发服务器</a></p>
+<h1><span id="环境要求"><span id="inline-blue">环境要求</span></span></h1><table>
+<thead>
+<tr>
+<th>项</th>
+<th>建议/示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>远程开发服务器 OS</td>
+<td>Ubuntu 18.04/20.04/22.04（示例：Ubuntu 18.04.6 LTS）</td>
+</tr>
+<tr>
+<td>Git 版本（远程）</td>
+<td>2.25+（示例：2.34.1）</td>
+</tr>
+<tr>
+<td>SSH 客户端（远程）</td>
+<td>OpenSSH 7.6+（示例：7.6p1）</td>
+</tr>
+<tr>
+<td>Gitea</td>
+<td>1.21.x（示例：1.21.11）</td>
+</tr>
+</tbody></table>
+<h1><span id="核心步骤"><span id="inline-blue">核心步骤</span></span></h1><h2><span id="在远程开发服务器生成-ssh-key用于推送">在远程开发服务器生成 SSH Key（用于推送）</span></h2><p>在远程开发服务器执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;build-bot@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认生成：</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">~<span class="regexp">/.ssh/i</span>d_ed25519</span><br><span class="line">~<span class="regexp">/.ssh/i</span>d_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>安全要求：</strong>不要把私钥复制到任何文档/仓库；如果多人共用服务器，建议使用“个人账号 + 个人密钥”，避免共享密钥难追责。</p>
+</blockquote>
+<h2><span id="将公钥添加到-gitea">将公钥添加到 Gitea</span></h2><p>查看远程服务器公钥：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_ed25519.pub</span><br></pre></td></tr></table></figure>
+
+<p>登录 Gitea Web（示例：<code>http://10.88.1.20:3000</code>）后：</p>
+<ul>
+<li>个人设置 -&gt; SSH Keys -&gt; Add Key</li>
+<li>粘贴公钥全文并保存</li>
+</ul>
+<h2><span id="配置远程服务器-~sshconfig指定-gitea-ssh-端口用户密钥">配置远程服务器 <code>~/.ssh/config</code>（指定 Gitea SSH 端口/用户/密钥）</span></h2><p>编辑远程服务器 <code>~/.ssh/config</code>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host git.lab.local</span><br><span class="line">    HostName 10.88.1.20</span><br><span class="line">    User git</span><br><span class="line">    Port 2222</span><br><span class="line">    IdentityFile ~&#x2F;.ssh&#x2F;id_ed25519</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Host</code></td>
+<td>连接别名（建议用和团队一致的名字）</td>
+</tr>
+<tr>
+<td><code>User</code></td>
+<td>Gitea 的 SSH 用户（多数部署为 <code>git</code>，以实际为准）</td>
+</tr>
+<tr>
+<td><code>Port</code></td>
+<td>Gitea SSH 端口（不少环境不是 22）</td>
+</tr>
+<tr>
+<td><code>IdentityFile</code></td>
+<td>该仓库推送所用私钥</td>
+</tr>
+</tbody></table>
+<p>验证 SSH 是否可用：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git.lab.local</span><br></pre></td></tr></table></figure>
+
+<p>预期输出（示例，具体欢迎语可能不同）：</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">Hi there, build-bot! You<span class="symbol">&#x27;ve</span> successfully authenticated, but Gitea does <span class="keyword">not</span> provide shell <span class="keyword">access</span>.</span><br></pre></td></tr></table></figure>
+
+<h2><span id="将-git-remote-从-http-切换为-ssh关键">将 Git Remote 从 HTTP 切换为 SSH（关键）</span></h2><p>进入项目目录（示例路径）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /data/workspace/photo-frame-cloud</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>如果看到的是 HTTP remote（示例）：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">origin  http:<span class="regexp">//</span><span class="number">10.88</span>.<span class="number">1.20</span>:<span class="number">3000</span><span class="regexp">/ACME/</span>PhotoFrame-Cloud.git (fetch)</span><br><span class="line">origin  http:<span class="regexp">//</span><span class="number">10.88</span>.<span class="number">1.20</span>:<span class="number">3000</span><span class="regexp">/ACME/</span>PhotoFrame-Cloud.git (push)</span><br></pre></td></tr></table></figure>
+
+<p>改成 SSH remote：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote set-url origin <span class="string">&quot;ssh://git.lab.local/ACME/PhotoFrame-Cloud.git&quot;</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>预期：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">origin  ssh:<span class="regexp">//gi</span>t.lab.local<span class="regexp">/ACME/</span>PhotoFrame-Cloud.git (fetch)</span><br><span class="line">origin  ssh:<span class="regexp">//gi</span>t.lab.local<span class="regexp">/ACME/</span>PhotoFrame-Cloud.git (push)</span><br></pre></td></tr></table></figure>
+
+<h2><span id="免密推送验证">免密推送验证</span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<p>通过标准：不再提示输入用户名/密码，push 正常完成（或显示 <code>Everything up-to-date</code>）。</p>
+<h1><span id="配置与验证"><span id="inline-blue">配置与验证</span></span></h1><table>
+<thead>
+<tr>
+<th>验证项</th>
+<th>命令</th>
+<th>通过标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SSH key 生效</td>
+<td><code>ssh -T git.lab.local</code></td>
+<td>输出 “authenticated / no shell access” 类提示</td>
+</tr>
+<tr>
+<td>remote 协议正确</td>
+<td><code>git remote -v</code></td>
+<td><code>origin</code> 为 <code>ssh://...</code> 而非 <code>http(s)://...</code></td>
+</tr>
+<tr>
+<td>推送免密</td>
+<td><code>git push</code></td>
+<td>不询问用户名/密码</td>
+</tr>
+</tbody></table>
+<h1><span id="常见问题"><span id="inline-blue">常见问题</span></span></h1><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>原因</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>git push</code> 仍要输入用户名密码</td>
+<td>remote 还是 HTTP</td>
+<td>用 <code>git remote -v</code> 确认并执行 <code>git remote set-url origin &quot;ssh://git.lab.local/&lt;org&gt;/&lt;repo&gt;.git&quot;</code></td>
+</tr>
+<tr>
+<td><code>Permission denied (publickey)</code></td>
+<td><code>~/.ssh/config</code> 用户/端口不对，或公钥未添加到 Gitea</td>
+<td><code>ssh -vT git.lab.local</code> 看用的 key；检查 Gitea SSH key 列表</td>
+</tr>
+<tr>
+<td><code>Host key verification failed</code></td>
+<td>known_hosts 冲突或首次未确认</td>
+<td>删除对应条目：<code>ssh-keygen -R &quot;[10.88.1.20]:2222&quot;</code> 后重试</td>
+</tr>
+<tr>
+<td>多个密钥导致选错</td>
+<td>SSH 自动尝试了其他 key</td>
+<td>在 <code>~/.ssh/config</code> 固定 <code>IdentityFile</code>，必要时加 <code>IdentitiesOnly yes</code></td>
+</tr>
+</tbody></table>
+<h1><span id="完整命令清单"><span id="inline-blue">完整命令清单</span></span></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ── 1. 远程服务器：生成用于 Gitea 的 SSH Key ──</span></span><br><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;build-bot@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 2. 远程服务器：配置 ~/.ssh/config（示例）──</span></span><br><span class="line"><span class="comment"># Host git.lab.local</span></span><br><span class="line"><span class="comment">#     HostName 10.88.1.20</span></span><br><span class="line"><span class="comment">#     User git</span></span><br><span class="line"><span class="comment">#     Port 2222</span></span><br><span class="line"><span class="comment">#     IdentityFile ~/.ssh/id_ed25519</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 3. 远程服务器：验证 SSH 连通性 ──</span></span><br><span class="line">ssh -T git.lab.local</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 4. 远程服务器：切换 Git remote 为 SSH ──</span></span><br><span class="line"><span class="built_in">cd</span> /data/workspace/photo-frame-cloud</span><br><span class="line">git remote -v</span><br><span class="line">git remote set-url origin <span class="string">&quot;ssh://git.lab.local/ACME/PhotoFrame-Cloud.git&quot;</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># ── 5. 远程服务器：免密推送验证 ──</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<p>完成以上步骤后，你的日常流程就是：Remote-SSH 连接远程服务器 → 编码 → <code>git push</code>（免密）→ 构建/部署。</p>
+]]></content>
+      <categories>
+        <category>开发环境</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+        <tag>Git</tag>
+        <tag>Gitea</tag>
+        <tag>免密推送</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Jenkins流水线配置</title>
     <url>/Jenkins/blogs/Jenkins%E6%B5%81%E6%B0%B4%E7%BA%BF%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<!-- toc -->
@@ -1777,8 +2604,8 @@
       </categories>
       <tags>
         <tag>Maven</tag>
-        <tag>Windows</tag>
         <tag>IDEA</tag>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -6912,7 +7739,7 @@
 <p>注意点：</p>
 <p>1、emqx节点命名格式</p>
 <p>​基本格式<br>节点名称必须为 ​<strong>Name@Host</strong>，例如：</p>
-<p><a href="mailto:&#x65;&#109;&#x71;&#120;&#x31;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#x38;&#46;&#x31;&#46;&#49;&#48;&#x30;">&#x65;&#109;&#x71;&#120;&#x31;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#x38;&#46;&#x31;&#46;&#49;&#48;&#x30;</a><br><a href="mailto:&#110;&#111;&#100;&#101;&#50;&#x40;&#x62;&#114;&#x6f;&#107;&#x65;&#x72;&#x2e;&#101;&#x6d;&#x71;&#120;&#x2e;&#105;&#x6f;">&#110;&#111;&#100;&#101;&#50;&#x40;&#x62;&#114;&#x6f;&#107;&#x65;&#x72;&#x2e;&#101;&#x6d;&#x71;&#120;&#x2e;&#105;&#x6f;</a><br><a href="mailto:&#101;&#109;&#x71;&#x78;&#64;&#x31;&#x30;&#x2e;&#48;&#x2e;&#48;&#46;&#49;">&#101;&#109;&#x71;&#x78;&#64;&#x31;&#x30;&#x2e;&#48;&#x2e;&#48;&#46;&#49;</a></p>
+<p><a href="mailto:&#x65;&#109;&#113;&#120;&#x31;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#54;&#56;&#46;&#x31;&#x2e;&#x31;&#x30;&#48;">&#x65;&#109;&#113;&#120;&#x31;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#54;&#56;&#46;&#x31;&#x2e;&#x31;&#x30;&#48;</a><br><a href="mailto:&#x6e;&#x6f;&#x64;&#101;&#x32;&#64;&#98;&#114;&#x6f;&#107;&#x65;&#114;&#46;&#101;&#109;&#113;&#120;&#x2e;&#x69;&#111;">&#x6e;&#x6f;&#x64;&#101;&#x32;&#64;&#98;&#114;&#x6f;&#107;&#x65;&#114;&#46;&#101;&#109;&#113;&#120;&#x2e;&#x69;&#111;</a><br><a href="mailto:&#x65;&#x6d;&#x71;&#x78;&#64;&#x31;&#x30;&#46;&#48;&#46;&#x30;&#x2e;&#49;">&#x65;&#x6d;&#x71;&#x78;&#64;&#x31;&#x30;&#46;&#48;&#46;&#x30;&#x2e;&#49;</a></p>
 <p>​字段说明</p>
 <p>​<strong>Name</strong>：用户自定义的节点标识符，需保证集群内唯一。<br>​<strong>Host</strong>：节点的 IP 地址或完全限定域名（FQDN），需满足以下条件：<br>必须为 ​IP 地址​（如 192.168.1.100）或 ​FQDN​（如 emqx.example.com）。<br>不可包含端口号或特殊字符（如 - 需谨慎使用，建议用 _ 替代）。</p>
 <p>2、docker swarm模式下如果采用服务名进行通信，节点名称host部分使用服务名会导致集群节点通信失败，并且启动后报错，提示节点名称非法。解决办法是通过aliases参数给服务指定别名。</p>
@@ -9644,7 +10471,7 @@ dockerfile-maven-plugin: 1.4.9</code></pre>
 <h1><span id="目的"><span id="inline-blue">目的</span></span></h1><p>管理后台上传到FTP的图片目录，需要通过使用nginx代理给接口下载使用，但nginx如果采用回源方案的话导致在接口大量并发的情况下，nginx源服务器出现报错，代理下载nginx服务器缓存出现异常，不能正常提供下载服务。所以将nginx都修改为代理本地服务器的目录，通过rsync将上传文件的FTP目录同步到nginx服务器，减少回源的时间。</p>
 <h1><span id="实现"><span id="inline-blue">实现</span></span></h1><p>1、先查看linux的内核是否支持inotify，支持inotify的内核最小为2.6.13，输入命令：uname –a。如下图所示，内核为3.10.0，支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Linux S21614 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
-<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#56;&#46;&#49;&#x30;&#x30;&#46;&#x31;&#x30;&#x31;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#56;&#46;&#49;&#x30;&#x30;&#46;&#x31;&#x30;&#x31;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
+<p>2、建立同步ssh信任关系，输入命令：cd  $HOME，进入用户根目录。<br>输入命令：ssh-keygen -t rsa (会出现几个提示信息，一直按回车即可)。<br>会在$HOME/.ssh/目录下生成2个文件id_rsa、id_rsa.pub。<br>输入命令：cp  id_rsa.pub  authorized_keys，将id_rsa.pub拷贝成authorized_keys。<br>将授权密钥分发到nginx服务器(192.168.100.101)上，输入命令：<br>scp  ~/.ssh/authorized_keys <a href="mailto:&#x72;&#x6f;&#111;&#x74;&#x40;&#x31;&#x39;&#x32;&#46;&#x31;&#54;&#x38;&#x2e;&#49;&#48;&#x30;&#x2e;&#49;&#x30;&#x31;">&#x72;&#x6f;&#111;&#x74;&#x40;&#x31;&#x39;&#x32;&#46;&#x31;&#54;&#x38;&#x2e;&#49;&#48;&#x30;&#x2e;&#49;&#x30;&#x31;</a>:/root/.ssh/<br>如果有多台下载服务器，每台都须运行一次上面的密钥下发命令。<br>3、通过如下命令查看系统是否支持inotify：ll /proc/sys/fs/inotify<br>如果有如下输出，表示系统内核已经支持inotify：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_queued_events</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_instances</span><br><span class="line">-rw-r--r-- 1 root root 0 Jan  2 14:59 max_user_watches</span><br></pre></td></tr></table></figure>
 <p>5、取得软件包inotify-tools-3.13.tar.gz，放在/tmp下。<br>6、输入命令：tar zvxf inotify-tools-3.13.tar.gz，解压软件包。<br>7、输入命令：cd inotify-tools-3.13，进入解压后的目录。<br>8、输入命令：./configure<br>9、输入命令：make<br>10、输入命令：make install<br>11、在系统下执行命令：man inotify、 man inotifywait、 man inotifywatch即可得到相应的帮助信息，表示inotify安装成功。<br>12、输入命令：rsync，查看rsync是否安装。<br>rsync一般是系统默认安装，如果没有安装就取得软件包，安装方法同inotify。</p>
 <p>1、取得syncapps.sh、versService.dat脚本。<br>syncapps.sh脚本内容如下：</p>
@@ -12940,27 +13767,6 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Hexo使用Next主题异常</title>
-    <url>/Hexo/blogs/Hexo%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h2><span id="问题描述"><span id="inline-blue">问题描述<span></span></span></span></h2><p>访问hexo ,出现以下提示</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&#123;% extends &#x27;_layout.swig&#x27; %&#125; &#123;% import &#x27;_macro/post.swig&#x27; as post_template %&#125; &#123;% import &#x27;_macro/sidebar.swig&#x27; as sidebar_template %&#125; &#123;% block title %&#125;&#123;&#123; config.title &#125;&#125;&#123;% if theme.index_with_subtitle and config.subtitle %&#125; - &#123;&#123;config.subtitle &#125;&#125;&#123;% endif %&#125;&#123;% endblock %&#125; &#123;% block page_class %&#125; &#123;% if is_home() %&#125;page-home&#123;% endif -%&#125; &#123;% endblock %&#125; &#123;% block content %&#125;</span><br><span class="line">&#123;% for post in page<span class="selector-class">.posts</span> %&#125; &#123;&#123; post_template<span class="selector-class">.render</span>(post, true) &#125;&#125; &#123;% endfor %&#125;</span><br><span class="line">&#123;% include &#x27;_partials/pagination.swig&#x27; %&#125; &#123;% endblock %&#125; &#123;% block sidebar %&#125; &#123;&#123; sidebar_template.render(false) &#125;&#125; &#123;% endblock %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2><span id="问题原因"><span id="inline-blue">问题原因</span></span></h2><p>hexo在5.0之后把swig给删除了需要自己手动安装</p>
-<h2><span id="解决办法">解决办法</span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo归档页优化</title>
     <url>/Hexo/blogs/Hexo%E5%BD%92%E6%A1%A3%E9%A1%B5%E4%BC%98%E5%8C%96/</url>
     <content><![CDATA[<h2><span id="hexo归档页优化"><span id="inline-blue">hexo归档页优化<span></span></span></span></h2><p>修改/themes/next/layout/_macro/post-collapse.swig后的代码如下：</p>
@@ -12979,6 +13785,27 @@ tmp – 临时文件</code></pre>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-id">#download</span> &#123;</span><br><span class="line"><span class="attribute">display</span>: inline-block;</span><br><span class="line"><span class="attribute">padding</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line"><span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line"><span class="attribute">background</span>: transparent;</span><br><span class="line"><span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line"><span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line"><span class="attribute">transition</span>: all .<span class="number">5s</span> ease;</span><br><span class="line"><span class="attribute">font-weight</span>: bold;</span><br><span class="line">&amp;<span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line"><span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在你需要编辑的文章地方。放置如下代码</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;a id=&quot;download&quot; href=&quot;http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/?spm=5176.8351553.0.0.4bc61991tQpsnV&quot;&gt;&lt;i class=&quot;fa fa-download&quot;&gt;&lt;/i&gt;&lt;span&gt; 阿里云Docker镜像&lt;/span&gt; &lt;/a&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo使用Next主题异常</title>
+    <url>/Hexo/blogs/Hexo%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h2><span id="问题描述"><span id="inline-blue">问题描述<span></span></span></span></h2><p>访问hexo ,出现以下提示</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&#123;% extends &#x27;_layout.swig&#x27; %&#125; &#123;% import &#x27;_macro/post.swig&#x27; as post_template %&#125; &#123;% import &#x27;_macro/sidebar.swig&#x27; as sidebar_template %&#125; &#123;% block title %&#125;&#123;&#123; config.title &#125;&#125;&#123;% if theme.index_with_subtitle and config.subtitle %&#125; - &#123;&#123;config.subtitle &#125;&#125;&#123;% endif %&#125;&#123;% endblock %&#125; &#123;% block page_class %&#125; &#123;% if is_home() %&#125;page-home&#123;% endif -%&#125; &#123;% endblock %&#125; &#123;% block content %&#125;</span><br><span class="line">&#123;% for post in page<span class="selector-class">.posts</span> %&#125; &#123;&#123; post_template<span class="selector-class">.render</span>(post, true) &#125;&#125; &#123;% endfor %&#125;</span><br><span class="line">&#123;% include &#x27;_partials/pagination.swig&#x27; %&#125; &#123;% endblock %&#125; &#123;% block sidebar %&#125; &#123;&#123; sidebar_template.render(false) &#125;&#125; &#123;% endblock %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2><span id="问题原因"><span id="inline-blue">问题原因</span></span></h2><p>hexo在5.0之后把swig给删除了需要自己手动安装</p>
+<h2><span id="解决办法">解决办法</span></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
@@ -13160,6 +13987,47 @@ tmp – 临时文件</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Nginx基本命令</title>
+    <url>/Nginx/blogs/Nginx%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6span"><span id="inline-blue">添加nginx自启动文件</span></a></li>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90span"><span id="inline-blue">添加文件可执行权限</span></a></li>
+<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8span"><span id="inline-blue">设置开启自启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9Fspan"><span id="inline-blue">验证服务是否添加成功</span></a></li>
+<li><a href="#span-idinline-blue%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8span"><span id="inline-blue">查询nginx是否启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6span"><span id="inline-blue">重新加载nginx配置文件</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">停止nginx服务</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="添加nginx自启动文件"><span id="inline-blue">添加nginx自启动文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># vim /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="添加文件可执行权限"><span id="inline-blue">添加文件可执行权限</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chmod a+x /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="设置开启自启动"><span id="inline-blue">设置开启自启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig --add /etc/init.d/nginx</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig nginx on</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="验证服务是否添加成功"><span id="inline-blue">验证服务是否添加成功</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx start;</span></span><br><span class="line">正在启动 nginx：                                           [确定]</span><br></pre></td></tr></table></figure>
+
+<h2><span id="查询nginx是否启动"><span id="inline-blue">查询nginx是否启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># ps -ef | grep nginx</span></span><br><span class="line">root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx -c /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          </span><br><span class="line">root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</span><br></pre></td></tr></table></figure>
+
+
+<h2><span id="重新加载nginx配置文件"><span id="inline-blue">重新加载nginx配置文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx reload</span></span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line">重新载入 nginx：                                           [确定]</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></table></figure>
+
+<h2><span id="停止nginx服务"><span id="inline-blue">停止nginx服务</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx stop</span></span><br><span class="line">停止 nginx：                                               [确定]</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx常用启动命令</title>
     <url>/Nginx/blogs/Nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<!-- toc -->
@@ -13223,47 +14091,6 @@ tmp – 临时文件</code></pre>
       <tags>
         <tag>Linux</tag>
         <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx基本命令</title>
-    <url>/Nginx/blogs/Nginx%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6span"><span id="inline-blue">添加nginx自启动文件</span></a></li>
-<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90span"><span id="inline-blue">添加文件可执行权限</span></a></li>
-<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8span"><span id="inline-blue">设置开启自启动</span></a></li>
-<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9Fspan"><span id="inline-blue">验证服务是否添加成功</span></a></li>
-<li><a href="#span-idinline-blue%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8span"><span id="inline-blue">查询nginx是否启动</span></a></li>
-<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6span"><span id="inline-blue">重新加载nginx配置文件</span></a></li>
-<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">停止nginx服务</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="添加nginx自启动文件"><span id="inline-blue">添加nginx自启动文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># vim /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="添加文件可执行权限"><span id="inline-blue">添加文件可执行权限</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chmod a+x /etc/init.d/nginx</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="设置开启自启动"><span id="inline-blue">设置开启自启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig --add /etc/init.d/nginx</span></span><br><span class="line">[root@lwdCSCDN init.d]<span class="comment"># chkconfig nginx on</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="验证服务是否添加成功"><span id="inline-blue">验证服务是否添加成功</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx start;</span></span><br><span class="line">正在启动 nginx：                                           [确定]</span><br></pre></td></tr></table></figure>
-
-<h2><span id="查询nginx是否启动"><span id="inline-blue">查询nginx是否启动</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># ps -ef | grep nginx</span></span><br><span class="line">root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/<span class="built_in">local</span>/nginx/sbin/nginx -c /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          </span><br><span class="line">root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</span><br></pre></td></tr></table></figure>
-
-
-<h2><span id="重新加载nginx配置文件"><span id="inline-blue">重新加载nginx配置文件</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx reload</span></span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line">重新载入 nginx：                                           [确定]</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></table></figure>
-
-<h2><span id="停止nginx服务"><span id="inline-blue">停止nginx服务</span></span></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]<span class="comment"># service nginx stop</span></span><br><span class="line">停止 nginx：                                               [确定]</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>Nginx</category>
-      </categories>
-      <tags>
-        <tag>Nginx</tag>
-        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
