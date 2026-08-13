@@ -810,9 +810,9 @@
       <tags>
         <tag>Docker</tag>
         <tag>Nginx</tag>
-        <tag>Docker Swarm</tag>
         <tag>配置挂载</tag>
         <tag>Docker Compose</tag>
+        <tag>Docker Swarm</tag>
       </tags>
   </entry>
   <entry>
@@ -2588,8 +2588,8 @@
       </categories>
       <tags>
         <tag>Docker</tag>
-        <tag>Fail2ban</tag>
         <tag>Nginx</tag>
+        <tag>Fail2ban</tag>
       </tags>
   </entry>
   <entry>
@@ -16859,6 +16859,28 @@ tmp – 临时文件
       </tags>
   </entry>
   <entry>
+    <title>Hexo 安装本地搜索功能</title>
+    <url>/Hexo/blogs/Hexo%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<h2><span id="安装插件"><span id="inline-blue">安装插件</span></span></h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2><span id="新增配置"><span id="inline-blue">新增配置</span></span></h2><p>修改 hexo/_config.yml 站点配置文件，新增以下内容到任意位置：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></tbody></table></figure>
+
+<h2><span id="修改主题配置文件开启本地搜索功能"><span id="inline-blue">修改主题配置文件，开启本地搜索功能</span></span></h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Local search</span></span><br><span class="line">local_search:</span><br><span class="line">enable: true  </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 安装渲染引擎</title>
     <url>/Hexo/blogs/Hexo%E5%AE%89%E8%A3%85%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E/</url>
     <content><![CDATA[<h2><span id="卸载默认引擎"><span id="inline-blue">卸载默认引擎</span></span></h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked –save</span><br></pre></td></tr></tbody></table></figure>
@@ -16873,28 +16895,6 @@ tmp – 临时文件
 <h2><span id="开启-next-主题-math-支持"><span id="inline-blue">开启 NexT 主题 math 支持</span></span></h2><p>修改 next 主题下_config.xml</p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Math Formulas Render Support</span></span><br><span class="line">math:</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">Default (<span class="literal">true</span>) will load mathjax / katex script on demand.</span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">That is it only render those page <span class="built_in">which</span> has `mathjax: <span class="literal">true</span>` <span class="keyword">in</span> Front-matter.</span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">If you <span class="built_in">set</span> it to <span class="literal">false</span>, it will load mathjax / katex srcipt EVERY PAGE.</span></span><br><span class="line">  per_page: true</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">hexo-renderer-pandoc (or hexo-renderer-kramed) required <span class="keyword">for</span> full MathJax support.</span></span><br><span class="line">  mathjax:</span><br><span class="line">    enable: false</span><br><span class="line">    # See: https://mhchem.github.io/MathJax-mhchem/</span><br><span class="line">    mhchem: false</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required <span class="keyword">for</span> full Katex support.</span></span><br><span class="line">  katex:</span><br><span class="line">    enable: true</span><br><span class="line">    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span><br><span class="line">    copy_tex: false</span><br></pre></td></tr></tbody></table></figure>
 
-
-
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 安装本地搜索功能</title>
-    <url>/Hexo/blogs/Hexo%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<h2><span id="安装插件"><span id="inline-blue">安装插件</span></span></h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2><span id="新增配置"><span id="inline-blue">新增配置</span></span></h2><p>修改 hexo/_config.yml 站点配置文件，新增以下内容到任意位置：</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></tbody></table></figure>
-
-<h2><span id="修改主题配置文件开启本地搜索功能"><span id="inline-blue">修改主题配置文件，开启本地搜索功能</span></span></h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Local search</span></span><br><span class="line">local_search:</span><br><span class="line">enable: true  </span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -17942,36 +17942,6 @@ tmp – 临时文件
       </tags>
   </entry>
   <entry>
-    <title>windows 注册 Redis 服务</title>
-    <url>/Redis/blogs/Windows%E6%B3%A8%E5%86%8CRedis%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
-<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis 下载</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis 注册</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis 服务自启动设置</span></a></li>
-<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis 服务验证</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
-<h1><span id="redis-下载"><span id="inline-blue">Redis 下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的 Redis-x64-3.2.100 版本</p>
-<h1><span id="redis-注册"><span id="inline-blue">Redis 注册</span></span></h1><p>1. 运行 windows cmd 命令，进入 Redis 安装目录 D:\redis_3.2.100\Redis-x64-3.2.100</p>
-<p>2. 执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
-<p>3. 如果需要卸载 Redis 服务，执行 redis-server –service-uninstall</p>
-<h1><span id="redis-服务自启动设置"><span id="inline-blue">Redis 服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
-<h1><span id="redis-服务验证"><span id="inline-blue">Redis 服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows 注册 Nginx 服务</title>
     <url>/Nginx/blogs/Windows%E6%B3%A8%E5%86%8CNginx%E6%9C%8D%E5%8A%A1/</url>
     <content><![CDATA[<!-- toc -->
@@ -18008,6 +17978,36 @@ tmp – 临时文件
       </tags>
   </entry>
   <entry>
+    <title>windows 注册 Redis 服务</title>
+    <url>/Redis/blogs/Windows%E6%B3%A8%E5%86%8CRedis%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E7%8E%AF%E5%A2%83span"><span id="inline-blue">环境</span></a></li>
+<li><a href="#span-idinline-blueredis%E4%B8%8B%E8%BD%BDspan"><span id="inline-blue">Redis 下载</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%B3%A8%E5%86%8Cspan"><span id="inline-blue">Redis 注册</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AEspan"><span id="inline-blue">Redis 服务自启动设置</span></a></li>
+<li><a href="#span-idinline-blueredis%E6%9C%8D%E5%8A%A1%E9%AA%8C%E8%AF%81span"><span id="inline-blue">Redis 服务验证</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="环境"><span id="inline-blue">环境</span></span></h1><p>windows 7<br>Redis-x64-3.2.100</p>
+<h1><span id="redis-下载"><span id="inline-blue">Redis 下载</span></span></h1><p><a href="https://github.com/microsoftarchive/redis/releases">下载地址</a><br>笔者使用的 Redis-x64-3.2.100 版本</p>
+<h1><span id="redis-注册"><span id="inline-blue">Redis 注册</span></span></h1><p>1. 运行 windows cmd 命令，进入 Redis 安装目录 D:\redis_3.2.100\Redis-x64-3.2.100</p>
+<p>2. 执行注册服务命令 redis-server –service-install redis.windows-service.conf </p>
+<p>3. 如果需要卸载 Redis 服务，执行 redis-server –service-uninstall</p>
+<h1><span id="redis-服务自启动设置"><span id="inline-blue">Redis 服务自启动设置</span></span></h1><p><img src="/images/redis/20210104_01.png" alt="Redis服务设置"></p>
+<h1><span id="redis-服务验证"><span id="inline-blue">Redis 服务验证</span></span></h1><p><img src="/images/redis/20210104_02.png" alt="Redis服务验证"></p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 创建 FTP</title>
     <url>/FTP/blogs/Linux%E5%88%9B%E5%BB%BAFTP/</url>
     <content><![CDATA[<!-- toc -->
@@ -18030,111 +18030,6 @@ tmp – 临时文件
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>FTP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 常用启动命令</title>
-    <url>/Nginx/blogs/Nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
-<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
-<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c <span class="built_in">dir</span>(指定配置文件所在路径)</span><br></pre></td></tr></tbody></table></figure>
-
-<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <categories>
-        <category>Nginx</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx 开机自启动</title>
-    <url>/Nginx/blogs/Nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6span"><span id="inline-blue">添加 nginx 自启动文件</span></a></li>
-<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90span"><span id="inline-blue">添加文件可执行权限</span></a></li>
-<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8span"><span id="inline-blue">设置开启自启动</span></a></li>
-<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9Fspan"><span id="inline-blue">验证服务是否添加成功</span></a></li>
-<li><a href="#span-idinline-blue%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8span"><span id="inline-blue">查询 nginx 是否启动</span></a></li>
-<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6span"><span id="inline-blue">重新加载 nginx 配置文件</span></a></li>
-<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">停止 nginx 服务</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="添加-nginx-自启动文件"><span id="inline-blue">添加 nginx 自启动文件</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径</span></span><br><span class="line">[root@lwdCSCDN init.d]# vim /etc/init.d/nginx</span><br></pre></td></tr></tbody></table></figure>
-
-<h2><span id="添加文件可执行权限"><span id="inline-blue">添加文件可执行权限</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# <span class="built_in">chmod</span> a+x /etc/init.d/nginx</span><br></pre></td></tr></tbody></table></figure>
-
-<h2><span id="设置开启自启动"><span id="inline-blue">设置开启自启动</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# chkconfig --add /etc/init.d/nginx</span><br><span class="line">[root@lwdCSCDN init.d]# chkconfig nginx on</span><br></pre></td></tr></tbody></table></figure>
-
-<h2><span id="验证服务是否添加成功"><span id="inline-blue">验证服务是否添加成功</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# service nginx start;</span><br><span class="line">正在启动 nginx：                                           [确定]</span><br></pre></td></tr></tbody></table></figure>
-
-<h2><span id="查询-nginx-是否启动"><span id="inline-blue">查询 nginx 是否启动</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# ps -ef | grep nginx</span><br><span class="line">root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          </span><br><span class="line">root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</span><br></pre></td></tr></tbody></table></figure>
-
-
-<h2><span id="重新加载-nginx-配置文件"><span id="inline-blue">重新加载 nginx 配置文件</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# service nginx reload</span><br><span class="line">nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/local/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line">重新载入 nginx：                                           [确定]</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></tbody></table></figure>
-
-<h2><span id="停止-nginx-服务"><span id="inline-blue">停止 nginx 服务</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# service nginx stop</span><br><span class="line">停止 nginx：                                               [确定]</span><br></pre></td></tr></tbody></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>Nginx</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows 创建 FTP</title>
-    <url>/FTP/blogs/Windows%E5%88%9B%E5%BB%BAFTP/</url>
-    <content><![CDATA[<!-- toc -->
-
-<ul>
-<li><a href="#span-idinline-blue%E5%88%9B%E5%BB%BAftp%E7%94%A8%E6%88%B7span"><span id="inline-blue">创建 FTP 用户</span></a></li>
-<li><a href="#span-idinline-blue%E5%BC%80%E5%90%AFftp%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">开启 FTP 服务</span></a></li>
-<li><a href="#span-idinline-blue%E5%88%9B%E5%BB%BAftp_server%E7%BD%91%E7%AB%99span"><span id="inline-blue">创建 FTP_SERVER 网站</span></a></li>
-<li><a href="#span-idinline-blueftp_server%E7%BD%91%E7%AB%99%E6%B7%BB%E5%8A%A0ftp%E7%AB%99%E7%82%B9span"><span id="inline-blue">FTP_SERVER 网站添加 FTP 站点</span></a></li>
-<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E8%B7%AF%E5%BE%84%E5%85%B1%E4%BA%ABspan"><span id="inline-blue">设置访问路径共享</span></a></li>
-<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81ftp%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AEspan"><span id="inline-blue">验证 FTP 用户访问</span></a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="创建-ftp-用户"><span id="inline-blue">创建 FTP 用户</span></span></h2><ol>
-<li>打开计算机管理，依次打开本地用户和组 -&gt; 用户，右键新增用户，用户和密码自行定义即可，选项设置用户不可更改密码和密码永不过期</li>
-</ol>
-<p><img src="/images/Windows/FTP/WF_20201230_01.png" alt="新建用户"><br><img src="/images/Windows/FTP/WF_20201230_02.png" alt="用户信息"></p>
-<ol start="2">
-<li>创建 FTP 用户 report_cd 对应的目录 H:\home\report_cd</li>
-</ol>
-<p><img src="/images/Windows/FTP/WF_20201230_04.png" alt="用户工作目录"></p>
-<h2><span id="开启-ftp-服务"><span id="inline-blue">开启 FTP 服务</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_03.png" alt="开启FTP服务"></p>
-<h2><span id="创建-ftp_server-网站"><span id="inline-blue">创建 FTP_SERVER 网站</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_05.png" alt="创建FTP_SERVER"></p>
-<h2><span id="ftp_server-网站添加-ftp-站点"><span id="inline-blue">FTP_SERVER 网站添加 FTP 站点</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_06.png" alt="创建FTP_SERVER"><br><img src="/images/Windows/FTP/WF_20201230_07.png" alt="创建FTP_SERVER"></p>
-<h2><span id="设置访问路径共享"><span id="inline-blue">设置访问路径共享</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_08.png" alt="创建FTP_SERVER"></p>
-<h2><span id="验证-ftp-用户访问"><span id="inline-blue">验证 FTP 用户访问</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ftp://report_cd:report_cd@10.9.212.55:21</span><br></pre></td></tr></tbody></table></figure>
-
-<p><img src="/images/Windows/FTP/WF_20201230_09.png" alt="验证"></p>
-]]></content>
-      <categories>
-        <category>FTP</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
         <tag>FTP</tag>
       </tags>
   </entry>
@@ -18260,6 +18155,111 @@ tmp – 临时文件
       <tags>
         <tag>Linux</tag>
         <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 常用启动命令</title>
+    <url>/Nginx/blogs/Nginx%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%90%AF%E5%8A%A8span"><span id="inline-blue">启动</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2span"><span id="inline-blue">停止</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDspan"><span id="inline-blue">重新加载</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="启动"><span id="inline-blue">启动</span></span></h1><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">./nginx </span><br><span class="line">./nginx -c <span class="built_in">dir</span>(指定配置文件所在路径)</span><br></pre></td></tr></tbody></table></figure>
+
+<h1><span id="停止"><span id="inline-blue">停止</span></span></h1><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">./nginx -s quit /nginx处理完任务后停止</span><br><span class="line">./nginx -s stop /强制停止nginx进程</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h1><span id="重新加载"><span id="inline-blue">重新加载</span></span></h1><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">./nginx -s reload /重新加载nginx.cnf配置文件</span><br></pre></td></tr></tbody></table></figure>]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx 开机自启动</title>
+    <url>/Nginx/blogs/Nginx%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0nginx%E8%87%AA%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6span"><span id="inline-blue">添加 nginx 自启动文件</span></a></li>
+<li><a href="#span-idinline-blue%E6%B7%BB%E5%8A%A0%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90span"><span id="inline-blue">添加文件可执行权限</span></a></li>
+<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%90%AF%E8%87%AA%E5%90%AF%E5%8A%A8span"><span id="inline-blue">设置开启自启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E6%88%90%E5%8A%9Fspan"><span id="inline-blue">验证服务是否添加成功</span></a></li>
+<li><a href="#span-idinline-blue%E6%9F%A5%E8%AF%A2nginx%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8span"><span id="inline-blue">查询 nginx 是否启动</span></a></li>
+<li><a href="#span-idinline-blue%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BDnginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6span"><span id="inline-blue">重新加载 nginx 配置文件</span></a></li>
+<li><a href="#span-idinline-blue%E5%81%9C%E6%AD%A2nginx%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">停止 nginx 服务</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="添加-nginx-自启动文件"><span id="inline-blue">添加 nginx 自启动文件</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">#文件内容参考nginx官网设置,https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/ ,注意修改其中nginx可执行文件路径和指定配置文件路径</span></span><br><span class="line">[root@lwdCSCDN init.d]# vim /etc/init.d/nginx</span><br></pre></td></tr></tbody></table></figure>
+
+<h2><span id="添加文件可执行权限"><span id="inline-blue">添加文件可执行权限</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# <span class="built_in">chmod</span> a+x /etc/init.d/nginx</span><br></pre></td></tr></tbody></table></figure>
+
+<h2><span id="设置开启自启动"><span id="inline-blue">设置开启自启动</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# chkconfig --add /etc/init.d/nginx</span><br><span class="line">[root@lwdCSCDN init.d]# chkconfig nginx on</span><br></pre></td></tr></tbody></table></figure>
+
+<h2><span id="验证服务是否添加成功"><span id="inline-blue">验证服务是否添加成功</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# service nginx start;</span><br><span class="line">正在启动 nginx：                                           [确定]</span><br></pre></td></tr></tbody></table></figure>
+
+<h2><span id="查询-nginx-是否启动"><span id="inline-blue">查询 nginx 是否启动</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# ps -ef | grep nginx</span><br><span class="line">root     19139     1  0 17:58 ?        00:00:00 nginx: master process /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">root     19140 19139  0 17:58 ?        00:00:00 nginx: worker process                                          </span><br><span class="line">root     19226 15760  0 17:59 pts/0    00:00:00 grep nginx</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h2><span id="重新加载-nginx-配置文件"><span id="inline-blue">重新加载 nginx 配置文件</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# service nginx reload</span><br><span class="line">nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/local/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line">重新载入 nginx：                                           [确定]</span><br><span class="line">You have new mail <span class="keyword">in</span> /var/spool/mail/root</span><br></pre></td></tr></tbody></table></figure>
+
+<h2><span id="停止-nginx-服务"><span id="inline-blue">停止 nginx 服务</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">[root@lwdCSCDN init.d]# service nginx stop</span><br><span class="line">停止 nginx：                                               [确定]</span><br></pre></td></tr></tbody></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>Nginx</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 创建 FTP</title>
+    <url>/FTP/blogs/Windows%E5%88%9B%E5%BB%BAFTP/</url>
+    <content><![CDATA[<!-- toc -->
+
+<ul>
+<li><a href="#span-idinline-blue%E5%88%9B%E5%BB%BAftp%E7%94%A8%E6%88%B7span"><span id="inline-blue">创建 FTP 用户</span></a></li>
+<li><a href="#span-idinline-blue%E5%BC%80%E5%90%AFftp%E6%9C%8D%E5%8A%A1span"><span id="inline-blue">开启 FTP 服务</span></a></li>
+<li><a href="#span-idinline-blue%E5%88%9B%E5%BB%BAftp_server%E7%BD%91%E7%AB%99span"><span id="inline-blue">创建 FTP_SERVER 网站</span></a></li>
+<li><a href="#span-idinline-blueftp_server%E7%BD%91%E7%AB%99%E6%B7%BB%E5%8A%A0ftp%E7%AB%99%E7%82%B9span"><span id="inline-blue">FTP_SERVER 网站添加 FTP 站点</span></a></li>
+<li><a href="#span-idinline-blue%E8%AE%BE%E7%BD%AE%E8%AE%BF%E9%97%AE%E8%B7%AF%E5%BE%84%E5%85%B1%E4%BA%ABspan"><span id="inline-blue">设置访问路径共享</span></a></li>
+<li><a href="#span-idinline-blue%E9%AA%8C%E8%AF%81ftp%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AEspan"><span id="inline-blue">验证 FTP 用户访问</span></a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="创建-ftp-用户"><span id="inline-blue">创建 FTP 用户</span></span></h2><ol>
+<li>打开计算机管理，依次打开本地用户和组 -&gt; 用户，右键新增用户，用户和密码自行定义即可，选项设置用户不可更改密码和密码永不过期</li>
+</ol>
+<p><img src="/images/Windows/FTP/WF_20201230_01.png" alt="新建用户"><br><img src="/images/Windows/FTP/WF_20201230_02.png" alt="用户信息"></p>
+<ol start="2">
+<li>创建 FTP 用户 report_cd 对应的目录 H:\home\report_cd</li>
+</ol>
+<p><img src="/images/Windows/FTP/WF_20201230_04.png" alt="用户工作目录"></p>
+<h2><span id="开启-ftp-服务"><span id="inline-blue">开启 FTP 服务</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_03.png" alt="开启FTP服务"></p>
+<h2><span id="创建-ftp_server-网站"><span id="inline-blue">创建 FTP_SERVER 网站</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_05.png" alt="创建FTP_SERVER"></p>
+<h2><span id="ftp_server-网站添加-ftp-站点"><span id="inline-blue">FTP_SERVER 网站添加 FTP 站点</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_06.png" alt="创建FTP_SERVER"><br><img src="/images/Windows/FTP/WF_20201230_07.png" alt="创建FTP_SERVER"></p>
+<h2><span id="设置访问路径共享"><span id="inline-blue">设置访问路径共享</span></span></h2><p><img src="/images/Windows/FTP/WF_20201230_08.png" alt="创建FTP_SERVER"></p>
+<h2><span id="验证-ftp-用户访问"><span id="inline-blue">验证 FTP 用户访问</span></span></h2><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">ftp://report_cd:report_cd@10.9.212.55:21</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="/images/Windows/FTP/WF_20201230_09.png" alt="验证"></p>
+]]></content>
+      <categories>
+        <category>FTP</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>FTP</tag>
       </tags>
   </entry>
   <entry>
