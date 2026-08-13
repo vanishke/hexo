@@ -1162,8 +1162,8 @@
         <category>Docker</category>
       </categories>
       <tags>
-        <tag>Portainer</tag>
         <tag>Swarm</tag>
+        <tag>Portainer</tag>
       </tags>
   </entry>
   <entry>
